@@ -1,0 +1,214 @@
+﻿<div class="Id0Rh" *ngIf="loading" style="margin-top:300px">
+    <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+         style="height: 32px; width: 32px;">
+        <loading [size]="32"></loading>
+    </div>
+</div>
+<input type="file" (change)="uploadExcel($event)" multiple="false" hidden #hiddenUpload />
+<div class="v9tJq VfzDr"
+     *ngIf="!loading&&inventory">
+    <a *ngIf="!appService.mobile"
+       (click)="appService.action$.next('上頁')"
+       style="top: 40px;position: absolute;cursor:pointer">返回</a>
+    <header class="HVbuG"
+            *ngIf="appService.mobile">
+        <div style="width:350px;font-weight: 900;border-radius:40%;position:absolute;top:-35px;font-size: 100px;line-height: 100px;right:-15px;color: #F8AC59;opacity: .2;text-align: right;">存量<br />Inventory</div>
+        <div class="XjzKX">
+            <div class="RR-M- h5uC0"
+                 role="button"
+                 tabindex="0">
+                <canvas class="CfWVH"
+                        height="273"
+                        width="273"
+                        style="position: absolute;top: -15px;left: -15px;width: 107px;height: 107px;"
+                        #canvas></canvas>
+                <span class="_2dbep"
+                      role="link"
+                      tabindex="0"
+                      style="width: 77px; height: 77px;">
+                    <img [appLazyLoad]
+                         *ngIf="inventory.photo"
+                         style="object-fit: cover;width:75px;height:75px"
+                         src="{{appService.filesUrl}}/{{inventory.photo}}"
+                         alt="{{inventory.value}}"
+                         onerror="this.src='assets/noPhoto.png';" />
+                    <img [appLazyLoad]
+                         *ngIf="!inventory.photo"
+                         style="object-fit: cover;width:75px;height:75px"
+                         src="assets/noPhoto.png">
+                </span>
+            </div>
+        </div>
+        <section class="zwlfE">
+            <div class="nZSzR" style="margin-bottom:0">
+                <h1 class="_7UhW9 fKFbl yUEEX KV-D4 fDxYl">
+                    {{inventory.no}}
+                </h1>
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more()">
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </header>
+    <header class="vtbgv"
+            *ngIf="!appService.mobile">
+        <div style="width:350px;font-weight: 900;border-radius:40%;position:absolute;top:-35px;font-size: 100px;line-height: 100px;right:-15px;color: #F8AC59;opacity: .2;text-align: right;">存量<br />Inventory</div>
+        <div class="XjzKX">
+            <div class="RR-M- h5uC0" role="button" tabindex="0">
+                <canvas class="CfWVH"
+                        height="273"
+                        width="273"
+                        style="position: absolute;top: -25px;left: -25px;width: 200px;height: 200px;"
+                        #canvas></canvas>
+                <span class="_2dbep"
+                      role="link"
+                      tabindex="0"
+                      style="width: 150px; height: 150px;">
+                    <img [appLazyLoad]
+                         style="object-fit: cover;width:150px;height:150px"
+                         *ngIf="inventory.photo"
+                         src="{{appService.filesUrl}}/{{inventory.photo}}"
+                         alt="{{inventory.value}}"
+                         onerror="this.src='assets/noPhoto.png';">
+                    <img [appLazyLoad]
+                         style="object-fit: cover;width:150px;height:150px"
+                         *ngIf="!inventory.photo"
+                         src="assets/noPhoto.png"
+                         alt="{{inventory.value}}">
+                </span>
+            </div>
+        </div>
+        <section class="zwlfE">
+            <div class="nZSzR">
+                <h1 class="_7UhW9 fKFbl yUEEX KV-D4 fDxYl">{{inventory.no}}</h1>
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more()">
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <h1 class="rhpdm" style="margin: 5px 0">
+                    <span *ngIf="inventory.value!==1">{{inventory.value}}單位的</span>
+                    <span style="color: #1AB394;cursor:pointer"
+                          (click)="openItem(inventory.itemId)"
+                          title="品項: {{inventory.itemValue}}">{{inventory.itemValue}}</span>
+                    <span style="color: red; font-weight:900" *ngIf="!inventory.itemValue">不明品項</span>
+                </h1>
+                <h1 class="rhpdm" style="margin: 5px 0" *ngIf="inventory.positionTargetId">
+                    位於
+                    <span style="color: #F8AC59;cursor:pointer"
+                          (click)="openInventory(inventory.positionTargetId)"
+                          title="位置: {{inventory.positionTargetNo}}">{{inventory.positionTargetNo}}</span>
+                </h1> 
+                <h1 class="rhpdm" style="margin: 5px 0" *ngFor="let attribute of attributes">
+                    {{attribute.targetValue}}
+                    <span style="cursor:pointer" *ngIf="attribute.valueType==='文字'">{{attribute.value}}</span>
+                    <span style="cursor:pointer" *ngIf="attribute.valueType==='數值'">{{attribute.value}}</span>
+                    <span style="cursor:pointer" *ngIf="attribute.valueType==='時間'">{{attribute.value}}</span>
+                    <span style="color: #F8AC59;cursor:pointer" 
+                          *ngIf="attribute.valueType==='存量'"
+                          (click)="openInventory(attribute.value)">{{attribute.inventoryValue}}</span>
+                    <span style="cursor:pointer" *ngIf="attribute.valueType==='細節'">{{attribute.value}}</span>
+                    <span style="cursor:pointer" *ngIf="attribute.valueType==='關聯'">{{attribute.value}}</span>
+                    <span style="cursor:pointer" *ngIf="attribute.valueType==='屬性'">{{attribute.value}}</span>
+                    <span style="color: #1AB394;cursor:pointer" 
+                          *ngIf="attribute.valueType==='品項'"
+                          (click)="openItem(attribute.value)">{{attribute.itemValue}}</span>
+                    <span style="cursor:pointer" *ngIf="attribute.valueType==='分類'">{{attribute.value}}</span>
+                    <span style="cursor:pointer" *ngIf="attribute.valueType==='轉移'">{{attribute.value}}</span>
+                </h1>
+            </div>
+        </section>
+    </header>
+    <div class="fx7hk">
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':(mode$|async)==='inventoriesList'}"
+           (click)="setMode('inventoriesList')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopPhotoGridActive"></div>
+                <span class="PJXu4">內容物</span>
+            </span>
+        </a>
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':(mode$|async)==='positionsList'}"
+           (click)="setMode('positionsList')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopProfileIGTV"></div>
+                <span class="PJXu4">提領與移動</span>
+            </span>
+        </a>
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':(mode$|async)==='attributesList'}"
+           (click)="setMode('attributesList')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopProfileSave"></div>
+                <span class="PJXu4">屬性</span>
+            </span>
+        </a>
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':(mode$|async)==='qrcode'}"
+           (click)="setMode('qrcode')">
+            <span class="qzihg">
+                <div class="coreSpriteDesktopProfileTagged"></div>
+                <span class="_08DtY">Qrcode</span>
+            </span>
+        </a>
+    </div>
+    <section class="_1SP8R M_qbh"
+             *ngIf="(mode$|async)==='inventoriesList'"> 
+        <div class="accordion"
+             [ngClass]="{'open':openFilter}">
+            <div style="height:auto">
+            </div>
+            <div style="height:1px">
+            </div>
+        </div>
+        <inventoriesListTemplete></inventoriesListTemplete>
+    </section>
+    <section class="_1SP8R M_qbh"
+             *ngIf="(mode$|async)==='qrcode'" style="margin: 50px auto">
+        <qrcode [width]="300" [text]="'inventories/'+inventory.id"></qrcode>
+    </section>
+    <section class="_1SP8R M_qbh"
+             *ngIf="(mode$|async)==='attributesList'">
+        <div class="accordion"
+             [ngClass]="{'open':openFilter}">
+            <div style="height:auto">
+            </div>
+            <div style="height:1px">
+            </div>
+        </div>
+        <inventoryAttributesListTemplete></inventoryAttributesListTemplete>
+    </section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

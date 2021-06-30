@@ -1,0 +1,11 @@
+﻿<div class="Nnq7C weEfm" style="page-break-after: alwaies;">
+    <div class="_bz0w" style="page-break-after: alwaies;"
+         *ngFor="let print of prints">
+        <a>
+            <qrcode [text]="type+'/'+print.id" width="126"></qrcode>
+            <div style="position:absolute;top:105px;width:126px;text-align:center">{{print._code}}</div>
+               
+                <div style="position:absolute;top:117px;width:126px;text-align:center">{{print.no}}</div>
+        </a>
+    </div>
+</div>

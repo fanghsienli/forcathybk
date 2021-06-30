@@ -1,0 +1,149 @@
+﻿<input type="file" (change)="uploadExcel($event)" multiple="false" hidden #hiddenUpload />
+<input (keyup)="filterItems($event.target.value)"
+       [(ngModel)]="defaultSearchText"
+       placeholder="🔎簡易篩選"
+       class="search" />
+<span *ngIf="loading">
+    搜尋中...
+    <loading></loading>
+</span>
+<span *ngIf="!loading">    搜尋結果 {{resultCount}} 筆</span>
+<scrollTop></scrollTop>
+<a style="position: absolute; right: 7px; top: 7px; cursor: pointer" (click)="upload()">+大量新增</a>
+<table #exportTable *ngIf="!appService.mobile">
+    <thead>
+        <tr>
+            <th style="width:36px">圖片</th>
+            <th style="min-width:calc(34% - 78px)" (click)="sort('code')">編碼<span *ngIf="orderBy==='code'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th style="min-width:calc(33% - 77px)" (click)="sort('value')">名稱<span *ngIf="orderBy==='value'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th style="min-width:calc(33% - 77px)" (click)="sort('description')">關聯分類<span *ngIf="orderBy==='description'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th style="width:28px">動作</th>
+            <th style="width:28px"></th>
+            <th style="width:28px"></th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items"
+            (mouseover)="hoverId=item.id"
+            (mouseleave)="hoverId=''">
+            <td style="width:36px">
+                <img [appLazyLoad]
+                     *ngIf="item.photo"
+                     width="32"
+                     height="32"
+                     src="{{appService.filesUrl}}/{{item.photo}}"
+                     style="object-fit:cover"
+                     onerror="this.src='assets/noPhoto.png';" />
+                <img [appLazyLoad]
+                     *ngIf="!item.photo"
+                     width="32"
+                     height="32"
+                     src="assets/noPhoto.png">
+            </td>
+            <td><span [innerHTML]="item.code | highlight: anyLike"></span></td>
+            <td><span [innerHTML]="item.value | highlight: anyLike"></span></td>
+            <td><span [innerHTML]="item.description | highlight: anyLike"></span></td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===item.id"
+                   style="cursor:pointer;color:#3897f0"
+                   (click)="goToItem(item.id)">查看</a>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===item.id"
+                   style="cursor:pointer;color:#3897f0"
+                   (click)="editItem(item)">編輯</a>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===item.id&&item.deletable"
+                   style="cursor:pointer;color:#ed4956"
+                   (click)="delete(item)">刪除</a>
+            </td>
+
+        </tr>
+        <tr style="width:100%"
+            [appLoadMore]
+            *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+            (onSeeMe)="load(1000)">
+        </tr>
+    </tbody>
+    <!--[appLoadMore]
+    *ngIf="loading&&maxPage!==pageIndex"-->
+</table>
+<table #exportTable *ngIf="appService.mobile">
+    <thead>
+        <tr>
+            <th style="width:36px">圖片</th>
+            <th>
+                <span (click)="sort('code')"
+                      style="margin-right:10px">
+                    編號
+                    <span *ngIf="orderBy!=='code'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='code'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='code'&&descending">▾</span>
+                </span>
+                <span (click)="sort('value')"
+                      style="margin-right:10px">
+                    名稱
+                    <span *ngIf="orderBy!=='value'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='value'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='value'&&descending">▾</span>
+                </span>
+                <span (click)="sort('description')"
+                      style="margin-right:10px">
+                    關聯分類
+                    <span *ngIf="orderBy!=='description'" style="color:#f5f5f5"></span>
+                    <span *ngIf="orderBy==='description'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='description'&&descending">▾</span>
+                </span>
+            </th>
+            <th style="width:28px">動作</th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items" (click)="hoverId=item.id">
+            <td style="width:48px" (click)="goToItem(item.id)">
+                <img [appLazyLoad]
+                     *ngIf="item.photo"
+                     width="32"
+                     height="32"
+                     src="{{appService.filesUrl}}/{{item.photo}}"
+                     style="object-fit:cover"
+                     onerror="this.src='assets/noPhoto.png';" />
+                <img [appLazyLoad]
+                     *ngIf="!item.photo"
+                     width="32"
+                     height="32"
+                     src="assets/noPhoto.png">
+            </td>
+            <td (click)="goToItem(item.id)">
+                <span [innerHTML]="item.value | highlight: anyLike"
+                      title="名稱: {{item.value}}"></span><br />
+                <span [innerHTML]="item.code | highlight: anyLike"
+                      title="編碼: {{item.code}}"></span><br />
+                <span [innerHTML]="item.description | highlight: anyLike"
+                      title="關聯分類: {{item.description}}"></span>
+            </td>
+            <td style="width:28px">
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more(item)">
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        <tr style="width:100%"
+            [appLoadMore]
+            *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+            (onSeeMe)="load(1000)">
+        </tr>
+    </tbody>
+</table>
+

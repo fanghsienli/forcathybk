@@ -1,0 +1,201 @@
+﻿<div class="_08v79">
+    <div class="_7UhW9 MMzan _0PwGv uL8Hv"
+         style="margin-bottom: 15px"
+         *ngIf="mode===''&&currentAttribute">
+        <span *ngIf="isNew">新增{{currentAttribute.value}}</span>
+        <span *ngIf="!isNew">編輯『{{relationshipTarget.no}}』</span>
+    </div>
+    <div class="_7UhW9 MMzan _0PwGv uL8Hv"
+         style="margin-bottom: 15px"
+         *ngIf="mode!==''">
+        選擇{{mode}}
+    </div>
+    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv" *ngIf="mode===''">
+        <div class="container" style="width:calc(100% - 40px)" *ngFor="let attribute of attributes">
+            <div class="container" style="width:40px; margin-bottom:5px">
+                <span style="margin: 7px 0">{{attribute.value}}</span>
+            </div>
+            <div class="container" style="width:calc(100% - 40px); margin-bottom:5px" *ngIf="attribute.valueType==='品項'">
+                <div class="container" style="width:100%" *ngIf="relationshipTarget[attribute.code]">
+                    <span style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900;margin: 7px 0 0 7px"
+                          (click)="selectAttribute(attribute)">{{relationshipTarget[attribute.code].value}}</span>
+                </div>
+                <div class="container" style="width:100%" *ngIf="!relationshipTarget[attribute.code]">
+                    <span style="cursor:pointer;margin: 7px 0 0 7px" (click)="selectAttribute(attribute)">選擇</span>
+                </div>
+            </div>
+            <div class="container" style="width:calc(100% - 40px); margin-bottom:5px" *ngIf="attribute.valueType==='存量'">
+                <div class="container" style="width:100%" *ngIf="relationshipTarget[attribute.code]">
+                    <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900;margin: 7px 0 0 7px"
+                          (click)="selectAttribute(attribute)">{{relationshipTarget[attribute.code].no}}</span>
+                </div>
+                <div class="container" style="width:100%" *ngIf="!relationshipTarget[attribute.code]">
+                    <span style="cursor:pointer;margin: 7px 0 0 7px" (click)="selectAttribute(attribute)">選擇</span>
+                </div>
+            </div>
+            <div class="container" style="width:calc(100% - 40px)" *ngIf="attribute.valueType==='文字'">
+                <input [(ngModel)]="relationshipTarget[attribute.code]"
+                       type="text"
+                       placeholder="{{attribute.value}}"
+                       style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0 0 5px 0">
+            </div>
+            <div class="container" style="width:calc(100% - 40px)" *ngIf="attribute.valueType==='數值'">
+                <input [(ngModel)]="relationshipTarget[attribute.code]"
+                       type="number"
+                       placeholder="{{attribute.value}}"
+                       style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0 0 5px 0">
+            </div>
+        </div>
+    </div>
+    <div class="_7UhW9 MMzan _0PwGv uL8Hv" *ngIf="mode!==''">
+        <div style="display: flex;flex-direction: row; margin: 0 auto; max-width: 220px;padding-top: 0">
+            <input (keyup)="keyup($event.target.value)"
+                   type="text"
+                   style="border: 1px solid #efefef;text-align: center;line-height: 14px;vertical-align: middle;width: 100%;font-size: 14px;padding:8px">
+        </div>
+    </div>
+</div>
+<div class="mt3GC" *ngIf="mode===''">
+    <button class="aOOlW -Cab_" tabindex="0" [ngClass]="{'hasError':hasError()}" *ngIf="isNew" [disabled]="hasError()" (click)="create()">新增</button>
+    <button class="aOOlW -Cab_" tabindex="0" [ngClass]="{'hasError':hasError()}" *ngIf="!isNew" [disabled]="hasError()" (click)="update()">更新</button>
+    <button class="aOOlW HoLwm" tabindex="0" (click)="cancel()">取消</button>
+</div>
+
+<div class="buttons" *ngIf="mode!==''">
+    <button *ngFor="let option of options" class="aOOlW HoLwm" tabindex="0" style="height:52px" (click)="selectOption(option)">
+        <span *ngIf="option.code">
+            <span [innerHTML]="option.value | highlight: (anyLike$ | async)"></span><br />
+            <span [innerHTML]="option.code | highlight: (anyLike$ | async)"></span>
+        </span>
+        <span *ngIf="option.no" [innerHTML]="option.no | highlight: (anyLike$ | async)"></span>
+    </button>
+    <button *ngIf="options.length===0" style="margin-top: 212px" class="aOOlW HoLwm" tabindex="0" (click)="selectAttributeOk()">返回</button>
+    <div style="position:absolute;margin:90px 50%" *ngIf="loading">
+        <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+             style="height: 32px; width: 32px;">
+            <svg class="By4nA"
+                 viewBox="0 0 100 100">
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(-90 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.08333333333333333"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(-60 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.16666666666666666"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(-30 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.25"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(0 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.3333333333333333"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(30 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.4166666666666667"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(60 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.5"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(90 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.5833333333333334"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(120 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.6666666666666666"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(150 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.75"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(180 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.8333333333333334"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(210 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.9166666666666666"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(240 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+            </svg>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,200 @@
+﻿<div class="Id0Rh" *ngIf="loading" style="margin-top:300px">
+    <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+         style="height: 32px; width: 32px;">
+        <loading [size]="32"></loading>
+    </div>
+</div>
+<input type="file" (change)="uploadExcel($event)" multiple="false" hidden #hiddenUpload />
+<div class="v9tJq VfzDr"
+     *ngIf="!loading&&workPlan&&mode!=='putdown'">
+    <a *ngIf="!appService.mobile"
+       (click)="appService.action$.next('上頁')"
+       style="top: 40px;position: absolute;cursor:pointer">返回</a>
+    <header class="HVbuG"
+            *ngIf="appService.mobile">
+        <div style="width:400px;font-weight: 900;border-radius:40%;position:absolute;top:-35px;font-size: 100px;line-height: 100px;right:-15px;color: #F8AC59;opacity: .2;text-align: right;">生產計劃<br />WorkPlan</div>
+        <div class="XjzKX">
+            <div class="RR-M- h5uC0"
+                 role="button"
+                 tabindex="0">
+                <canvas class="CfWVH"
+                        height="273"
+                        width="273"
+                        style="position: absolute;top: -15px;left: -15px;width: 107px;height: 107px;"
+                        #canvas></canvas>
+                <span class="_2dbep"
+                      role="link"
+                      tabindex="0"
+                      style="width: 77px; height: 77px;">
+                    <img [appLazyLoad]
+                         *ngIf="workPlan.photo"
+                         style="object-fit: cover;width:75px;height:75px"
+                         src="{{appService.filesUrl}}/{{workPlan.photo}}"
+                         alt="{{workPlan.no}}"
+                         onerror="this.src='assets/noPhoto.png';" />
+                    <img [appLazyLoad]
+                         *ngIf="!workPlan.photo"
+                         style="object-fit: cover;width:75px;height:75px"
+                         src="assets/noPhoto.png">
+                </span>
+            </div>
+        </div>
+        <section class="zwlfE">
+            <div class="nZSzR" style="margin-bottom:0">
+                <h1 class="_7UhW9 fKFbl yUEEX KV-D4 fDxYl">
+                    {{workPlan.no}}
+                </h1>
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more()">
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </div>
+            <div *ngIf="workPlan.recipe"> 
+                <h1 class="rhpdm" style="margin: 5px 0">
+                    配方
+                    <span style="color: #F8AC59;cursor:pointer"
+                          (click)="goToRecipe(workPlan.recipe.id)"
+                          title="配方: {{workPlan.recipe.no}}">{{workPlan.recipe.no}}</span>
+                </h1>
+                <h1 class="rhpdm" style="margin: 5px 0">
+                    產量 {{workPlan.quantity}} 單位
+                </h1>
+            </div>
+        </section>
+    </header>
+    <header class="vtbgv"
+            *ngIf="!appService.mobile">
+        <div style="width:400px;font-weight: 900;border-radius:40%;position:absolute;top:-35px;font-size: 100px;line-height: 100px;right:-15px;color: #F8AC59;opacity: .2;text-align: right;">生產計畫<br />WorkPlan</div>
+        <div class="XjzKX">
+            <div class="RR-M- h5uC0" role="button" tabindex="0">
+                <canvas class="CfWVH"
+                        height="273"
+                        width="273"
+                        style="position: absolute;top: -25px;left: -25px;width: 200px;height: 200px;"
+                        #canvas></canvas>
+                <span class="_2dbep"
+                      role="link"
+                      tabindex="0"
+                      style="width: 150px; height: 150px;">
+                    <img [appLazyLoad]
+                         style="object-fit: cover;width:150px;height:150px"
+                         *ngIf="workPlan.photo"
+                         src="{{appService.filesUrl}}/{{workPlan.photo}}"
+                         alt="{{workPlan.no}}"
+                         onerror="this.src='assets/noPhoto.png';">
+                    <img [appLazyLoad]
+                         style="object-fit: cover;width:150px;height:150px"
+                         *ngIf="!workPlan.photo"
+                         src="assets/noPhoto.png"
+                         alt="{{workPlan.no}}">
+                </span>
+            </div>
+        </div>
+        <section class="zwlfE">
+            <div class="nZSzR">
+                <h1 class="_7UhW9 fKFbl yUEEX KV-D4 fDxYl">{{workPlan.no}}</h1>
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more()">
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </div>
+            <div *ngIf="workPlan.recipe"> 
+                <h1 class="rhpdm" style="margin: 5px 0">
+                    配方
+                    <span style="color: #F8AC59;cursor:pointer"
+                          (click)="goToRecipe(workPlan.recipe.id)"
+                          title="配方: {{workPlan.recipe.no}}">{{workPlan.recipe.no}}</span>
+                </h1>
+                <h1 class="rhpdm" style="margin: 5px 0">
+                    產量 {{workPlan.quantity}} 單位
+                </h1>
+            </div>
+        </section>
+    </header>
+    <div class="fx7hk">
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':mode==='station'}"
+           (click)="setMode('station')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopPhotoGridActive"></div>
+                <span class="PJXu4">站點</span>
+            </span>
+        </a>
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':mode==='pickup'}"
+           (click)="setMode('pickup')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopPhotoGridActive"></div>
+                <span class="PJXu4">領料</span>
+            </span>
+        </a>
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':mode==='startup'}"
+           (click)="setMode('startup')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopPhotoGridActive"></div>
+                <span class="PJXu4">投產</span>
+            </span>
+        </a>
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':mode==='inspection'}"
+           (click)="setMode('inspection')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopPhotoGridActive"></div>
+                <span class="PJXu4">產出</span>
+            </span>
+        </a>
+    </div>
+    <section class="_1SP8R M_qbh" *ngIf="workPlan.recipe">
+        <workOrdersListTemplete></workOrdersListTemplete>
+    </section>
+</div>
+
+
+
+<div *ngIf="mode==='putdown'" style="padding: 8px">
+    <div *ngIf="!selectingTarget">
+        工單: {{workPlan.no}}<br />
+        品項: {{requestItemValue}}<br />
+        數量: {{requestAmount}}<br />
+        目標:
+        <div style="padding: 2px" *ngIf="putdowns.length===0&&(!confirmingPutdown)"><a (click)="selectingTarget=true">開始選擇...</a></div>
+        <div *ngFor="let putdown of putdowns" style="border-bottom:1px solid #efefef; padding: 2px">
+            自{{putdown.no}} <br />
+            領料{{putdown.value}} 單位<span *ngIf="!confirmingPutdown"
+                                        style="position:absolute;right:0"
+                                        (click)="removePutdown(putdown)">X</span>
+        </div>
+        <div style="padding: 2px" *ngIf="putdowns.length>0&&(!confirmingPutdown)&&(requestAmount>totalPutdownValue)"><a (click)="selectingTarget=true">繼續選擇...</a></div>
+
+        <button *ngIf="putdowns.length>0&&(!confirmingPutdown)" (click)="confirmingPutdown=true">放</button>
+        <button *ngIf="confirmingPutdown" (click)="putdown()">確定放料</button>
+    </div>
+    <div *ngIf="selectingTarget">
+        <span *ngIf="(!selectedInventory)&&(!confirmingPutdown)">搜尋領料目標...</span>
+        <div *ngIf="(!selectedInventory)&&(!confirmingPutdown)">
+            <input (keyup)="keyup($event.target.value)"
+                   type="text"
+                   placeholder="搜尋領料目標"
+                   style="border: 1px solid #efefef;text-align: center;line-height: 14px;vertical-align: middle;width: calc(100% - 32px);font-size: 14px;padding:8px">
+            <div style="height:200px; overflow-y:scroll">
+                <div *ngFor="let option of options" style="border-bottom:1px solid #efefef; padding: 8px" (click)="selectInventory(option)">
+                    <span [innerHTML]="option.no | highlight: (anyLike$ | async)"></span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selectedInventory&&(!confirmingPutdown)">
+            輸入領料數量...最大{{maxPutdownValue}}單位<br />
+            <input [(ngModel)]="putdownValue"
+                   type="number"
+                   placeholder="輸入領料數量"
+                   style="border: 1px solid #efefef;text-align: center;line-height: 14px;vertical-align: middle;width: calc(100% - 32px);font-size: 14px;padding:8px">
+            <button (click)="addPutdown()">領</button>
+
+        </div>
+        <button (click)="cancelPutdown()">取消</button>
+    </div>
+</div>
+

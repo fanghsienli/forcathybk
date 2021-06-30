@@ -1,0 +1,59 @@
+﻿<div class="Id0Rh" *ngIf="loading" style="margin-top:300px">
+    <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+         style="height: 32px; width: 32px;">
+        <loading [size]="32"></loading>
+    </div>
+</div>
+<div class="v9tJq VfzDr"
+     *ngIf="!loading" style="padding-top:0">
+    <header class="id8oV _6pbJJ" *ngIf="!loading">
+        <div class="T7reQ _0FuTv pkWJh">
+            <div aria-label="開啟限時動態" class="aoVrC D1yaK" role="button" tabindex="0">
+                <canvas class="CfWVH"
+                        height="273"
+                        width="273"
+                        style="position: absolute;top: -15px;left: -15px;width: 107px;height: 107px;"
+                        #canvas></canvas>
+
+                <div class="FuWoR j44N4 zlwcS _0mzm-" style="width: 77px; height: 77px;">
+                    <span class="glyphsSpriteHashtag_outline_24_grey_9 u-_7" aria-label="主題標籤"></span>
+                </div>
+            </div>
+        </div>
+        <div class="WSpok">
+            <div class="f7QXd  HfISj">
+                <div class="Igw0E IwRSH eGOV_ _4EzTm _22l1">
+                    <span class="g47SY" style="color: #A300CF">{{category.value}}</span>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <div class="fx7hk" *ngIf="mode">
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':mode==='itemsList'}"
+           (click)="setMode('itemsList')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopPhotoGridActive"></div>
+                <span class="PJXu4">相關品項</span>
+            </span>
+        </a>
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':mode==='attributesList'}"
+           (click)="setMode('attributesList')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopProfileIGTV"></div>
+                <span class="PJXu4">屬性</span>
+            </span>
+        </a>
+    </div>
+    <section class="_1SP8R M_qbh"
+             *ngIf="mode==='itemsList'">
+
+        <itemsListTemplete></itemsListTemplete>
+    </section>
+    <section class="_1SP8R M_qbh"
+             *ngIf="mode==='attributesList'">
+        <categoryAttributesListTemplete></categoryAttributesListTemplete>
+    </section>
+</div>

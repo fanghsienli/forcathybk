@@ -1,0 +1,66 @@
+﻿<div class="dsJ8D" 
+     style="margin: 16px;justify-content:flex-start"
+     (click)="goToInventory(inventory.id)">
+    <div class="xlTJg">
+        <div class="G3yoz"
+             style="border-radius: 0">
+            <img [appLazyLoad]
+                 *ngIf="inventory.photo"
+                 width="90"
+                 height="90"
+                 src="{{appService.filesUrl}}/{{inventory.photo}}"
+                 style="object-fit:cover"
+                 onerror="this.src='assets/noPhoto.png';" />
+            <img [appLazyLoad]
+                 *ngIf="!inventory.photo"
+                 width="90"
+                 height="90"
+                 src="assets/noPhoto.png"> 
+        </div>
+    </div>
+</div>
+<section class="zwlfE" 
+         style="margin: 24px 0 12px">
+    <div class="-vDIg" 
+         style="padding: 0 4px 8px">
+        <h1 class="rhpdm fDxYl"
+            style="font-size:16px"
+            (click)="goToInventory(inventory.id)">
+            {{inventory.no}}
+        </h1>
+        <a class="_32eiM">
+            <span class="tc8A9 fDxYl"
+                  style="margin-top: 4px">
+                {{inventory.value}} 單位的 
+            <span style="color: #1AB394;cursor:pointer"
+                  (click)="goToItem(inventory.itemId)"
+                  title="品項: {{inventory.itemValue}}">{{inventory.itemValue}}</span>
+                <span style="color: red; font-weight:900" *ngIf="!inventory.itemValue">不明品項</span>
+            </span>
+        </a>
+    </div>
+    <div class="Y2E37">
+        <div class="Igw0E IwRSH eGOV_ vwCYk JI_ht">
+            <button class="fAR91 _0mzm- sqdOP L3NKy _4pI4F _8A5w5" 
+                    type="button" 
+                    [disabled]="inventory._select" 
+                    (click)="putDown(inventory)">部分放置</button>
+        </div>
+        <div class="Igw0E IwRSH eGOV_ vwCYk">
+            <button class="fAR91 _0mzm- sqdOP L3NKy _4pI4F _8A5w5" 
+                    type="button" 
+                    [disabled]="inventory._select" 
+                    (click)="putDownAll(inventory)">全部放置</button>
+        </div>
+    </div>
+</section>
+<div class="_08v79" style="margin: 16px; text-align:right;width:5%">
+    <span class="glyphsSpriteCircle_check_outline_24_blue_5"
+          style="position: absolute; right: 0; top: 0"
+          *ngIf="!inventory._select"
+          (click)="select(inventory)"></span>
+    <span class="glyphsSpriteCircle_check_filled_24_blue_5"
+          style="position: absolute; right: 0; top: 0"
+          *ngIf="inventory._select"
+          (click)="remove(inventory)"></span>
+</div>

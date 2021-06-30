@@ -1,0 +1,98 @@
+.back-to-top {
+    display: none; /* 默認是隱藏的，這樣在第一屏才不顯示 */
+    position: fixed; /* 位置是固定的 */
+    bottom: 20px; /* 顯示在頁面底部 */
+    right: 30px; /* 顯示在頁面的右邊 */
+    z-index: 99; /* 確保不被其他功能覆蓋 */
+    border: 1px solid #5cb85c; /* 顯示邊框 */
+    outline: none; /* 不顯示外框 */
+    background-color: #fff; /* 設置背景背景顏色 */
+    color: #5cb85c; /* 設置文本顏色 */
+    cursor: pointer; /* 滑鼠移到按鈕上顯示手型 */
+    padding: 10px 15px 15px 15px; /* 增加一些內邊距 */
+    border-radius: 10px; /* 增加圓角 */
+}
+
+    .back-to-top:hover {
+        background-color: #5cb85c; /* 滑鼠移上去時，反轉顏色 */
+        color: #fff;
+    }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+th, td {
+    cursor: pointer;
+    text-align: left;
+    padding: 8px;
+    vertical-align: top;
+}
+
+thead tr {
+    background-color: #F5F5F5;
+}
+
+tbody tr {
+    cursor: pointer;
+    border-bottom: 1px solid #F5F5F5;
+}
+tbody tr:hover {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.disabled{
+    opacity:.2;
+}
+
+.loadingMore {
+    height: 32px;
+    width: 32px;
+    position: fixed;
+    top: 55%;
+    left: calc(50% - 16px);
+}
+/******CheckBox********/
+.U17kh {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #999;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px
+}
+
+.yVvXQ {
+    color: #262626;
+    font-weight: 600
+}
+
+.drKGC{
+    left:0;
+    margin-left:0;
+    width: 100%;
+    top:6px;
+}
+    .drKGC::after {
+        left:calc(50% - 10px);
+    }
+
+.VR6_Q {
+top:0;
+}
+
+
+/*******/
+.aOOlW:last-of-type {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0
+}

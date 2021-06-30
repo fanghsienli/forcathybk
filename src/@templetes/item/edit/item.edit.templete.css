@@ -1,0 +1,200 @@
+
+
+ 
+
+.lVhHa {
+    position: relative
+}
+
+    .o92ps > div {
+        border-radius: 6px;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: 100%;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        padding: 23px;
+        position: absolute;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+        -webkit-transition-timing-function: ease-in-out;
+        transition-timing-function: ease-in-out;
+        -webkit-transition-property: -webkit-transform,-webkit-box-shadow;
+        transition-property: transform,box-shadow;
+        transition-property: transform,box-shadow,-webkit-transform,-webkit-box-shadow
+    }
+
+    .o92ps:active {
+        opacity: .7
+    }
+
+
+
+.SJ1H9 {
+    border-radius: 6px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
+    background-color: #fafafa
+}
+
+
+
+
+.container {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding: 0;
+    vertical-align: top;
+}
+    .container label {
+        color: #262626;
+    } 
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.hasError{
+    opacity:.6;
+}
+th, td {
+    cursor: pointer;
+    text-align: left;
+    padding: 8px;
+    vertical-align: top;
+}
+
+thead tr {
+    background-color: #F5F5F5;
+}
+/*
+tbody tr {
+    cursor: pointer
+}*/
+tbody tr:hover {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.disabled{
+    opacity:.2;
+}
+/******CheckBox********/
+.U17kh {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #999;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px
+}
+
+.yVvXQ {
+    color: #262626;
+    font-weight: 600
+}
+
+.drKGC{
+    left:0;
+    margin-left:0;
+    width: 100%;
+    top:6px;
+}
+    .drKGC::after {
+        left:calc(50% - 10px);
+    }
+
+.VR6_Q {
+top:0;
+}
+
+
+/*******/
+.aOOlW:last-of-type {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+.buttons {
+    height: 260px;
+    overflow-y: scroll;
+}
+
+    .buttons > button {
+        height: 52px;
+    }
+
+
+    .buttons::-webkit-scrollbar {
+        width: 3px;
+    }
+
+/* Track */
+    .buttons::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+/* Handle */
+    .buttons::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+        .buttons::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+
+        .buttons > button:hover {
+            background-color: azure;
+        }
+
+
+
+        .buttons > button:first-child {
+            border-top: none;
+        }
+
+.buttons2 {
+    position:absolute;
+    top: 346px;
+    width:100%;
+}
+
+.buttons2 > button {
+    height: 52px;
+}
+
+

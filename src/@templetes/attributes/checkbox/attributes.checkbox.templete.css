@@ -1,0 +1,33 @@
+.myDiv {
+    width: 166px;
+    height: 203px;
+    overflow-y: scroll;
+    position: absolute;
+    padding-top: 3px;
+    right: 0;
+    top: 30px;
+    z-index: 100;
+    background-color: #ffffff;
+    border: 1px solid #EEEEEE;
+    border-top: 1px solid #ffffff;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,.2);
+}
+
+.myDiv::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+.myDiv::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.myDiv::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    .myDiv::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }

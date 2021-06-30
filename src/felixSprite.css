@@ -1,0 +1,156 @@
+.felixSpriteFacebookCircle, .felixSpriteFacebookCircle-3x, .felixSpriteFbSelectedItem, .felixSpriteFbSelectedItem-3x, .felixSpriteOnboardingBuiltForVertical, .felixSpriteOnboardingBuiltForVertical-3x, .felixSpriteOnboardingCreateYourChannel, .felixSpriteOnboardingCreateYourChannel-3x, .felixSpriteOnboardingShareLongerVideos, .felixSpriteOnboardingShareLongerVideos-3x, .felixSpriteInventoryChannelNullState, .felixSpriteInventoryChannelNullState-3x, .felixSpriteUploadError, .felixSpriteUploadError-3x, .felixSpriteWebUploadNullAdd, .felixSpriteWebUploadNullAdd-3x {
+    background-image: url(/assets/4800bc114a3a.png)
+}
+
+.felixSpriteFacebookCircle, .felixSpriteFacebookCircle-3x {
+    background-repeat: no-repeat;
+    background-position: -270px -324px;
+    height: 66px;
+    width: 66px
+}
+
+.felixSpriteFacebookCircle {
+    background-position: -428px -370px;
+    height: 22px;
+    width: 22px
+}
+
+.felixSpriteFbSelectedItem, .felixSpriteFbSelectedItem-3x {
+    background-repeat: no-repeat;
+    background-position: -206px -254px;
+    height: 68px;
+    width: 68px
+}
+
+.felixSpriteFbSelectedItem {
+    background-position: -402px -370px;
+    height: 24px;
+    width: 24px
+}
+
+.felixSpriteOnboardingBuiltForVertical-3x {
+    background-repeat: no-repeat;
+    background-position: -206px 0;
+    height: 252px;
+    width: 144px
+}
+
+.felixSpriteOnboardingBuiltForVertical {
+    background-repeat: no-repeat;
+    background-position: 0 -424px;
+    height: 84px;
+    width: 48px
+}
+
+.felixSpriteOnboardingCreateYourChannel-3x {
+    background-repeat: no-repeat;
+    background-position: 0 -206px;
+    height: 216px;
+    width: 186px
+}
+
+.felixSpriteOnboardingCreateYourChannel {
+    background-repeat: no-repeat;
+    background-position: -206px -324px;
+    height: 72px;
+    width: 62px
+}
+
+.felixSpriteOnboardingShareLongerVideos-3x {
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    height: 204px;
+    width: 204px
+}
+
+.felixSpriteOnboardingShareLongerVideos {
+    background-repeat: no-repeat;
+    background-position: -276px -254px;
+    height: 68px;
+    width: 68px
+}
+
+.felixSpriteInventoryChannelNullState-3x {
+    background-repeat: no-repeat;
+    background-position: -352px 0;
+    height: 186px;
+    width: 186px
+}
+
+.felixSpriteInventoryChannelNullState {
+    background-repeat: no-repeat;
+    background-position: -50px -424px;
+    height: 62px;
+    width: 62px
+}
+
+.felixSpriteUploadError, .felixSpriteUploadError-3x {
+    background-repeat: no-repeat;
+    background-position: -352px -370px;
+    height: 48px;
+    width: 48px
+}
+
+.felixSpriteUploadError {
+    background-position: -452px -370px;
+    height: 16px;
+    width: 16px
+}
+
+.felixSpriteWebUploadNullAdd-3x {
+    background-repeat: no-repeat;
+    background-position: -352px -188px;
+    height: 180px;
+    width: 183px
+}
+
+.felixSpriteWebUploadNullAdd {
+    background-repeat: no-repeat;
+    background-position: -114px -424px;
+    height: 60px;
+    width: 61px
+}
+
+@media (min-device-pixel-ratio: 1.5),(-webkit-min-device-pixel-ratio:1.5),(min-resolution:144dpi) {
+    .felixSpriteFacebookCircle, .felixSpriteFbSelectedItem, .felixSpriteOnboardingBuiltForVertical, .felixSpriteOnboardingCreateYourChannel, .felixSpriteOnboardingShareLongerVideos, .felixSpriteInventoryChannelNullState, .felixSpriteUploadError, .felixSpriteWebUploadNullAdd {
+        background-image: url(/assets/90d41aa74a11.png)
+    }
+
+    .felixSpriteFacebookCircle, .felixSpriteFbSelectedItem {
+        background-size: 180px 141px;
+        background-position: -93px -85px
+    }
+
+    .felixSpriteFbSelectedItem {
+        background-position: -69px -85px
+    }
+
+    .felixSpriteOnboardingBuiltForVertical {
+        background-size: 180px 141px;
+        background-position: -69px 0
+    }
+
+    .felixSpriteOnboardingCreateYourChannel {
+        background-size: 180px 141px;
+        background-position: 0 -69px
+    }
+
+    .felixSpriteOnboardingShareLongerVideos {
+        background-size: 180px 141px;
+        background-position: 0 0
+    }
+
+    .felixSpriteInventoryChannelNullState, .felixSpriteUploadError {
+        background-size: 180px 141px;
+        background-position: -118px 0
+    }
+
+    .felixSpriteUploadError {
+        background-position: -118px -124px
+    }
+
+    .felixSpriteWebUploadNullAdd {
+        background-size: 180px 141px;
+        background-position: -118px -63px
+    }
+}

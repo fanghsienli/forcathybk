@@ -1,0 +1,40 @@
+﻿
+<article class="KC1QD" style="margin-top:60px" *ngIf="!appService.mobile">
+    <div class="title">
+        品項列表
+        <!--<input type="file" (change)="uploadExcel($event)" multiple="false" hidden #hiddenUpload />
+            <a style="position:absolute;top:0;right:0;cursor:pointer" (click)="create()">+新增</a><br />-->
+        <a style="position: absolute;top: 15px;right: 7px;cursor: pointer;font-weight:400" (click)="create()">+新增</a>
+    </div>
+    <div class="EZdmt">
+
+        <itemsListTemplete></itemsListTemplete>
+    </div>
+</article>
+<article class="KC1QD" *ngIf="appService.mobile">
+    <div class="EZdmt">
+        <itemsListTemplete></itemsListTemplete>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

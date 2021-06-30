@@ -1,0 +1,127 @@
+﻿<div class="BAJFR _0fVVZ"
+     [ngClass]="{'_warning':isEmpty,'_error':isDuplicated,'_0fVVZ':!focused,'LaVsc':focused}"
+     *ngIf="Bbciv">
+    <div class="MMe53">
+        <input type="text"
+               maxlength="75"
+               placeholder="名稱"
+               [(ngModel)]="inventoryNo"
+               (focus)="focus()"
+               (blur)="blur()"
+               (keyup)="checkInventoryNo($event.target.value)"
+               (keydown)="keydown($event)">
+    </div>
+    <div class="W1Bne zKxRE"
+         style="right:10px;left:auto;z-index:3"
+         *ngIf="loading"></div>
+    <span *ngIf="isDuplicated&&!focused"
+          style="color:red;font-size:12px;line-height:16px;position:absolute;right:16px">重複</span>
+    <span *ngIf="isEmpty&&!focused"
+          style="color:#F8AC59;font-size:12px;line-height:16px;position:absolute;right:16px">必填</span>
+    <div class="coreSpriteSearchClear"
+         role="button"
+         *ngIf="focused"
+         (mouseover)="hoverClear=true"
+         (mouseleave)="hoverClear=false"
+         style="right:10px;position:absolute;z-index:10"
+         tabindex="0"></div>
+    <div *ngIf="focused"
+         style="width:calc(100% + 28px);position:absolute;top:50px;left:-14px">
+        <div class="VR6_Q"
+             *ngIf="autocomplete&&inventorySelects.length>0"></div>
+        <div class="drKGC"
+             *ngIf="autocomplete&&inventorySelects.length>0">
+            <div class="fuqBx"
+                 *ngFor="let inventorySelect of inventorySelects">
+                <a class="yCE8d"
+                   [ngClass]="{'JvDyy':hoverId===inventorySelect.id}"
+                   (mouseover)="hoverId=inventorySelect.id"
+                   (mouseleave)="hoverId=null"
+                   (click)="click(inventorySelect)">
+                    <div class="z556c">
+                        <div class="RR-M- h5uC0 g9vPa"
+                             role="button"
+                             tabindex="0">
+                            <canvas class="CfWVH"
+                                    height="42"
+                                    width="42"
+                                    style="position:absolute;top:-5px;left:-5px;width:42px;height:42px"></canvas>
+                            <span class="_2dbep"
+                                  role="link"
+                                  tabindex="0"
+                                  style="width:32px;height: 32px">
+                                <div style="position:absolute;top:0;left:0;bottom:0;right:0;z-index:-1;height:10000px">
+                                    Text to have as background
+                                </div>
+                            </span>
+                        </div>
+                        <div class="_2_M76">
+                            <div class="uyeeR">
+                                <span class="Ap253">{{inventorySelect.value}}</span>
+                            </div>
+                            <span class="Fy4o8">{{inventorySelect.code}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="NfvXc"
+     *ngIf="IpSxo">
+    <label class="f0n8F FATdn"
+           [ngClass]="{'FATdn':focused||inventoryNo.length>0 }">
+        <span class="_9nyy2"
+              [ngClass]="{'_warning':isEmpty,'_error':isDuplicated}">
+            編號<span *ngIf="isDuplicated">重複</span><span *ngIf="isEmpty">必填</span>
+        </span>
+        <input class="_472V_"
+               style="width:100%"
+               autocomplete="off"
+               [(ngModel)]="inventoryNo"
+               (focus)="focus()"
+               (blur)="blur2()"
+               (keyup)="checkInventoryNo($event.target.value)"
+               autocorrect="off" />
+    </label>
+</div>
+<div class="cDEf6"
+     role="button"
+     tabindex="0"
+     style="top: 50px"
+     *ngIf="focused&&IpSxo&&autocomplete">
+    <div class="TjnKz">
+        <div class="BYCcJ">
+            <div class="DxLdn"
+                 *ngIf="loading">
+                <div class="W1Bne ztp9m cjQl0"></div>
+            </div>
+            <div class="ZmQHO _-7iV1"
+                 *ngIf="!loading||(inventorySelects&&inventorySelects.length>0)">
+                <button class="Eo_F0"
+                        *ngFor="let inventorySelect of inventorySelects"
+                        (click)="click(inventorySelect)">
+                    <div class="vBdNO">
+                        <span class="IEk8l">{{inventorySelect.value}}</span>
+                        <div class="AfmgG">{{inventorySelect.code}}</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="_blur"
+         (click)="blur()"></div>
+</div>
+<div class="g5kp1"
+     *ngIf="IpSxo">
+    <label class="_6WHuW ckOle">
+        <input accept="image/*"
+               class="YeWti"
+               type="file"
+               (change)="createFile($event)">
+        <img class="FuaTR"
+             src="{{appService.filesUrl}}/{{inventory?.photo?.target?.path}}"
+             alt="預覽要上傳的相片"
+             onerror="this.src='assets/plus.png';">
+    </label>
+</div>

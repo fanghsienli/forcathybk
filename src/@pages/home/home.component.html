@@ -1,0 +1,177 @@
+﻿<article class="KC1QD" style="margin-top:60px" *ngIf="!appService.mobile">
+    <div class="EZdmt">
+        <h2 class="yQ0j1">
+            <div class="Saeqz">常用功能</div>
+        </h2>
+        <div class="Nnq7C weEfm">
+            <div class="v1Nh3 kIKUG _bz0w"
+                 (mouseleave)="hoverId=''">
+                <a [routerLink]="['/items']"
+                   style="max-height:293px"
+                   (mouseover)="hoverId='items'">
+                    <div class="eLAPa" style="background-color:#fafafa">
+                        <div class="KL4Bh">
+                            <img class="FFVAD"
+                                 decoding="auto"
+                                 sizes="293px"
+                                 src="assets/1AB394.png"
+                                 style="object-fit: cover;">
+                        </div>
+                        <div class="_9AhH0"></div>
+                    </div>
+                    <div *ngIf="hoverId==='items'"
+                         class="qn-0x"
+                         style="background-color: rgba(0, 0, 0, 0.3)">
+
+                    </div>
+                    <span class="qn-0x2">
+                        品項列表
+                    </span>
+                </a>
+            </div>
+            <!--
+            <div class="v1Nh3 kIKUG _bz0w"
+                 (mouseleave)="hoverId=''">
+                <a [routerLink]="['/recipes']"
+                   style="max-height:293px"
+                   (mouseover)="hoverId='recipes'">
+                    <div class="eLAPa" style="background-color:#fafafa">
+                        <div class="KL4Bh">
+                            <img class="FFVAD"
+                                 decoding="auto"
+                                 sizes="293px"
+                                 src="assets/F8AC59.png"
+                                 style="object-fit: cover;">
+                        </div>
+                        <div class="_9AhH0"></div>
+                    </div>
+                    <div *ngIf="hoverId==='recipes'"
+                         class="qn-0x"
+                         style="background-color: rgba(0, 0, 0, 0.3)">
+
+                    </div>
+                    <span class="qn-0x2">
+                        配方列表
+                    </span>
+                </a>
+            </div>
+            <div class="v1Nh3 kIKUG _bz0w"
+                 (mouseleave)="hoverId=''">
+                <a [routerLink]="['/workPlans']"
+                   style="max-height:293px"
+                   (mouseover)="hoverId='workPlans'">
+                    <div class="eLAPa" style="background-color:#fafafa">
+                        <div class="KL4Bh">
+                            <img class="FFVAD"
+                                 decoding="auto"
+                                 sizes="293px"
+                                 src="assets/ED5565.png"
+                                 style="object-fit: cover;">
+                        </div>
+                        <div class="_9AhH0"></div>
+                    </div>
+                    <div *ngIf="hoverId==='workPlans'"
+                         class="qn-0x"
+                         style="background-color: rgba(0, 0, 0, 0.3)">
+
+                    </div>
+                    <span class="qn-0x2">
+                        管制卡列表
+                    </span>
+                </a>
+            </div>
+            -->
+        </div>
+        <div class="Nnq7C weEfm">
+
+        </div>
+    </div>
+</article>
+
+<article class="KC1QD" *ngIf="appService.mobile">
+    <div class="EZdmt">
+        <div class="Nnq7C weEfm">
+            <div class="v1Nh3 kIKUG _bz0w"
+                 (mouseleave)="hoverId=''">
+                <a [routerLink]="['/items']"
+                   style="max-height:293px"
+                   (mouseover)="hoverId='items'">
+                    <div class="eLAPa" style="background-color:#fafafa">
+                        <div class="KL4Bh">
+                            <img class="FFVAD"
+                                 decoding="auto"
+                                 sizes="293px"
+                                 src="assets/1AB394.png"
+                                 style="object-fit: cover;">
+                        </div>
+                        <div class="_9AhH0"></div>
+                    </div>
+                    <div *ngIf="hoverId==='items'"
+                         class="qn-0x"
+                         style="background-color: rgba(0, 0, 0, 0.3)">
+
+                    </div>
+                    <span class="qn-0x2" style="color:#808080">
+                        品項列表
+                    </span>
+                </a>
+            </div>
+
+            <!--
+        <div class="v1Nh3 kIKUG _bz0w"
+             (mouseleave)="hoverId=''">
+            <a [routerLink]="['/recipes']"
+               style="max-height:293px"
+               (mouseover)="hoverId='recipes'">
+                <div class="eLAPa" style="background-color:#fafafa">
+                    <div class="KL4Bh">
+                        <img class="FFVAD"
+                             decoding="auto"
+                             sizes="293px"
+                             src="assets/F8AC59.png"
+                             style="object-fit: cover;">
+                    </div>
+                    <div class="_9AhH0"></div>
+                </div>
+                <div *ngIf="hoverId==='recipes'"
+                     class="qn-0x"
+                     style="background-color: rgba(0, 0, 0, 0.3)">
+
+                </div>
+                <span class="qn-0x2" style="color:#808080">
+                    配方列表
+                </span>
+            </a>
+        </div>
+        <div class="v1Nh3 kIKUG _bz0w"
+             (mouseleave)="hoverId=''">
+            <a [routerLink]="['/workOrders']"
+               style="max-height:293px"
+               (mouseover)="hoverId='workOrders'">
+                <div class="eLAPa" style="background-color:#fafafa">
+                    <div class="KL4Bh">
+                        <img class="FFVAD"
+                             decoding="auto"
+                             sizes="293px"
+                             src="assets/ED5565.png"
+                             style="object-fit: cover;">
+                    </div>
+                    <div class="_9AhH0"></div>
+                </div>
+                <div *ngIf="hoverId==='workOrders'"
+                     class="qn-0x"
+                     style="background-color: rgba(0, 0, 0, 0.3)">
+
+                </div>
+                <span class="qn-0x2" style="color:#808080">
+                    工單列表
+                </span>
+            </a>
+        </div>-->
+        </div>
+            <div class="Nnq7C weEfm">
+
+            </div>
+        </div>
+    </article>
+

@@ -1,0 +1,114 @@
+﻿<div class="_8MQSO ZoygQ">
+    <div class="">
+        <div class="rBWT5"></div>
+        <div class="KGiwt">
+            <div class="A8wCM">
+                <div class="BvyAW">
+                    <div class="Igw0E IwRSH YBx95 vwCYk"
+                         style="height: 100%">
+                        <a class="gKAyB"
+                          (click)="goTo('home')">
+                            <span class="u-_7"
+                                  [ngClass]="{'glyphsSpriteHome_filled_24_grey_9':bottom.active==='首頁','glyphsSpriteHome_outline_24_grey_9':bottom.active!=='首頁'}"
+                                  aria-label="首頁">
+                            </span>
+                        </a>
+                    </div>
+                    <div class="Igw0E IwRSH YBx95 vwCYk"
+                         style="height: 100%">
+                        <a class="gKAyB"
+                           (click)="goTo('search')">
+                            <span class="u-_7"
+                                  [ngClass]="{'glyphsSpriteSearch_filled_24_grey_9':bottom.active==='搜尋','glyphsSpriteSearch_outline_24_grey_9 u-_7':bottom.active!=='搜尋'}"
+                                  aria-label="搜尋">
+                            </span>
+                        </a>
+                    </div>
+                    <div class="q02Nz _0TPg"
+                         role="menuitem"
+                         tabindex="0"
+                         (click)="goTo('scan')">
+                        <!--<span class="glyphsSpriteNew_post_outline_24_grey_9 u-_7"
+          aria-label="新增">
+    </span>-->
+                        
+                            <img width="24"
+                                 src="assets/scan.png" />
+                
+                    </div>
+                    <div class="Igw0E IwRSH YBx95 vwCYk"
+                         style="height: 100%"
+                         (click)="goTo('wallet')">
+                        <a class="gKAyB"
+                           [ngClass]="{'Wn8y-':(walletCount>0&&bottom.active!=='載具')}">
+                            <span class="u-_7"
+                                  [ngClass]="{'glyphsSpriteHeart_filled_24_grey_9':bottom.active==='載具','glyphsSpriteHeart_outline_24_grey_9':bottom.active!=='載具'}"
+                                  aria-label="載具">
+                            </span>
+                            <div class="cqQf9" 
+                                 *ngIf="bottom.active!=='載具'&&walletCount>0" 
+                                 (click)="show=false"
+                                 style="z-index:9999">
+                                <div class="iMofo t1tHE R0tpI nHGTw" [ngClass]="{'R0tpI':!show}">
+                                    <div class="JxPw3 sHch9">
+                                        <div class="_18Jen nHGTw" (click)="show=false"></div>
+                                    </div>
+                                    <div class="jctW7">
+                                        <div class="_0KY_R">
+                                            <div class=" Igw0E rBNOH eGOV_ ybXk5 _4EzTm n4cjz">
+                                                <span class="glyphsSpriteHeart_filled_16_white u-_7" aria-label="載具有東西"></span>
+                                                <div class=" Igw0E rBNOH eGOV_ _4EzTm soMvl">
+                                                    <div class="_7UhW9 vy6Bb MMzan h_zdq uL8Hv T0kll">{{walletCount}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="Igw0E IwRSH YBx95 vwCYk"
+                         style="height: 100%"
+                         (click)="goTo('profile')">
+                        <a class="gKAyB">
+                            <span class="u-_7"
+                                  [ngClass]="{'glyphsSpriteUser_filled_24_grey_9':bottom.active==='個人','glyphsSpriteUser_outline_24_grey_9':bottom.active!=='個人'}"
+                                  aria-label="個人">
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form class="Q9en_"
+              enctype="multipart/form-data"
+              method="POST" role="presentation">
+            <input accept="image/jpeg"
+                   class="tb_sK"
+                   type="file">
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

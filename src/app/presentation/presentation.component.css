@@ -1,0 +1,31 @@
+video {
+    border: none;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    position: relative;
+    transform: translateY(-40%);
+    top: 40%;
+}
+
+.container {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: -webkit-inline-box;
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding: 0;
+    vertical-align: top;
+}
+
+    .container label {
+        color: #262626;
+    } 
+
+/*******/
+.aOOlW:last-of-type {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+

@@ -1,0 +1,54 @@
+﻿<div class="v1Nh3 kIKUG _bz0w">
+    <a style="max-height:293px">
+        <div class="eLAPa disabled" style="border: 1px solid #F8AC59">
+            <div class="KL4Bh">
+            </div>
+            <div class="_9AhH0">
+                <div style="padding:8px 0;margin:0;display:flex;flex-direction:row;font-weight:900;color:#000000"
+                     *ngIf="inventoryGrid">
+                    <div style="margin:0 auto;overflow: hidden;text-align:center;text-overflow:ellipsis;width:100%;display:block">{{inventoryGrid.key}}</div>
+                </div>
+                <div style="height: 40%;line-height:48px;font-size:30px;padding: 0;margin: 0;display: flex;align-items: center;justify-content: center"
+                     *ngIf="inventoryGrid">
+                    <div style="margin:0 auto;overflow: hidden;text-align:center;text-overflow:ellipsis;width:100%;display:block">
+                        <span>{{inventoryGrid.value}}</span>
+                    </div>
+                </div>
+                <div style="padding-top:0;margin:0;display:flex;flex-direction:row;color:#262626"
+                     *ngIf="inventoryGrid">
+                    <div style="margin:0 auto;overflow: hidden;text-align:center;text-overflow:ellipsis;width:100%;display:block;font-size:24px;line-height:24px">{{inventoryGrid.description}}</div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="_08v79" style="margin: 24px 16px 16px 16px">
+    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">{{inventoryGrid._accordion.value}}</div>
+        </div>
+        <div style="padding-top:0;margin:6px auto;display:flex;flex-direction:row; max-width: 150px">
+            <div (click)="minus(inventoryGrid)"
+                 class="aOOlW"
+                 style="line-height: 19px;height:32px;width:32px;min-height:32px;border-top: 1px solid #efefef;border-bottom: 1px solid #efefef;border-left: 1px solid #efefef;border-right: none"
+                 tabindex="0">-</div>
+            <input [(ngModel)]="inventoryGrid._value"
+                   type="text"
+                   inputmode="numeric"
+                   maxlength="7"
+                   (keyup)="keyup(inventoryGrid, $event.target.value)"
+                   (keypress)="validateNum($event)"
+                   style="vertical-align:middle;width:100%;text-align:center;border-top: 1px solid #efefef;border-bottom: 1px solid #efefef;border-left: none;border-right: none">
+            <div (click)="plus(inventoryGrid)"
+                 class="aOOlW"
+                 style="line-height: 19px;height:32px;width:32px;min-height:32px;border-top: 1px solid #efefef;border-bottom: 1px solid #efefef;border-left: none;border-right: 1px solid #efefef"
+                 tabindex="0">+</div>
+        </div>
+        <div style="padding-top:0;margin:0 0 9px 0;display:flex;flex-direction:row;color:#262626">
+            <div style="margin:0 auto"> 來自 {{inventoryGrid.key}}</div>
+        </div>
+    </div>
+</div>
+<div class="_08v79" style="margin: 24px 16px 16px 16px; text-align:right;width:11%">
+    <span class="coreSpriteDismissLarge" style="position: absolute;right: 0;top: 0" (click)="remove(inventoryGrid)"></span>
+</div>

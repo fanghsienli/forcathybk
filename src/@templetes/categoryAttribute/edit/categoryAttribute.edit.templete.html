@@ -1,0 +1,338 @@
+﻿<div class="_08v79">
+
+    <div class="_7UhW9 MMzan _0PwGv uL8Hv"
+         style="margin-bottom: 15px"
+         *ngIf="mode===''&&categoryAttribute">
+        <span *ngIf="isNew">新增分類屬性</span>
+        <span *ngIf="!isNew">編輯『{{categoryAttributeTargetValue}}』</span>
+    </div>
+    <div class="_7UhW9 MMzan _0PwGv uL8Hv"
+         style="margin-bottom: 15px"
+         *ngIf="mode!==''">
+        選擇{{mode}}
+    </div>
+    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv" *ngIf="mode===''">
+        <div class="container" style="width:calc(100% - 25px)">
+            <div class="container" style="width:40px"><span style="margin: 7px 0">名稱</span></div>
+            <div class="container" style="width:calc(100% - 40px)">
+                <input [(ngModel)]="categoryAttribute.target.value"
+                       type="text"
+                       placeholder="名稱"
+                       style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0 0 5px 0">
+            </div>
+        </div>
+        <div class="container" style="width:calc(100% - 25px)">
+            <div class="container" style="width:40px"><span style="margin: 7px 0">代碼</span></div>
+            <div class="container" style="width:calc(100% - 40px)">
+                <input [(ngModel)]="categoryAttribute.target.code"
+                       type="text"
+                       placeholder="代碼"
+                       style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0 0 5px 0">
+            </div>
+        </div>
+        <div class="container" style="width: calc(100% - 25px)">
+            <div class="container" style="width:40px"><span>類型</span></div>
+            <div class="container" style="width:calc(100% - 40px)">
+                <div class="container" style="width:75px">
+                    <input id="valueType1"
+                           class="z79H6"
+                           name="valueType"
+                           type="radio"
+                           [(ngModel)]="categoryAttribute.target.valueType"
+                           (change)="change($event.target.checked,$event.target.value)"
+                           value="文字">
+                    <label for="valueType1">文字</label>
+                </div>
+                <div class="container" style="width:75px">
+                    <input id="valueType2"
+                           class="z79H6"
+                           name="valueType"
+                           type="radio"
+                           [(ngModel)]="categoryAttribute.target.valueType"
+                           (change)="change($event.target.checked,$event.target.value)"
+                           value="數值">
+                    <label for="valueType2">數值</label>
+                </div>
+                <div class="container" style="width:75px">
+                    <input id="valueType3"
+                           class="z79H6"
+                           name="type"
+                           type="radio"
+                           [(ngModel)]="categoryAttribute.target.valueType"
+                           (change)="change($event.target.checked,$event.target.value)"
+                           value="時間">
+                    <label for="valueType3">時間</label>
+                </div>
+                <div class="container" style="width:calc(100% - 225px)">
+                    <input id="valueType4"
+                           class="z79H6"
+                           name="type"
+                           type="radio"
+                           [(ngModel)]="categoryAttribute.target.valueType"
+                           (change)="change($event.target.checked,$event.target.value)"
+                           value="存量">
+                    <label for="valueType4">存量</label>
+                </div>
+                <div class="container" style="width:75px">
+                    <input id="valueType5"
+                           class="z79H6"
+                           name="type"
+                           type="radio"
+                           [(ngModel)]="categoryAttribute.target.valueType"
+                           (change)="change($event.target.checked,$event.target.value)"
+                           value="細節">
+                    <label for="valueType5">細節</label>
+                </div>
+                <div class="container" style="width:75px">
+                    <input id="valueType6"
+                           class="z79H6"
+                           name="valueType"
+                           type="radio"
+                           [(ngModel)]="categoryAttribute.target.valueType"
+                           (change)="change($event.target.checked,$event.target.value)"
+                           value="關聯">
+                    <label for="valueType6">關聯</label>
+                </div>
+                <div class="container" style="width:calc(100% - 150px)">
+                    <input id="valueType7"
+                           class="z79H6"
+                           name="valueType"
+                           type="radio"
+                           [(ngModel)]="categoryAttribute.target.valueType"
+                           (change)="change($event.target.checked,$event.target.value)"
+                           value="屬性">
+                    <label for="valueType7">屬性</label>
+                </div>
+                <div class="container" style="width:75px">
+                    <input id="valueType8"
+                           class="z79H6"
+                           name="valueType"
+                           type="radio"
+                           [(ngModel)]="categoryAttribute.target.valueType"
+                           (change)="change($event.target.checked,$event.target.value)"
+                           value="品項">
+                    <label for="valueType8">品項</label>
+                </div>
+                <div class="container" style="width:75px">
+                    <input id="valueType9"
+                           class="z79H6"
+                           name="valueType"
+                           type="radio"
+                           [(ngModel)]="categoryAttribute.target.valueType"
+                           (change)="change($event.target.checked,$event.target.value)"
+                           value="分類">
+                    <label for="valueType9">分類</label>
+                </div>
+                <div class="container" style="width:calc(100% - 150px)">
+                    <input id="valueType10"
+                           class="z79H6"
+                           name="valueType"
+                           type="radio"
+                           [(ngModel)]="categoryAttribute.target.valueType"
+                           (change)="change($event.target.checked,$event.target.value)"
+                           value="轉移">
+                    <label for="valueType10">轉移</label>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="width:calc(100% - 25px)">
+            <div class="container" style="width:40px"><span style="margin: 7px 0">數量</span></div>
+            <div class="container" style="width:calc(100% - 40px)">
+                <input [(ngModel)]="categoryAttribute.target.valueNumber"
+                       type="number"
+                       style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0 0 5px 0">
+            </div>
+        </div>
+        <div class="container" style="width:calc(100% - 25px)">
+            <div class="container" style="width:40px"><span>介面</span></div>
+            <div class="container" style="width:calc(100% - 40px)">
+                <div class="container" style="width:75px">
+                    <input id="show"
+                           type="checkbox"
+                           class="tlZCJ"
+                           (change)="changeMustShow()"
+                           [(ngModel)]="show">
+                    <div class="mwD2G" (click)="clickShow()"></div>
+                    <label for="show">
+                        展示
+                    </label>
+                </div>
+                <div class="container" style="width:calc(100% - 75px)" *ngIf="show">
+                    <input id="must"
+                           type="checkbox"
+                           class="tlZCJ"
+                           (change)="changeMustShow()"
+                           [(ngModel)]="must">
+                    <div class="mwD2G" (click)="clickMust()"></div>
+                    <label for="must">
+                        必填
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="width:calc(100% - 25px)">
+            <div class="container" style="width:40px"><span style="margin: 7px 0">條件</span></div>
+            <div class="container" style="width:calc(100% - 40px)">
+                <div *ngFor="let condition of conditions" class="container" style="width:100%">
+                    <span *ngIf="condition.type==='category'" style="cursor:pointer;color:#A300CF;margin:7px 0 0 0;font-weight:900"
+                          (click)="remove(condition.id)">{{condition.value}}</span>
+                    <span *ngIf="condition.type==='item'" style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900"
+                          (click)="remove(condition.id)">{{condition.value}}</span>
+                    <span *ngIf="condition.type==='inventory'" style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                          (click)="remove(condition.id)">{{condition.value}}</span>
+                </div>
+                <div class="container" style="width:100%">
+                    <span style="cursor:pointer;margin: 7px 0 0 0" (click)="selectCondition()">選擇</span>
+                    <span style="color:red;margin: 7px 0 0 0" *ngIf="needCondition()">　*必須有條件</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="_7UhW9 MMzan _0PwGv uL8Hv" *ngIf="mode!==''">
+        <div style="display: flex;flex-direction: row; margin: 0 auto; max-width: 220px;padding-top: 0">
+            <input (keyup)="keyup($event.target.value)"
+                   type="text"
+                   style="border: 1px solid #efefef;text-align: center;line-height: 14px;vertical-align: middle;width: 100%;font-size: 14px;padding:8px">
+        </div>
+    </div>
+</div>
+<div class="mt3GC" *ngIf="mode===''">
+    <button class="aOOlW -Cab_" tabindex="0" [ngClass]="{'hasError':hasError()||needCondition()}" *ngIf="isNew" [disabled]="hasError()||needCondition()" (click)="create()">新增</button>
+    <button class="aOOlW -Cab_" tabindex="0" [ngClass]="{'hasError':hasError()||needCondition()}" *ngIf="!isNew" [disabled]="hasError()||needCondition()" (click)="update()">更新</button>
+    <button class="aOOlW HoLwm" tabindex="0" (click)="cancel()">取消</button>
+</div>
+<div class="buttons" style="height:260px" *ngIf="mode!==''">
+    <button *ngFor="let option of options" class="aOOlW HoLwm" tabindex="0" style="height:52px" (click)="selectOption(option)">
+        <span [innerHTML]="option.value | highlight: (anyLike$ | async)"></span><br />
+        <span [innerHTML]="option.desc | highlight: (anyLike$ | async)"></span>
+    </button>
+    <button *ngIf="options.length===0" style="margin-top: 212px" class="aOOlW HoLwm" tabindex="0" (click)="selectConditionOk()">返回</button>
+    <div class="Id0Rh" *ngIf="loading">
+        <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+             style="height: 32px; width: 32px;">
+            <svg class="By4nA"
+                 viewBox="0 0 100 100">
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(-90 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.08333333333333333"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(-60 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.16666666666666666"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(-30 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.25"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(0 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.3333333333333333"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(30 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.4166666666666667"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(60 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.5"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(90 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.5833333333333334"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(120 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.6666666666666666"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(150 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.75"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(180 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.8333333333333334"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(210 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.9166666666666666"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(240 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+            </svg>
+        </div>
+    </div>
+</div>

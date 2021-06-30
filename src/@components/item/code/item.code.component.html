@@ -1,0 +1,121 @@
+﻿<div class="cDEf6"
+     role="button"
+     tabindex="0"
+     style="bottom: 50px"
+     *ngIf="focused&&IpSxo&&autocomplete">
+    <div class="_blur"
+         (click)="blur()"></div>
+</div>
+<div class="BAJFR _0fVVZ"
+     [ngClass]="{'_info':isNewItem,'_warning':isEmpty,'_error':isDuplicated,'_0fVVZ':!focused,'LaVsc':focused}"
+     *ngIf="Bbciv">
+    <div class="MMe53">
+        <input type="text"
+               maxlength="75"
+               placeholder="品項編碼"
+               [(ngModel)]="itemCode"
+               (focus)="focus()"
+               (blur)="blur()"
+               (keyup)="checkItemCode($event.target.value)">
+    </div>
+    <span *ngIf="isDuplicated"
+          style="color:red;font-size:12px;line-height:16px;position:absolute;right:0;top:38px">重複</span>
+    <span *ngIf="isEmpty"
+          style="color:#F8AC59;font-size:12px;line-height:16px;position:absolute;right:0;top:38px">必填</span>
+    <div class="W1Bne zKxRE"
+         style="right:10px;left:auto;z-index:3"
+         *ngIf="loading"></div>
+    <div class="coreSpriteSearchClear"
+         role="button"
+         *ngIf="focused"
+         (mouseover)="hoverClear=true"
+         (mouseleave)="hoverClear=false"
+         style="right:10px;position:absolute;z-index:10"
+         tabindex="0"></div>
+    <div *ngIf="focused"
+         style="width:calc(100% + 28px);position:absolute;top:50px;left:-14px">
+        <div class="VR6_Q"
+             *ngIf="autocomplete&&itemSelects.length>0"></div>
+        <div class="drKGC"
+             *ngIf="autocomplete&&itemSelects.length>0">
+            <div class="fuqBx"
+                 *ngFor="let itemSelect of itemSelects">
+                <a class="yCE8d"
+                   [ngClass]="{'JvDyy':hoverId===itemSelect.id}"
+                   (mouseover)="hoverId=itemSelect.id"
+                   (mouseleave)="hoverId=null"
+                   (click)="click(itemSelect)">
+                    <div class="z556c">
+                        <div class="RR-M- h5uC0 g9vPa"
+                             role="button"
+                             tabindex="0">
+                            <canvas class="CfWVH"
+                                    height="42"
+                                    width="42"
+                                    style="position:absolute;top:-5px;left:-5px;width:42px;height:42px"></canvas>
+                            <span class="_2dbep"
+                                  role="link"
+                                  tabindex="0"
+                                  style="width: 32px; height: 32px;">
+                                <div style="position:absolute;top:0;left:0;bottom:0;right:0;z-index:-1;height:10000px">
+                                    Text to have as background
+                                </div>
+                            </span>
+                        </div>
+                        <div class="_2_M76">
+                            <div class="uyeeR">
+                                <span class="Ap253">{{itemSelect.value}}</span>
+                            </div>
+                            <span class="Fy4o8">{{itemSelect.code}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="NfvXc"
+     *ngIf="IpSxo">
+    <label class="f0n8F FATdn"
+           [ngClass]="{'FATdn':focused||itemCode.length>0 }">
+        <span class="_9nyy2"
+              [ngClass]="{'_info':isNewItem,'_warning':isEmpty,'_error':isDuplicated}">
+            {{title}}編號<span *ngIf="isEmpty">必填</span><span *ngIf="isDuplicated">重複</span>
+        </span>
+        <input aria-label="品項編號"
+               class="_472V_"
+               autocomplete="off"
+               [(ngModel)]="itemCode"
+               (focus)="focus()"
+               (blur)="blur2()"
+               (keyup)="checkItemCode($event.target.value)"
+               autocorrect="off" />
+    </label>
+</div>
+<div class="cDEf6"
+     role="button"
+     tabindex="0"
+     style="top: 50px"
+     *ngIf="focused&&IpSxo&&autocomplete">
+    <div class="TjnKz">
+        <div class="BYCcJ">
+            <div class="DxLdn"
+                 *ngIf="loading">
+                <div class="W1Bne ztp9m cjQl0"></div>
+            </div>
+            <div class="ZmQHO _-7iV1"
+                 *ngIf="(!loading)||(itemSelects&&itemSelects.length>0)">
+                <button class="Eo_F0"
+                        *ngFor="let itemSelect of itemSelects"
+                        (click)="click(itemSelect)">
+                    <div class="vBdNO">
+                        <span class="IEk8l">{{itemSelect.value}}</span>
+                        <div class="AfmgG">{{itemSelect.code}}</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="_blur"
+         (click)="blur()"></div>
+</div>

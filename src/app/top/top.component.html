@@ -1,0 +1,132 @@
+﻿<div class="-ZQoH"  *ngIf="(topTitle$|async) as topTitle">
+    <header class="_9ezyW" *ngIf="topTitle!=='搜尋'">
+        <div class="b5itu">
+            <div class="mXkkY HOQT4" *ngIf="(topLeft$ | async) as topLeft">
+                <span class="glyphsSpriteApp_instagram_outline_24_grey_9 u-_7"
+                      style="margin-top:2px"
+                      aria-label="RichEasy"
+                      *ngIf="topLeft==='商標'">
+                </span>
+                <button class="qXyTW"
+                        (click)="nextAction(topLeft)"
+                        *ngIf="topLeft!=='選項'&&topLeft!=='商標'">
+                    <span class="Szr5J coreSpriteNotificationLeftChevron"
+                          *ngIf="topLeft==='返回'||topLeft==='預覽'||topLeft==='上頁'||topLeft==='關閉鏡頭'">
+                        {{topLeft}}
+                    </span>
+                    <span class="Szr5J coreSpriteClose"
+                          *ngIf="topLeft==='取消'||topLeft==='關閉'">
+                        {{topLeft}}
+                    </span>
+                </button>
+                <button class="Q46SR" *ngIf="topLeft==='選項'">
+                    <span class="glyphsSpriteSettings_outline_24_grey_9 u-_7" aria-label="選項"></span>
+                </button>
+            </div>
+            <h1 class="K3Sf1" *ngIf="topTitle!=='商標'">
+                {{topTitle}}
+            </h1>
+            <h1 class="K3Sf1"
+                *ngIf="topTitle==='商標'"
+                style="max-width:103px;margin:8px 0 0 16px">
+                <a class="rDZ30"
+                   style="max-width:103px">
+                    <span class="glyphsSpriteMobile_nav_type_logo u-_7"
+                          aria-label="RichEasy"></span>
+                </a>
+            </h1>
+            <div class="mXkkY KDuQp" *ngIf="(topRight$ | async) as topRight">
+                <span *ngIf="topRight==='空白'" style="opacity:0"> {{topRight}}</span>
+                <!-- <a *ngIf="topRight==='掃碼'"
+         style="margin:2px -4px 0 0;height:24px"
+         (click)="nextAction(topRight)">
+          <img width="24"
+               src="assets/scan.png" />
+      </a>-->
+                <span *ngIf="topRight==='新增'"
+                      class="glyphsSpriteNew_post_outline_24_grey_9 u-_7"
+                      aria-label="新增"
+                       (click)="add()">
+                </span>
+                <a class="gKAyB"
+                   *ngIf="topRight==='全選'"
+                   (click)="nextAction(topRight)">
+                    <span class="u-_7 glyphsSpriteCircle_check_outline_24_blue_5"></span>
+                </a>
+                <a class="gKAyB"
+                   *ngIf="topRight==='取消全選'"
+                   (click)="nextAction(topRight)">
+                    <span class="u-_7 glyphsSpriteCircle_check_filled_24_blue_5"></span>
+                </a>
+                <button *ngIf="topRight==='更新'||topRight==='發佈'||topRight==='繼續'||topRight==='上傳'"
+                        class="UP43G"
+                        (click)="nextAction(topRight)"
+                        [disabled]="errors.length>0">
+                    {{topRight}}
+                </button>
+            </div>
+        </div>
+    </header>
+    <header class="XfJ6q _9ezyW"
+            *ngIf="topTitle==='搜尋'">
+        <div class="b5itu">
+            <h1 class="K3Sf1">
+                <div class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm">
+                    <div class="Igw0E IwRSH eGOV_ vwCYk">
+                        <div class="Igw0E IwRSH eGOV_ ybXk5 _4EzTm">
+                            <div class="Igw0E IwRSH eGOV_ vwCYk">
+                                <label class="NcCcD _0mzm-">
+                                    <input autocapitalize="none"
+                                           autocomplete="off"
+                                           class="j_2Hd iwQA6 RO68f M5V28"
+                                           [ngClass]="{'t-XOq':searchFocused}"
+                                           placeholder="搜尋"
+                                           type="search"
+                                           [(ngModel)]="searchText"
+                                           (focus)="searchFocused=true"
+                                           (blur)="searchFocused=false"
+                                           (keyup)="search($event.target.value)">
+                                    <div class="DWAFP"
+                                         [ngClass]="{'RrSJm':searchFocused||searchText.length>0}">
+                                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                                            <span class="glyphsSpriteSearch u-_7"
+                                                  aria-label="搜尋"></span>
+                                        </div>
+                                        <span class="rwQu7" *ngIf="searchText.length===0">搜尋</span>
+                                    </div>
+                                    <div class="Igw0E rBNOH YBx95 _4EzTm ItkAi O1flK fm1AK TxciK yiMZG">
+                                        <button class="rKLaY"
+                                                *ngIf="!searching&&searchText.length>0" (click)="clear()">
+                                            <span class="glyphsSpriteInput_clear u-_7"
+                                                  aria-label="清除"></span>
+                                        </button>
+                                        <div class="Igw0E IwRSH YBx95 _4EzTm"
+                                             style="height: 18px; width: 18px;"
+                                             *ngIf="searching">
+                                            <svg class="FSiF6" viewBox="0 0 100 100">
+                                                <rect fill="#555555" height="10" opacity="0" rx="5" ry="5" transform="rotate(-90 50 50)" width="28" x="67" y="45"></rect>
+                                                <rect fill="#555555" height="10" opacity="0.125" rx="5" ry="5" transform="rotate(-45 50 50)" width="28" x="67" y="45"></rect>
+                                                <rect fill="#555555" height="10" opacity="0.25" rx="5" ry="5" transform="rotate(0 50 50)" width="28" x="67" y="45"></rect>
+                                                <rect fill="#555555" height="10" opacity="0.375" rx="5" ry="5" transform="rotate(45 50 50)" width="28" x="67" y="45"></rect>
+                                                <rect fill="#555555" height="10" opacity="0.5" rx="5" ry="5" transform="rotate(90 50 50)" width="28" x="67" y="45"></rect>
+                                                <rect fill="#555555" height="10" opacity="0.625" rx="5" ry="5" transform="rotate(135 50 50)" width="28" x="67" y="45"></rect>
+                                                <rect fill="#555555" height="10" opacity="0.75" rx="5" ry="5" transform="rotate(180 50 50)" width="28" x="67" y="45"></rect>
+                                                <rect fill="#555555" height="10" opacity="0.875" rx="5" ry="5" transform="rotate(225 50 50)" width="28" x="67" y="45"></rect>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Igw0E IwRSH YBx95 _4EzTm n4cjz">
+                        <button class="_0mzm- sqdOP yWX7d _8A5w5"
+                                type="button">
+                            取消
+                        </button>
+                    </div>
+                </div>
+            </h1>
+        </div>
+    </header>
+</div>

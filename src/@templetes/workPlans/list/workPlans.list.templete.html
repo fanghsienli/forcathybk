@@ -1,0 +1,134 @@
+﻿<input (keyup)="filterWorkPlans($event.target.value)"
+       placeholder="🔎簡易篩選"
+       class="search" />
+<span *ngIf="loading">
+    搜尋中...
+    <loading></loading>
+</span>
+<span *ngIf="!loading">    搜尋結果 {{resultCount}} 筆</span>
+<scrollTop></scrollTop>
+<!--
+<span style="position:fixed; top:1;background-color:aquamarine">loading: {{loading}},maxPage: {{maxPage}}<br />pageIndex: {{pageIndex}},workPlansLength: {{workPlans.length}}</span>
+-->
+<table #exportTable *ngIf="!appService.mobile">
+    <thead>
+        <tr>
+            <th (click)="sort('no')">工單編號<span *ngIf="orderBy==='no'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th (click)="sort('order')">所屬訂單<span *ngIf="orderBy==='order'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th (click)="sort('sort')">生產順序<span *ngIf="orderBy==='recipe'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th style="width:28px">動作</th>
+            <th style="width:28px"></th>
+            <th style="width:28px"></th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody style="padding-bottom:60px" *ngIf="workPlans&&workPlans.length>0">
+        <tr [appLoadMore] *ngFor="let workPlan of workPlans"
+            (mouseover)="hoverId=workPlan.id"
+            (mouseleave)="hoverId=''">
+            <td>
+                <span [innerHTML]="workPlan.no | highlight: anyLike"></span>
+            </td>
+            <td>
+                <span *ngIf="workPlan.order"
+                      style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                      [innerHTML]="workPlan.order.no | highlight: anyLike"
+                      (click)="openInventory(workPlan.order.id)"></span>
+            </td>
+            <td>
+                {{workPlan.sort}}
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===workPlan.id"
+                   style="cursor:pointer"
+                   (click)="goToWorkPlan(workPlan.id)">查看</a>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===workPlan.id"
+                   style="cursor:pointer"
+                   (click)="editWorkPlan(workPlan)">編輯</a>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===workPlan.id"
+                   style="cursor:pointer;color:#ed4956"
+                   (click)="delete(workPlan)">刪除</a>
+            </td>
+        </tr>
+        <img [appLoadMore]
+             *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+             width="32"
+             height="32"
+             style="margin-top:10px"
+             src="assets/white.png"
+             (onSeeMe)="load(1000)" />
+    </tbody>
+</table>
+<table #exportTable *ngIf="appService.mobile">
+    <thead>
+        <tr>
+            <th>
+                <span (click)="sort('no')"
+                      style="margin-right:10px">
+                    工單編號
+                    <span *ngIf="orderBy!=='no'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='no'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='no'&&descending">▾</span>
+                </span>
+                <span (click)="sort('order')"
+                      style="margin-right:10px">
+                    所屬訂單
+                    <span *ngIf="orderBy!=='order'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='order'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='order'&&descending">▾</span>
+                </span>
+                <span (click)="sort('sort')"
+                      style="margin-right:10px">
+                    生產排序
+                    <span *ngIf="orderBy!=='sort'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='sort'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='sort'&&descending">▾</span>
+                </span>
+            </th>
+            <th style="width:28px">動作</th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody style="padding-bottom:60px">
+        <tr [appLoadMore] *ngFor="let workPlan of workPlans"
+            [ngClass]="{'hoverId':hoverId===workPlan.id}">
+            <td (click)="goToWorkPlan(workPlan.id)">
+                <div>
+                    <span style="font-weight: 900"
+                          [innerHTML]="workPlan.no | highlight: anyLike"></span>
+                </div>
+                <div *ngIf="workPlan.order">
+                    <span>
+                        <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="workPlan.order.no | highlight: anyLike"
+                              (click)="openInventory(workPlan.order.id)"></span> - 順序{{workPlan.sort}}
+                    </span>
+                </div>
+            </td>
+            <td style="width:28px">
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more(workPlan)">
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        <img [appLoadMore]
+             *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+             width="32"
+             height="32"
+             style="margin-top:10px"
+             src="assets/white.png"
+             (onSeeMe)="load(1000)" />
+    </tbody>
+</table>

@@ -1,0 +1,45 @@
+﻿<div class="BAJFR _0fVVZ"
+     [ngClass]="{'_warning':isEmpty,'_0fVVZ':!focused,'LaVsc':focused}"
+     *ngIf="Bbciv">
+    <div class="MMe53">
+        <input type="text"
+               maxlength="75"
+               #inventoryValueInput
+               placeholder="數量"
+               (blur)="blur()"
+                [(ngModel)]="inventoryValue"
+               (focus)="focus()"
+               (keyup)="keyup($event.target.value)"
+               (paste)="paste($event)"
+               (keydown)="keydown($event)">
+    </div>
+    <span *ngIf="isEmpty&&!focused"
+          style="color:#F8AC59;font-size:12px;line-height:16px;position:absolute;right:16px">必填</span>
+    <div class="coreSpriteSearchClear"
+         role="button"
+         *ngIf="focused"
+         (mouseover)="hoverClear=true"
+         (mouseleave)="hoverClear=false"
+         style="right:10px;position:absolute;z-index:10"
+         tabindex="0"></div>
+</div>
+<div class="NfvXc"
+     *ngIf="IpSxo">
+    <label class="f0n8F FATdn"
+           [ngClass]="{'FATdn':focused||inventoryValue.length>0 }">
+        <span class="_9nyy2"
+              [ngClass]="{'_warning':isEmpty}">
+            數量<span *ngIf="isEmpty">必填</span>
+        </span>
+        <input class="_472V_"
+               #inventoryValueInput
+               [(ngModel)]="inventoryValue"
+               autocomplete="off"
+               (focus)="focus()"
+                (blur)="blur()"
+               (keyup)="keyup($event.target.value)"
+               (keydown)="keydown($event)"
+               (paste)="paste($event)"
+               autocorrect="off" />
+    </label>
+</div>

@@ -1,0 +1,205 @@
+﻿<div class="Id0Rh" *ngIf="loading" style="margin-top:300px">
+    <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+         style="height: 32px; width: 32px;">
+        <loading [size]="32"></loading>
+    </div>
+</div>
+
+<input type="file" 
+       (change)="uploadExcel($event)" 
+       multiple="false" 
+       hidden 
+       #hiddenUpload/>
+<div class="v9tJq VfzDr"
+     *ngIf="!loading&&item">
+    <a *ngIf="!appService.mobile"
+       (click)="appService.action$.next('上頁')"
+       style="top: 40px;position: absolute;cursor:pointer">返回</a>
+    <header class="vtbgv"
+            *ngIf="!appService.mobile">
+        <div class="item">品項<br />Item</div>
+        <div class="XjzKX">
+            <div class="RR-M- h5uC0" role="button" tabindex="0">
+                <canvas class="CfWVH"
+                        height="273"
+                        width="273"
+                        style="position: absolute;top: -25px;left: -25px;width: 200px;height: 200px;"
+                        #canvas></canvas>
+                <span class="_2dbep"
+                      role="link"
+                      tabindex="0"
+                      style="width: 150px; height: 150px;">
+                    <img [appLazyLoad]
+                           *ngIf="item.photo&&item.photo!=='converting'"
+                         style="object-fit: cover;width:150px;height:150px"
+                         src="{{appService.filesUrl}}/{{item.photo}}"
+                         alt="{{item.value}}"
+                         onerror="this.src='assets/noPhoto.png';">              
+                    <img [appLazyLoad]
+                            *ngIf="!item.photo"
+                         style="object-fit: cover;width:150px;height:150px"
+                         src="assets/noPhoto.png"
+                         alt="預覽">
+                </span>
+            </div>
+        </div>
+        <section class="zwlfE">
+            <div class="nZSzR">
+                <h1 class="_7UhW9 fKFbl yUEEX KV-D4 fDxYl">【{{item.value}}】</h1>
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more()">
+
+
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </div>
+            <ul class="k9GMp">
+                <li class="Y8-fY">
+                    <span class="-nal3">
+                        <span class="g47SY"> {{item.description}}</span>
+                    </span>
+                </li>
+            </ul>
+
+        </section>
+    </header>
+    <header class="HVbuG"
+            *ngIf="appService.mobile">
+        <div class="item">品項<br />Item</div>
+        <div class="XjzKX">
+            <div class="RR-M- h5uC0"
+                 role="button"
+                 tabindex="0">
+                <canvas class="CfWVH"
+                        height="273"
+                        width="273"
+                        style="position: absolute;top: -15px;left: -15px;width: 107px;height: 107px;"
+                        #canvas></canvas>
+                <span class="_2dbep"
+                      role="link"
+                      tabindex="0"
+                      style="width: 77px; height: 77px;">
+                    <img [appLazyLoad]
+                         style="object-fit: cover;width:75px;height:75px"
+                         *ngIf="item.photo"
+                         src="{{appService.filesUrl}}/{{item.photo}}"
+                         alt="{{item.value}}"
+                         onerror="this.src='assets/noPhoto.png';">
+                    <img [appLazyLoad]
+                         style="object-fit: cover;width:75px;height:75px"
+                         *ngIf="(!item.photo)"
+                         src="assets/noPhoto.png"
+                         alt="預覽">
+                </span>
+            </div>
+        </div>
+        <section class="zwlfE">
+            <div class="nZSzR">
+                <h1 class="_7UhW9 fKFbl yUEEX KV-D4 fDxYl">【{{item.value}}】</h1>
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more()">
+                        <span class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7" aria-label="選項"></span>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <a class="_32eiM">
+                    <span class="tc8A9"
+                          style="margin: 0 0 10px;font-size:14px">
+                        {{item.code}}
+                    </span>
+                </a>
+            </div>
+            <div class="Y2E37">
+                <a class="JNjtf"
+                   (click)="goToChange()">
+                    <button class="_0mzm- sqdOP L3NKy _4pI4F _8A5w5"
+                            type="button">
+                        編輯品項資料
+                    </button>
+                </a>
+            </div>
+        </section>
+    </header>
+    <div class="fx7hk" *ngIf="mode">
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':mode==='inventoriesList'}"
+           (click)="setMode('inventoriesList')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopPhotoGridActive"></div>
+                <span class="PJXu4">存量</span>
+            </span>
+        </a>
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':mode==='recipesList'}"
+           (click)="setMode('recipesList')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopProfileIGTV"></div>
+                <span class="PJXu4">來源</span>
+            </span>
+        </a>
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':mode==='attributesList'}"
+           (click)="setMode('attributesList')">
+            <span class="smsjF">
+                <div class="coreSpriteDesktopProfileSave"></div>
+                <span class="PJXu4">屬性</span>
+            </span>
+        </a>
+        <a class="_9VEo1"
+           [ngClass]="{'T-jvg':mode==='changesList'}"
+           (click)="setMode('changesList')">
+            <span class="qzihg">
+                <div class="coreSpriteDesktopProfileTagged"></div>
+                <span class="_08DtY">編輯紀錄</span>
+            </span>
+        </a>
+    </div>
+    <section class="_1SP8R M_qbh"
+             *ngIf="mode==='inventoriesList'">
+        
+        <inventoriesListTemplete></inventoriesListTemplete>
+    </section>
+    <section class="_1SP8R M_qbh"
+             *ngIf="mode==='recipesList'">
+    </section>
+    <section class="_1SP8R M_qbh"
+             *ngIf="mode==='attributesList'">
+
+        <div class="accordion"
+             [ngClass]="{'open':openFilter}">
+            <div style="height:auto">
+            </div>
+            <div style="height:1px">
+
+            </div>
+
+        </div>
+
+
+        <itemAttributesListTemplete></itemAttributesListTemplete>
+    </section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

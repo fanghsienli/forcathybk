@@ -1,0 +1,103 @@
+﻿<section *ngIf="appService.mobile&&action==='預覽'">
+    <div class="sO6Tn" *ngIf="change.unit">
+        <div class="uoX1A">
+            <span class="g1xg1">單位</span>
+            <span class="s08qg">{{change.unit.value}}</span>
+        </div>
+        <button class="WGsV5" (click)="removeUnit()">
+            <span class="coreSpriteSearchClear Szr5J">移除</span>
+        </button>
+    </div>
+    <button class="_2OfRz" *ngIf="!change.unit" (click)="appService.action$.next('選取單位')">
+        <span class="_7xQkN">選取單位</span>
+        <span class="pbpTR coreSpriteNotificationRightChevron"></span>
+    </button>
+</section>
+<div class="S9b6j" *ngIf="appService.mobile&&action==='選取單位'">
+    <input class="qbTVR zyHYP"
+           placeholder="選取單位"
+           type="text"
+           (click)="toggle()"
+           (focus)="focus()"
+           (keyup)="searchUnits($event.target.value)"
+           #unitValue><span class="fp_mP coreSpriteSearchIcon"></span>
+    <div class="y9Dlz coreSpriteSearchClear"
+         role="button"
+         tabindex="0"
+         (click)="close()"></div>
+</div>
+<div *ngIf="appService.mobile&&action==='選取單位'">
+    <div class="BYCcJ">
+        <div *ngIf="querying">
+            <div class="W1Bne ztp9m gdj5j"></div>
+        </div>
+        <div class="ZmQHO" *ngIf="open">
+            <button class="Eo_F0" *ngFor="let unit of units" (click)="click(unit)">
+                <div class="vBdNO">
+                    <span class="IEk8l">{{unit.value}}</span>
+                    <span class="AfmgG">{{unit.code}}</span>
+                </div>
+            </button>
+
+
+        </div>
+    </div>
+</div>
+<!---------Office---------->
+<div class="BAJFR" *ngIf="!appService.mobile" [ngClass]="{'LaVsc': titleFocused,'_0fVVZ':!titleFocused}">
+    <div class="MMe53">
+        <input type="text"
+               maxlength="75"
+               placeholder="單位"
+               (click)="toggle()"
+               (focus)="titleFocused=true"
+               (blur)="blur()"
+               (keyup)="searchUnits($event.target.value)"
+               #unitValue>
+    </div>
+</div>
+<div class="" *ngIf="!appService.mobile&&open">
+    <div class="VR6_Q" *ngIf="units&&units.length>0"></div>
+    <div class="drKGC" *ngIf="units&&units.length>0">
+        <div class="fuqBx" *ngFor="let unit of units">
+            <a class="yCE8d"
+               [ngClass]="{'JvDyy':hoverId===unit.id}"
+               (mouseover)="hoverId=unit.id">
+                <div class="z556c">
+
+                    <div class="RR-M- h5uC0 g9vPa"
+                         role="button"
+                         tabindex="0">
+                        <canvas class="CfWVH"
+                                height="42"
+                                width="42"
+                                style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
+                        <span class="_2dbep"
+                              role="link"
+                              tabindex="0"
+                              style="width: 32px; height: 32px;">
+                            <!-- <img class="_6q-tv"
+                            src=""
+                            alt="1 的大頭貼照">-->
+                            <div style="position: absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   z-index: -1;
+  height:10000px;">
+                                Text to have as background
+                            </div>
+                        </span>
+                    </div>
+                    <div class="_2_M76">
+                        <div class="uyeeR">
+                            <span class="Ap253">{{unit.value}}</span>
+                        </div>
+                        <span class="Fy4o8">{{unit.code}}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

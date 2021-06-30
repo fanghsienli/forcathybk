@@ -1,0 +1,7 @@
+﻿<inventoryConfirm *ngFor="let inventoryGrid of inventoryGrids" [inventoryGrid]="inventoryGrid"></inventoryConfirm>
+<div class="uoX1A" *ngIf="inventoryGrids">
+    <span class="s08qg">{{inventoryGrids.length}} 項</span>
+    <span class="g1xg1">
+        {{inventoriesSum}} {{inventoriesUnit}}
+    </span>
+</div>

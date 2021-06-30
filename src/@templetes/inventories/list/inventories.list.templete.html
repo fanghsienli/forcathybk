@@ -1,0 +1,370 @@
+﻿<input (keyup)="filterInventories($event.target.value)"
+       placeholder="🔎簡易篩選"
+       class="search" />
+<span *ngIf="loading">
+    搜尋中...
+    <loading></loading>
+</span>
+<span *ngIf="!loading">    搜尋結果 {{resultCount}} 筆</span>
+<attributesCheckboxTemplete></attributesCheckboxTemplete>
+<scrollTop></scrollTop>
+<div class="scrollToLeft" [ngClass]="{'showScrollToLeft':showScrollToLeft()}" (click)="scrollLeft()">
+    <button class="dCJp8">
+        <span aria-label="往左" class="glyphsSpriteChevron_left_outline_24_grey_9" style="margin-right: 6px;"></span>
+    </button>
+</div>
+<div class="scrollToRight" [ngClass]="{'showScrollToRight':showScrollToRight()}" (click)="scrollRight()">
+    <button class="dCJp8">
+        <span aria-label="往右" class="glyphsSpriteChevron_left_outline_24_grey_9" style="margin-right: 6px;transform: rotate(180deg)"></span>
+    </button>
+</div>
+<table #exportTable *ngIf="!appService.mobile">
+    <thead>
+        <tr>
+
+            <th style="width:28px">
+                合併 
+            </th>
+
+            <th style="width:100px" (click)="sort('no')">
+                編號
+                <span *ngIf="orderBy==='no'">
+                    <span *ngIf="!descending">▴</span>
+                    <span *ngIf="descending">▾</span>
+                </span>
+            </th>
+            <th style="width:100px" (click)="sort('itemValue')" *ngIf="appService.module!=='items'">
+
+                品項
+                <span *ngIf="orderBy==='itemValue'">
+                    <span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span>
+                </span>
+
+            </th>
+            <th style="width:100px" (click)="sort('value')">
+
+                數量<span *ngIf="orderBy==='value'">
+                    <span *ngIf="!descending">▴</span>
+                    <span *ngIf="descending">▾</span>
+                </span>
+
+            </th>
+            <th style="width:100px" (click)="sort('positionTargetNo')" *ngIf="appService.module!=='inventories'">
+                位置
+                <span *ngIf="orderBy==='positionTargetNo'">
+                    <span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span>
+                </span>
+
+            </th>
+            <th style="width:100px" (click)="sort('positionPreOwnerNo')">
+                來源
+                <span *ngIf="orderBy==='positionPreOwnerNo'">
+                    <span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span>
+                </span>
+            </th>
+            <th style="width:100px" (click)="sort('positionCreatedByNo')">
+                放置人
+                <span *ngIf="orderBy==='positionCreatedByNo'">
+                    <span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span>
+                </span>
+            </th>
+            <th style="width:100px" (click)="sort('positionStartDate')">
+                放置時間
+                <span *ngIf="orderBy==='positionStartDate'">
+                    <span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span>
+                </span>
+            </th>
+            <th style="width:100px" (click)="sort(checkedAttribute.code)" *ngFor="let checkedAttribute of checkedAttributes$|async">
+                {{checkedAttribute.value}}
+                <span *ngIf="orderBy===checkedAttribute.code">
+                    <span *ngIf="!descending">▴</span>
+                    <span *ngIf="descending">▾</span>
+                </span>
+            </th>
+            <th style="width:28px">動作</th>
+            <th style="width:28px"></th>
+            <th style="width:28px"></th>
+            <th style="width:28px"></th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody style="padding-bottom:60px" *ngIf="inventories&&inventories.length>0">
+        <tr [appLoadMore] *ngFor="let inventory of inventories"
+            (mouseover)="hoverId=inventory.id"
+            (mouseleave)="hoverId=''">
+            <td>
+                <input type="checkbox" [(ngModel)]="inventory._merge" (click)="toggleMerge(inventory)"/>
+            </td>
+            <td>
+                <span [innerHTML]="inventory.no | highlight: anyLike"></span>
+            </td>
+            <td *ngIf="appService.module!=='items'">
+                <div style="color: #1AB394;cursor:pointer;font-weight:900;"
+                     (click)="goToItem(inventory.itemId)"
+                     title="品項: {{inventory.itemValue}}"
+                     [innerHTML]="inventory.itemValue | highlight: anyLike"></div>
+            </td>
+            <td>
+                <div style="text-align:right"><span [innerHTML]="inventory.value.toString() | highlight: anyLike | number"></span> 單位</div>
+            </td>
+            <td *ngIf="appService.module!=='inventories'">
+                <div style="color: #F8AC59;cursor:pointer;font-weight:900"
+                     (click)="goToInventory(inventory.positionTargetId)"
+                     title="位置: {{inventory.positionTargetNo}}"
+                     [innerHTML]="inventory.positionTargetNo | highlight: anyLike"></div>
+            </td>
+            <td>
+                <div style="color: #F8AC59;cursor:pointer;font-weight:900"
+                     (click)="goToInventory(inventory.positionPreOwnerId)"
+                     title="來源: {{inventory.positionPreOwnerNo}}"
+                     [innerHTML]="inventory.positionPreOwnerNo | highlight: anyLike"></div>
+            </td>
+            <td>
+                <div style="color: #F8AC59;cursor:pointer;font-weight:900"
+                     (click)="goToInventory(inventory.positionCreatedById)"
+                     title="放置人: {{inventory.positionCreatedByNo}}"
+                     [innerHTML]="inventory.positionCreatedByNo | highlight: anyLike"></div>
+            </td>
+            <td>
+                <div title="放置時間: {{inventory.positionStartDate}}"
+                     [innerHTML]="inventory.positionStartDate | highlight: anyLike| date: 'yyyy/MM/dd hh:mm:ss'"></div>
+            </td>
+            <td *ngFor="let checkedAttribute of checkedAttributes$|async">
+                <div *ngIf="typeOf(inventory[checkedAttribute.code])==='string'">
+                    <span [innerHTML]="inventory[checkedAttribute.code] | highlight: anyLike"></span><br />
+                </div>
+                <div *ngIf="typeOf(inventory[checkedAttribute.code])==='number'" style="text-align:right">
+                    <span [innerHTML]="(inventory[checkedAttribute.code]).toString() | highlight: anyLike | number"></span><br />
+                </div>
+                <div *ngIf="typeOf(inventory[checkedAttribute.code])==='[object Object]'">
+                    <span *ngIf="inventory[checkedAttribute.code].no">
+                        <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="(inventory[checkedAttribute.code]).no | highlight: anyLike"
+                              (click)="goToInventory(inventory[checkedAttribute.code].id)"></span>
+                    </span>
+                    <span *ngIf="inventory[checkedAttribute.code].value">
+                        <span style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="inventory[checkedAttribute.code].value | highlight: anyLike"
+                              (click)="goToItem(inventory[checkedAttribute.code].id)"></span>
+                    </span><br />
+                </div>
+                <div *ngIf="typeOf(inventory[checkedAttribute.code])==='[object Array]'">
+                    <span *ngFor="let inventoryDetail of inventory[checkedAttribute.code]">
+                        <span *ngIf="inventoryDetail.no">
+                            <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                                  [innerHTML]="inventoryDetail.no | highlight: anyLike"
+                                  (click)="goToInventory(inventoryDetail.id)"></span>
+                        </span>
+                        <span *ngIf="inventoryDetail.value">
+                            <span style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900"
+                                  [innerHTML]="inventoryDetail.value | highlight: anyLike"
+                                  (click)="goToItem(inventoryDetail.id)"></span>
+                        </span><br />
+                    </span>
+                </div>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===inventory.id"
+                   style="cursor:pointer"
+                   (click)="goToInventory(inventory.id)">查看</a>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===inventory.id"
+                   style="cursor:pointer"
+                   (click)="editInventory(inventory)">編輯</a>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===inventory.id"
+                   style="cursor:pointer"
+                   (click)="pickup(inventory)">提領</a>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===inventory.id"
+                   style="cursor:pointer;color:#ed4956"
+                   (click)="delete(inventory)">刪除</a>
+            </td>
+        </tr>
+        <tr style="width:100%"
+            [appLoadMore]
+            *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+            (onSeeMe)="load(1000)">
+        </tr>
+        <tr *ngIf="mergeIds.length>1" (click)="merge()">
+        <button style="position:absolute; width:100%; height:37px;cursor:pointer; text-align:center" >合併</button>
+        </tr>
+    </tbody>
+</table>
+<table #exportTable *ngIf="appService.mobile">
+    <thead>
+        <tr>
+            <th style="width:28px">
+                合併
+            </th>
+            <th>
+                <span (click)="sort('no')"
+                      style="margin-right:10px">
+                    編號<span *ngIf="orderBy!=='no'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='no'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='no'&&descending">▾</span>
+                </span>
+                <span *ngIf="appService.module!=='items'"
+                      (click)="sort('itemValue')"
+                      style="margin-right:10px">
+                    品項<span *ngIf="orderBy!=='itemValue'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='itemValue'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='itemValue'&&descending">▾</span>
+                </span>
+                <span (click)="sort('value')"
+                      style="margin-right:10px">
+                    數量<span *ngIf="orderBy!=='value'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='value'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='value'&&descending">▾</span>
+                </span>
+                <span *ngIf="appService.module!=='inventories'"
+                      (click)="sort('positionTargetNo')"
+                      style="margin-right:10px">
+                    位置<span *ngIf="orderBy!=='positionTargetNo'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='positionTargetNo'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='positionTargetNo'&&descending">▾</span>
+                </span>
+                <span (click)="sort('positionPreOwnerNo')"
+                      style="margin-right:10px">
+                    來源<span *ngIf="orderBy!=='positionPreOwnerNo'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='positionPreOwnerNo'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='positionPreOwnerNo'&&descending">▾</span>
+                </span>
+                <span (click)="sort('positionCreatedByNo')"
+                      style="margin-right:10px">
+                    放置人<span *ngIf="orderBy!=='positionCreatedByNo'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='positionCreatedByNo'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='positionCreatedByNo'&&descending">▾</span>
+                </span>
+                <span (click)="sort('positionStartDate')"
+                      style="margin-right:10px">
+                    放置時間<span *ngIf="orderBy!=='positionStartDate'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='positionStartDate'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='positionStartDate'&&descending">▾</span>
+                </span>
+                <span *ngFor="let checkedAttribute of checkedAttributes$|async"
+                      style="margin-right:10px"
+                      (click)="sort(checkedAttribute.code)">
+                    {{checkedAttribute.value}}<span *ngIf="orderBy!==checkedAttribute.code" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy===checkedAttribute.code&&!descending">▴</span>
+                    <span *ngIf="orderBy===checkedAttribute.code&&descending">▾</span>
+                </span>
+            </th>
+            <th style="width:30px">動作</th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody style="padding-bottom:60px">
+        <tr [appLoadMore] *ngFor="let inventory of inventories"
+            [ngClass]="{'hoverId':hoverId===inventory.id}">
+            <td>
+                <input type="checkbox" [(ngModel)]="inventory._merge" (click)="toggleMerge(inventory)" />
+            </td>
+            <td (click)="goToInventory(inventory.id)">
+                <span style="font-weight: 900">
+                    <span [innerHTML]="inventory.no | highlight: anyLike"></span><br />
+                </span>
+                <span *ngIf="appService.module!=='items'">
+                    <span style="color:#1AB394;cursor:pointer"
+                          (click)="goToItem(inventory.itemId)"
+                          [innerHTML]="inventory.itemValue | highlight: anyLike"></span>
+                    <span [innerHTML]="inventory.value.toString() | highlight: anyLike"></span>單位<br />
+                </span>
+                <span *ngIf="appService.module!=='inventories'">
+                    <span [innerHTML]="inventory.value.toString() | highlight: anyLike"></span>單位
+                    位於<span style="color:#F8AC59;cursor:pointer;font-weight: 900"
+                            (click)="goToInventory(inventory.positionTargetId)"
+                            [innerHTML]="inventory.positionTargetNo | highlight: anyLike">
+                    </span><br />
+                </span>
+                <span *ngIf="inventory.positionPreOwnerNo">
+                    來源<span style="color: #F8AC59;cursor:pointer;font-weight:900"
+                            (click)="goToInventory(inventory.positionPreOwnerId)"
+                            [innerHTML]="inventory.positionPreOwnerNo | highlight: anyLike"></span><br />
+                </span>
+                <span *ngIf="inventory.positionCreatedByNo">
+                    放置人
+                    <span style="color: #F8AC59;cursor:pointer;font-weight:900"
+                          (click)="goToInventory(inventory.positionCreatedById)"
+                          [innerHTML]="inventory.positionCreatedByNo | highlight: anyLike"></span><br />
+                </span>
+                <span>
+                    放置時間<span [innerHTML]="inventory.positionStartDate | highlight: anyLike| date: 'yyyy/MM/dd hh:mm:ss'"></span><br />
+                </span>
+                <div *ngFor="let checkedAttribute of checkedAttributes$|async">
+                    <div style="font-weight: 100;color:#999" *ngIf="typeOf(inventory[checkedAttribute.code])==='string'">
+                        <span>
+                            {{checkedAttribute.value}}:
+                            <span *ngIf="typeOf(inventory[checkedAttribute.code])==='string'"
+                                  [innerHTML]="inventory[checkedAttribute.code] | highlight: anyLike"></span>
+                        </span>
+                    </div>
+                    <div style="font-weight: 100;color:#999" *ngIf="typeOf(inventory[checkedAttribute.code])==='number'">
+                        <span>
+                            {{checkedAttribute.value}}:
+                            <span style="text-align:right" [innerHTML]="(inventory[checkedAttribute.code]).toString() | highlight: anyLike | number"></span>
+                        </span>
+                    </div>
+                    <div *ngIf="typeOf(inventory[checkedAttribute.code])==='[object Object]'">
+                        <span [innerHTML]="(inventory[checkedAttribute.code]).no | highlight: anyLike"></span>
+                        <span *ngIf="inventory[checkedAttribute.code].no">
+                            <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                                  [innerHTML]="(inventory[checkedAttribute.code]).no | highlight: anyLike"
+                                  (click)="goToInventory(inventory[checkedAttribute.code].id)"></span>
+                        </span>
+                        <span *ngIf="inventory[checkedAttribute.code].value">
+                            <span style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900"
+                                  [innerHTML]="inventory[checkedAttribute.code].value | highlight: anyLike"
+                                  (click)="goToItem(inventory[checkedAttribute.code].id)"></span>
+                        </span>
+                    </div>
+                    <div *ngIf="typeOf(inventory[checkedAttribute.code])==='[object Array]'">
+                        <span *ngFor="let inventoryDetail of inventory[checkedAttribute.code]">
+                            <span *ngIf="inventoryDetail.no">
+                                <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                                      [innerHTML]="inventoryDetail.no | highlight: anyLike"
+                                      (click)="openInventory(inventoryDetail.id)"></span>
+                            </span>
+                            <span *ngIf="inventoryDetail.value">
+                                <span style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900"
+                                      [innerHTML]="inventoryDetail.value | highlight: anyLike"
+                                      (click)="openItem(inventoryDetail.id)"></span>
+                            </span><br />
+                        </span>
+                    </div>
+                </div>
+            </td>
+            <td style="width:30px">
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more(inventory)">
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        <tr style="width:100%"
+            [appLoadMore]
+            *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+            (onSeeMe)="load(1000)">
+        </tr>
+        <tr *ngIf="mergeIds.length>1" (click)="merge()">
+            <button style="position:absolute; width:100%; height:37px;cursor:pointer; text-align:center">合併</button>
+        </tr>
+    </tbody>
+</table>
+<input type="file"
+       (change)="importExcel($event)"
+       multiple="false"
+       hidden
+       #hiddenUpload />
+
+

@@ -1,0 +1,52 @@
+﻿<div class="BSqtQ ">
+    <div class="-lHsA">
+        <div class="gJlPN">
+            <ul class="SnxPi">
+                <li *ngFor="let searchResult of searchResults">
+                    <a class="-qQT3 _0mzm-"
+                     (click)="goTo(searchResult.type,searchResult.navigateUrl)">
+                        <div aria-labelledby="f1a74cc02013344 f375177d93fc418"
+                             class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm XfCBB HVWg4">
+                            <div class="Igw0E IwRSH eGOV_ _4EzTm yC0tu">
+                                <div class="RR-M- h5uC0"
+                                     role="button"
+                                     tabindex="0"
+                                     *ngIf="searchResult.type!=='categories'">
+                                    <canvas class="CfWVH"
+                                            height="162"
+                                            width="162"
+                                            style="position: absolute; top: -5px; left: -5px; width: 54px; height: 54px;"></canvas>
+                                    <span class="_2dbep"
+                                          role="link"
+                                          tabindex="0"
+                                          style="width: 44px; height: 44px;">
+                                        <img class="_6q-tv"
+                                             src="{{appService.filesUrl}}/{{searchResult.photoPath}}">
+                                    </span>
+                                </div>
+                                <div class="FuWoR j44N4 zlwcS _0mzm-" 
+                                     style="width: 44px; height: 44px;"
+                                     *ngIf="searchResult.type==='categories'">
+                                    <span class="glyphsSpriteHashtag_outline_24_grey_9 u-_7" aria-label="主題標籤"></span>
+                                </div>
+                            </div>
+                            <div class="Igw0E IwRSH YBx95 vwCYk">
+                                <div class="Igw0E IwRSH eGOV_ _4EzTm"
+                                     id="f1a74cc02013344">
+                                    <div class="_7UhW9 xLCgt MMzan KV-D4 fDxYl">
+                                        <div class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm">
+                                            <div class="_7UhW9 xLCgt qyrsm KV-D4 uL8Hv">{{searchResult.title}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Igw0E IwRSH eGOV_ _4EzTm DhRcB" id="f2e6f777747e6bc">
+                                    <div class="_7UhW9 xLCgt MMzan _0PwGv fDxYl">{{searchResult.subTitle}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

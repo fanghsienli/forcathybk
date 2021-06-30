@@ -1,0 +1,278 @@
+﻿<div class="_08v79">
+    <div class="_7UhW9 MMzan _0PwGv uL8Hv"
+         style="margin-bottom: 15px"
+         *ngIf="mode===''">
+        <span *ngIf="isNew">新增存量</span>
+        <span *ngIf="!isNew">編輯『{{inventory.no}}』</span>
+    </div>
+    <div class="_7UhW9 MMzan _0PwGv uL8Hv"
+         style="margin-bottom: 15px"
+         *ngIf="mode!==''">
+        選擇{{mode}}
+    </div>
+    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv" *ngIf="mode===''">
+        <div class="container" style="width:calc(100% - 20px);margin-bottom:4px">
+            <div class="container" style="width:100%;max-height:208px">
+                <div class="container" style="width:100%" *ngIf="isNew">
+                    <input value="編號"
+                           disabled
+                           type="text"
+                           style="border:1px solid #ffffff;width: calc(20% - 14px);padding: 6px; margin:0; background:#ffffff">
+                    <input [(ngModel)]="inventory.no"
+                           type="text"
+                           style="border:1px solid #efefef;width: calc(80% - 14px);padding: 6px; margin:0">
+                </div>
+                <div class="container" style="width:100%">
+                    <input value="數量"
+                           disabled
+                           type="text"
+                           style="border:1px solid #ffffff;width: calc(20% - 14px);padding: 6px; margin:0; background:#ffffff">
+                    <input *ngIf="isNew"
+                           [(ngModel)]="inventory.value"
+                           type="number"                          
+                           style="border:1px solid #efefef;width: calc(80% - 14px);padding: 6px; margin:0">
+                    <input *ngIf="!isNew"
+                           [(ngModel)]="inventory.value"
+                           disabled
+                           type="number"
+                           style="border:1px solid #ffffff;width: calc(80% - 14px);padding: 6px; margin:0; background:#ffffff">
+                </div>
+                <div class="container" style="width:100%">
+                    <input value="品項"
+                           disabled
+                           type="text"
+                           style="border:1px solid #ffffff;width: calc(20% - 14px);padding: 6px; margin:0; background:#ffffff">
+                    <input [(ngModel)]="inventory.itemValue"
+                           type="text"
+                           (click)="selectItem()"
+                           placeholder="選擇"
+                           style="border:1px solid #ffffff;width: calc(80% - 14px);padding: 6px; margin:0;cursor:pointer;color:#1AB394;font-weight:900">
+                </div>
+                <div class="container" style="width:100%">
+                    <input value="位置"
+                           disabled
+                           type="text"
+                           style="border:1px solid #ffffff;width: calc(20% - 14px);padding: 6px; margin:0; background:#ffffff">
+                    <input [(ngModel)]="inventory.positionTargetNo"
+                           type="text"
+                           (click)="selectPosition()"
+                           placeholder="選擇"
+                           style="border:1px solid #ffffff;width: calc(80% - 14px);padding: 6px; margin:0;cursor:pointer;color:#F8AC59;font-weight:900">
+                </div>
+                <div class="container" *ngFor="let attribute of attributes" style="width:100%">
+                    <input *ngIf="attribute.level===3"
+                           [(ngModel)]="attribute.targetValue"
+                           disabled
+                           type="text"
+                           style="border:1px solid #ffffff;width: calc(20% - 14px);padding: 6px; margin:0; background:#ffffff">
+                    <input *ngIf="attribute.level===2"
+                           [(ngModel)]="attribute.targetValue"
+                           type="text"
+                           (blur)="blurAttribute(attribute)"
+                           placeholder="非必填屬性"
+                           style="border:1px solid #ffffff;width: calc(20% - 14px);padding: 6px; margin:0; background:#ffffff">
+                    <input *ngIf="attribute.level===1"
+                           [(ngModel)]="attribute.targetValue"
+                           type="text"
+                           (blur)="blurAttribute(attribute)"
+                           placeholder="自訂屬性"
+                           style="border:1px solid #efefef;width: calc(20% - 14px);padding: 6px; margin:0; background:#ffffff">
+                    <input *ngIf="attribute.valueType==='文字'"
+                           [(ngModel)]="attribute.value"
+                           type="text"
+                           style="border:1px solid #efefef;width: calc(80% - 14px);padding: 6px; margin:0">
+                    <input *ngIf="attribute.valueType==='數值'"
+                           [(ngModel)]="attribute.value"
+                           type="number"
+                           style="border:1px solid #efefef;width: calc(80% - 14px);padding: 6px; margin:0">
+                    <input *ngIf="attribute.valueType==='時間'"
+                           [(ngModel)]="attribute.value"
+                           type="text"
+                           style="border:1px solid #efefef;width: calc(80% - 14px);padding: 6px; margin:0">
+                    <input *ngIf="attribute.valueType==='存量'"
+                           [(ngModel)]="attribute.inventoryValue"
+                           type="text"
+                           (click)="selectAttribute(attribute)"
+                           placeholder="選擇"
+                           style="border:1px solid #ffffff;width: calc(80% - 14px);padding: 6px; margin:0;cursor:pointer;color:#F8AC59;font-weight:900">
+                    <input *ngIf="attribute.valueType==='細節'"
+                           [(ngModel)]="attribute.value"
+                           type="text"
+                           style="border:1px solid #efefef;width: calc(80% - 14px);padding: 6px; margin:0">
+                    <input *ngIf="attribute.valueType==='關聯'"
+                           [(ngModel)]="attribute.value"
+                           type="text"
+                           style="border:1px solid #efefef;width: calc(80% - 14px);padding: 6px; margin:0">
+                    <input *ngIf="attribute.valueType==='屬性'"
+                           [(ngModel)]="attribute.value"
+                           type="text"
+                           style="border:1px solid #efefef;width: calc(80% - 14px);padding: 6px; margin:0">
+                    <input *ngIf="attribute.valueType==='品項'"
+                           [(ngModel)]="attribute.itemValue"
+                           type="text"
+                           (click)="selectAttribute(attribute)"
+                           placeholder="選擇"
+                           style="border:1px solid #ffffff;width: calc(80% - 14px);padding: 6px; margin:0;cursor:pointer;color:#1AB394;font-weight:900">
+                    <input *ngIf="attribute.valueType==='分類'"
+                           [(ngModel)]="attribute.value"
+                           type="text"
+                           style="border:1px solid #efefef;width: calc(80% - 14px);padding: 6px; margin:0">
+                    <input *ngIf="attribute.valueType==='轉移'"
+                           [(ngModel)]="attribute.value"
+                           type="text"
+                           style="border:1px solid #efefef;width: calc(80% - 14px);padding: 6px; margin:0">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="_7UhW9 MMzan _0PwGv uL8Hv" *ngIf="mode!==''">
+        <div style="display: flex; flex-direction: row; margin: 0 auto; max-width: 220px; padding-top: 0">
+            <input (keyup)="keyup($event.target.value)"
+                   type="text"
+                   style="border: 1px solid #efefef;text-align: center;line-height: 14px;vertical-align: middle;width: 100%;font-size: 14px;padding:8px">
+        </div>
+    </div>
+</div>
+<div class="mt3GC" *ngIf="mode===''">
+    <button class="aOOlW -Cab_" tabindex="0" [ngClass]="{'hasError':hasError()}" *ngIf="isNew&&!loading" [disabled]="hasError()" (click)="create()">新增</button>
+    <button class="aOOlW -Cab_" tabindex="0" [ngClass]="{'hasError':hasError()}" *ngIf="!isNew&&!loading" [disabled]="hasError()" (click)="update()">更新</button>
+    <button class="aOOlW HoLwm" tabindex="0" (click)="cancel()">取消</button>
+</div>
+<div class="buttons" *ngIf="mode!==''">
+    <button *ngFor="let option of options" class="aOOlW HoLwm" tabindex="0" style="height:52px" (click)="selectOption(option)">
+        <span *ngIf="option.code">
+            <span [innerHTML]="option.value | highlight: (anyLike$ | async)"></span><br />
+            <span [innerHTML]="option.code | highlight: (anyLike$ | async)"></span>
+        </span>
+        <span *ngIf="option.no" [innerHTML]="option.no | highlight: (anyLike$ | async)"></span>
+    </button>
+    <button *ngIf="options.length===0" style="margin-top: 212px" class="aOOlW HoLwm" tabindex="0" (click)="selectOptionOk()">返回</button>
+    <div style="position:absolute;margin:90px 50%" *ngIf="loading">
+        <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+             style="height: 32px; width: 32px;">
+            <svg class="By4nA"
+                 viewBox="0 0 100 100">
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(-90 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.08333333333333333"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(-60 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.16666666666666666"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(-30 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.25"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(0 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.3333333333333333"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(30 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.4166666666666667"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(60 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.5"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(90 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.5833333333333334"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(120 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.6666666666666666"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(150 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.75"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(180 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.8333333333333334"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(210 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+                <rect fill="#555555"
+                      height="6"
+                      opacity="0.9166666666666666"
+                      rx="3"
+                      ry="3"
+                      transform="rotate(240 50 50)"
+                      width="25"
+                      x="72"
+                      y="47">
+                </rect>
+            </svg>
+        </div>
+    </div>
+</div>

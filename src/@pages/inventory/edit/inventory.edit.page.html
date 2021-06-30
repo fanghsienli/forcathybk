@@ -1,0 +1,332 @@
+﻿<div class="Id0Rh" *ngIf="loading" style="margin-top:200px">
+    <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+         style="height: 32px; width: 32px;">
+        <svg class="By4nA"
+             viewBox="0 0 100 100">
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(-90 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.08333333333333333"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(-60 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.16666666666666666"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(-30 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.25"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(0 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.3333333333333333"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(30 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.4166666666666667"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(60 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.5"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(90 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.5833333333333334"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(120 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.6666666666666666"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(150 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.75"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(180 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.8333333333333334"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(210 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+            <rect fill="#555555"
+                  height="6"
+                  opacity="0.9166666666666666"
+                  rx="3"
+                  ry="3"
+                  transform="rotate(240 50 50)"
+                  width="25"
+                  x="72"
+                  y="47">
+            </rect>
+        </svg>
+    </div>
+</div>
+
+<inventoryNo [inventory$]="inventory$"
+             (change)="createInventoryPhoto($event)"
+             *ngIf="(!loading)&&appService.mobile"></inventoryNo>
+<inventoryValue [inventory$]="inventory$"
+                *ngIf="(!loading)&&appService.mobile"></inventoryValue>
+<itemValue [item$]="item$"
+           [autocomplete]="true"
+           *ngIf="(!loading)&&appService.mobile"></itemValue>
+<itemCode [item$]="item$"
+          title="新品項"
+          *ngIf="(!loading)&&appService.mobile&&isNewItem()"></itemCode>
+<itemDescription [item$]="item$"
+                 [autocomplete]="true"
+                 title="新品項"
+                 *ngIf="(!loading)&&appService.mobile&&isNewItem()"></itemDescription>
+<!-----Office----->
+<div class="JCYvY"
+     *ngIf="(!loading)&&(!appService.mobile)">
+    <a *ngIf="!appService.mobile"
+       (click)="appService.action$.next('上頁')"
+       style="top: -20px;position: absolute;cursor:pointer">返回</a>
+    <form method="POST">
+        <div class="TgLNs"
+             *ngIf="p100">
+            <div class="Hx8bK">
+                <div class="MTO8C">你的影片不符要求。<a href="https://help.instagram.com/1038071743007909" target="_blank">瞭解詳情</a></div><ul><li>影片長度必須介於 15 秒到 10 分鐘之間。</li></ul>
+            </div>
+            <div class="UsbSM felixSpriteUploadError"></div>
+        </div>
+        <div class="AJo2o">
+            <div class="_6CXdY Ygphp nFdnY">
+                <label class="_6WHuW ckOle"
+                       *ngIf="p100">
+                    <input accept="video/mp4,video/quicktime"
+                           class="YeWti"
+                           type="file">
+                    <div class="lVhHa"
+                         style="display: block; padding-top: 177.778%; width: 100%;">
+                        <div class="yPom5">
+                            <div class="xDbR6">
+                                <video class="AV-BY" controls="" src="blob:https://www.instagram.com/3dab14bc-1f45-4340-932c-9961c48f6282"></video>
+                                <div class="_7GCqi l3EG9">
+                                    <div class="NChGZ">
+                                        <div class="xWKqq" style="left: 0%;"></div>
+                                    </div>
+                                    <div class="gCQgN">100% </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="_6WHuW ckOle"
+                       *ngIf="!(inventory$|async)?.photo">
+                    <input accept="image/*"
+                           class="YeWti"
+                           type="file"
+                           (change)="createInventoryPhoto($event)">
+                    <div class="lVhHa o92ps Nil0v"
+                         style="display: block; padding-top: 100%; width: 100%">
+                        <div class="yPom5">
+                            <div class="SJ1H9">
+                            </div>
+                            <div class="felixSpriteWebUploadNullAdd JVEgG">
+                            </div>
+                            <div class="t3CGe">
+                                {{itemValue}}
+                            </div>
+                            <div class="-STpJ">無圖片</div>
+                        </div>
+                    </div>
+                </label>
+                <label class="_6WHuW ckOle"
+                       *ngIf="(inventory$|async)?.photo?.target?.path">
+                    <input accept="image/*"
+                           class="YeWti"
+                           type="file"
+                           (change)="createInventoryPhoto($event)">
+                    <div class="lVhHa o92ps Nil0v"
+                         style="display: block; width: 100%">
+                        <div>
+                            <div class="v1Nh3 kIKUG">
+                                <div class="eLAPa">
+                                    <div class="KL4Bh">
+                                        <img alt="{{(inventory$|async).photo?.target?.path}}"
+                                             class="FFVAD"
+                                             decoding="auto"
+                                             style="object-fit: cover;"
+                                             sizes="293px"
+                                             src="{{appService.filesUrl}}/{{(inventory$|async).photo?.target?.path}}">
+                                    </div>
+                                    <div class="_9AhH0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <div class="_6CXdY KaKt3">
+                <div class="xJ4T9">
+                    <h2 class="hSy4z">
+                        {{itemValue}}
+                    </h2>
+                </div>
+                <div style="display:flex;flex-direction:row">
+                    <div style="padding:10px 0;flex-basis:100px">
+                        <label class="Ouy_P">
+                            編號
+                        </label>
+                    </div>
+                    <div style="flex-wrap:wrap;flex-grow:1;flex-direction:column;display:flex">
+                        <div style="display:flex;flex-direction:row">
+                            <div style="flex-grow:1">
+                                <inventoryNo [inventory$]="inventory$"></inventoryNo>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:flex;flex-direction:row">
+                    <div style="padding:10px 0;flex-basis:100px">
+                        <label class="Ouy_P">
+                            數量
+                        </label>
+                    </div>
+                    <div style="flex-wrap:wrap;flex-grow:1;flex-direction:column;display:flex">
+                        <div style="display:flex;flex-direction:row">
+                            <div style="flex-grow:1">
+                                <inventoryValue [inventory$]="inventory$"></inventoryValue>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:flex;flex-direction:row">
+                    <div style="padding:10px 0;flex-basis:100px">
+                        <label class="Ouy_P"
+                               [ngClass]="{'_info':isNewItem()}">
+                            <span *ngIf="isNewItem()">新</span>品項
+                        </label>
+                    </div>
+                    <div style="flex-wrap:wrap;flex-grow:1;flex-direction:column;display:flex">
+                        <div style="display:flex;flex-direction:row">
+                            <div style="flex-basis:calc(50% + 5px);padding-right:10px">
+                                <itemValue [item$]="item$"
+                                           [autocomplete]="true"
+                                           *ngIf="(!loading)"
+                                           style="margin-bottom: 8px"></itemValue>
+                            </div>
+                            <div style="flex-grow:1">
+                                <itemCode [item$]="item$"
+                                          *ngIf="isNewItem()"
+                                          style="margin-bottom: 8px"></itemCode>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:flex;flex-direction:row"
+                     *ngIf="isNewItem()">
+                    <div style="padding:10px 0;flex-basis:100px">
+                        <label class="Ouy_P">
+                            標籤
+                        </label>
+                    </div>
+                    <div style="flex-wrap:wrap;flex-grow:1;flex-direction:column;display:flex">
+                        <div style="display:flex;flex-direction:row">
+                            <div style="flex-grow:1">
+                                <itemDescription [item$]="item$"
+                                                 [autocomplete]="true"></itemDescription>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="hCzy6">
+                        <button *ngIf="(inventory$|async).statusId==='cd8d8758-aee1-4dc6-b8a8-860ba61c1ae5'"
+                                class="_0mzm- sqdOP L3NKy"
+                                type="button"
+                                (click)="nextAction('發佈')"
+                                [disabled]="(appService.errors$|async).length>0||(loading$|async)">
+                            發佈
+                        </button>
+                        <button *ngIf="(inventory$|async).statusId==='005617b3-d283-461c-abef-5c0c16c780d0'"
+                                class="_0mzm- sqdOP L3NKy"
+                                type="button"
+                                (click)="nextAction('更新')"
+                                [disabled]="(appService.errors$|async).length>0||(loading$|async)">
+                            更新
+                        </button>
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm lC6p0">
+                            <button class="_0mzm- sqdOP yWX7d"
+                                    type="button"
+                                    [disabled]="(appService.errors$|async).length>0||(loading$|async)"
+                                    (click)="nextAction('取消')">
+                                儲存草稿
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="oUHgX">
+    </div>
+</div>

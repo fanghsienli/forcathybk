@@ -1,0 +1,157 @@
+﻿<input (keyup)="filterRelationshipTargets($event.target.value)"
+       placeholder="🔎簡易篩選"
+       class="search" />
+<span *ngIf="loading">
+    搜尋中...
+    <loading></loading>
+</span>
+<span *ngIf="!loading">    搜尋結果 {{resultCount}} 筆</span>
+<scrollTop></scrollTop>
+<a style="position: absolute; right: 7px; top: 7px; cursor: pointer" (click)="newRelationshipTarget()">+新增</a>
+<!--
+<span style="position:fixed; top:1;background-color:aquamarine">loading: {{loading}},maxPage: {{maxPage}}<br />pageIndex: {{pageIndex}},recipesLength: {{recipes.length}}</span>
+-->
+<table #exportTable *ngIf="!appService.mobile">
+    <thead>
+        <tr>
+            <th (click)="sort(checkedAttribute.code)" *ngFor="let checkedAttribute of checkedAttributes">{{checkedAttribute.value}}<span *ngIf="orderBy===checkedAttribute.code"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th style="width:28px">動作</th>
+            <th style="width:28px"></th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody style="padding-bottom:60px" *ngIf="relationshipTargets&&relationshipTargets.length>0">
+        <tr [appLoadMore] *ngFor="let relationshipTarget of relationshipTargets"
+            (mouseover)="hoverId=relationshipTarget.id"
+            (mouseleave)="hoverId=''">
+            <td *ngFor="let checkedAttribute of checkedAttributes">
+                <div *ngIf="typeOf(relationshipTarget[checkedAttribute.code])==='string'"><span [innerHTML]="relationshipTarget[checkedAttribute.code] | highlight: anyLike"></span></div>
+                <div *ngIf="typeOf(relationshipTarget[checkedAttribute.code])==='number'" style="text-align:right"><span [innerHTML]="(relationshipTarget[checkedAttribute.code]).toString() | highlight: anyLike | number"></span></div>
+                <div *ngIf="typeOf(relationshipTarget[checkedAttribute.code])==='[object Object]'">
+                    <span *ngIf="relationshipTarget[checkedAttribute.code].no">
+                        <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="(relationshipTarget[checkedAttribute.code]).no | highlight: anyLike"
+                              (click)="goToInventory(relationshipTarget[checkedAttribute.code].id)"></span>
+                    </span>
+                    <span *ngIf="relationshipTarget[checkedAttribute.code].value">
+                        <span style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="relationshipTarget[checkedAttribute.code].value | highlight: anyLike"
+                              (click)="goToItem(relationshipTarget[checkedAttribute.code].id)"></span>
+                    </span>
+                </div>
+                <div *ngIf="typeOf(relationshipTarget[checkedAttribute.code])==='[object Array]'">
+                    <span *ngFor="let relationshipTargetDetail of relationshipTarget[checkedAttribute.code]">
+                        <span *ngIf="relationshipTargetDetail.no">
+                            <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                                  [innerHTML]="relationshipTargetDetail.no | highlight: anyLike"
+                                  (click)="goToInventory(relationshipTargetDetail.id)"></span>
+                        </span>
+                        <span *ngIf="relationshipTargetDetail.value">
+                            <span style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900"
+                                  [innerHTML]="relationshipTargetDetail.value | highlight: anyLike"
+                                  (click)="goToItem(relationshipTargetDetail.id)"></span>
+                        </span><br />
+                    </span>
+                </div>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===relationshipTarget.id"
+                   style="cursor:pointer"
+                   (click)="editRelationshipTarget(relationshipTarget)">編輯</a>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===relationshipTarget.id"
+                   style="cursor:pointer;color:#ed4956"
+                   (click)="delete(relationshipTarget)">刪除</a>
+            </td>
+        </tr>
+        <img [appLoadMore]
+             *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+             width="32"
+             height="32"
+             style="margin-top:10px"
+             src="assets/white.png"
+             (onSeeMe)="load(1000)" />
+    </tbody>
+</table>
+<table #exportTable *ngIf="appService.mobile">
+    <thead>
+        <tr>
+            <th>
+                <span *ngFor="let checkedAttribute of checkedAttributes"
+                      style="margin-right:10px"
+                      (click)="sort(checkedAttribute.code)">
+                    {{checkedAttribute.value}}
+                    <span *ngIf="orderBy!==checkedAttribute.code" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy===checkedAttribute.code&&!descending">▴</span>
+                    <span *ngIf="orderBy===checkedAttribute.code&&descending">▾</span>
+                </span>
+            </th>
+            <th style="width:28px">動作</th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody style="padding-bottom:60px">
+        <tr [appLoadMore] *ngFor="let relationshipTarget of relationshipTargets"
+            [ngClass]="{'hoverId':hoverId===relationshipTarget.id}">
+            <td (click)="goToInventory(relationshipTarget.id)">
+                <div *ngFor="let checkedAttribute of checkedAttributes">
+                    <span>
+                        <span style="font-weight: 100;color:#999">
+                            <span>{{checkedAttribute.value}}: <span *ngIf="typeOf(relationshipTarget[checkedAttribute.code])==='string'" [innerHTML]="relationshipTarget[checkedAttribute.code] | highlight: anyLike"></span></span>
+                        </span>
+                        <span *ngIf="typeOf(relationshipTarget[checkedAttribute.code])==='number'">
+                            <span style="text-align:right" [innerHTML]="(relationshipTarget[checkedAttribute.code]).toString() | highlight: anyLike | number"></span>
+                        </span>
+                        <span *ngIf="typeOf(relationshipTarget[checkedAttribute.code])==='[object Object]'">
+                            <span *ngIf="relationshipTarget[checkedAttribute.code].no">
+                                <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                                      [innerHTML]="(relationshipTarget[checkedAttribute.code]).no | highlight: anyLike"
+                                      (click)="goToInventory(relationshipTarget[checkedAttribute.code].id)"></span>
+                            </span>
+                            <span *ngIf="relationshipTarget[checkedAttribute.code].value">
+                                <span style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900"
+                                      [innerHTML]="relationshipTarget[checkedAttribute.code].value | highlight: anyLike"
+                                      (click)="goToItem(relationshipTarget[checkedAttribute.code].id)"></span>
+                            </span>
+                        </span>
+                        <span *ngIf="typeOf(relationshipTarget[checkedAttribute.code])==='[object Array]'">
+                            <span *ngFor="let relationshipTargetDetail of relationshipTarget[checkedAttribute.code]">
+                                <span *ngIf="relationshipTargetDetail.no">
+                                    <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                                          [innerHTML]="relationshipTargetDetail.no | highlight: anyLike"
+                                          (click)="openInventory(relationshipTargetDetail.id)"></span>
+                                </span>
+                                <span *ngIf="relationshipTargetDetail.value">
+                                    <span style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900"
+                                          [innerHTML]="relationshipTargetDetail.value | highlight: anyLike"
+                                          (click)="openItem(relationshipTargetDetail.id)"></span>
+                                </span><br />
+                            </span>
+                        </span><br />
+                    </span>
+                </div>
+            </td>
+            <td style="width:28px">
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more(relationshipTarget)">
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        <img [appLoadMore]
+             *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+             width="32"
+             height="32"
+             style="margin-top:10px"
+             src="assets/white.png"
+             (onSeeMe)="load(1000)" />
+    </tbody>
+</table>

@@ -1,0 +1,196 @@
+<article class="tbpKJ" *ngIf="appService.mobile">
+    <div class="rgFsT">
+        <div class="gr27e">
+            <h1 class="NXVPg Szr5J coreSpriteLoggedOutWordmark" style="margin-left:110px">RichEasy</h1>
+            <div class="EPjEi">
+                <div class="HmktE">
+                    <div class="Igw0E IwRSH eGOV_ _4EzTm FBi-h"></div>
+                    <div class="Et89U">
+                        <div class="_9GP1n">
+                            <label class="f0n8F FATdn"
+                                   [ngClass]="{'FATdn':username.length>0 }">
+                                <span class="_9nyy2">帳號</span>
+                                <input class="_2hvTZ pexuQ zyHYP"
+                                       aria-label="帳號"
+                                       aria-required="true"
+                                       autocapitalize="off"
+                                       autocorrect="off"
+                                       autocomplete="off"
+                                       type="text"
+                                       (focus)="usernameFocused=true"
+                                       (blur)="usernameFocused=false"
+                                       [(ngModel)]="username">
+                            </label>
+                            <div class="i24fI"></div>
+                        </div>
+                    </div>
+                    <div class="Et89U">
+                        <div class="_9GP1n">
+                            <label class="f0n8F FATdn"
+                                   [ngClass]="{'FATdn':password.length>0 }">
+                                <span class="_9nyy2">密碼</span>
+                                <input class="_2hvTZ pexuQ zyHYP"
+                                       aria-label="密碼"
+                                       aria-required="true"
+                                       autocapitalize="off"
+                                       autocorrect="off"
+                                       autocomplete="off"
+                                       (focus)="passwordFocused=true"
+                                       (blur)="passwordFocused=false"
+                                       type="{{passwordType}}"
+                                       [(ngModel)]="password" />
+                            </label>
+                            <div class="i24fI">
+                                <div class="Igw0E IwRSH eGOV_ _4EzTm soMvl"
+                                     *ngIf="password.length>0">
+                                    <button class="_0mzm- sqdOP yWX7d _8A5w5" type="button" (click)="passwordType=passwordType==='text'?'password':'text'">{{passwordType==='text'?'隱藏':'顯示'}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Igw0E IwRSH eGOV_ _4EzTm bkEs3 CovQj jKUp7 DhRcB">
+                        <button class="_0mzm- sqdOP L3NKy" [ngClass]="{'A086a':logining }"
+                                [disabled]="username.length===0"
+                                (click)="login()">
+                            <div class="Igw0E IwRSH eGOV_ _4EzTm">登入</div>
+                            <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME" *ngIf="logining"
+                                 style="height: 18px; width: 18px">
+                                <svg class=" FSiF6 " viewBox="0 0 100 100">
+                                    <rect fill="#fafafa" height="10" opacity="0" rx="5" ry="5" transform="rotate(-90 50 50)" width="28" x="67" y="45"></rect>
+                                    <rect fill="#fafafa" height="10" opacity="0.125" rx="5" ry="5" transform="rotate(-45 50 50)" width="28" x="67" y="45"></rect>
+                                    <rect fill="#fafafa" height="10" opacity="0.25" rx="5" ry="5" transform="rotate(0 50 50)" width="28" x="67" y="45"></rect>
+                                    <rect fill="#fafafa" height="10" opacity="0.375" rx="5" ry="5" transform="rotate(45 50 50)" width="28" x="67" y="45"></rect>
+                                    <rect fill="#fafafa" height="10" opacity="0.5" rx="5" ry="5" transform="rotate(90 50 50)" width="28" x="67" y="45"></rect>
+                                    <rect fill="#fafafa" height="10" opacity="0.625" rx="5" ry="5" transform="rotate(135 50 50)" width="28" x="67" y="45"></rect>
+                                    <rect fill="#fafafa" height="10" opacity="0.75" rx="5" ry="5" transform="rotate(180 50 50)" width="28" x="67" y="45"></rect>
+                                    <rect fill="#fafafa" height="10" opacity="0.875" rx="5" ry="5" transform="rotate(225 50 50)" width="28" x="67" y="45"></rect>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                    <!--<<a class="_8Bp8U"
+                    (click)="appService.message$.next('攻城獅日夜趕工中...(´ﾟдﾟ`)')">忘記密碼？</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+<!--<div class="Igw0E rBNOH YBx95 ybXk5 _4EzTm PdTAI ZUqME"
+     *ngIf="appService.mobile">
+    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+        <p class="WquS1">
+            沒有帳號嗎？
+            <a>
+                <span class="_7UhW9 xLCgt qyrsm se6yk"
+                      (click)="appService.message$.next('攻城獅日夜趕工中...(´ﾟдﾟ`)')">註冊</span>
+            </a>
+        </p>
+    </div>
+</div>-->
+
+
+
+
+
+
+
+<div class="tbpKJ"
+     *ngIf="!appService.mobile">
+    <article class="agXmL">
+        <div class="rgFsT">
+            <div class="gr27e">
+                <h1 class="NXVPg Szr5J coreSpriteLoggedOutWordmark">RichEasy</h1>
+                <div class="EPjEi">
+                    <div class="HmktE">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm FBi-h"></div>
+                        <div class="-MzZI">
+                            <div class="_9GP1n">
+                                <label class="f0n8F"
+                                       [ngClass]="{'FATdn':username.length>0 }">
+                                    <span class="_9nyy2">帳號</span>
+                                    <input class="_2hvTZ pexuQ zyHYP"
+                                           aria-label="帳號"
+                                           aria-required="true"
+                                           autocapitalize="off"
+                                           autocorrect="off"
+                                           autocomplete="off"
+                                           type="text"
+                                           (focus)="usernameFocused=true"
+                                           (blur)="usernameFocused=false"
+                                           [(ngModel)]="username">
+                                </label>
+                                <div class="i24fI"></div>
+                            </div>
+                        </div>
+                        <div class="-MzZI">
+                            <div class="_9GP1n">
+                                <label class="f0n8F"
+                                       [ngClass]="{'FATdn':password.length>0 }">
+                                    <span class="_9nyy2">密碼</span>
+                                    <input class="_2hvTZ pexuQ zyHYP"
+                                           aria-label="密碼"
+                                           aria-required="true"
+                                           autocapitalize="off"
+                                           autocomplete="off"
+                                           autocorrect="off"
+                                           (focus)="passwordFocused=true"
+                                           (blur)="passwordFocused=false"
+                                           type="{{passwordType}}"
+                                           [(ngModel)]="password">
+                                </label>
+                                <div class="i24fI">
+                                    <div class="Igw0E IwRSH eGOV_ _4EzTm soMvl"
+                                         *ngIf="password.length>0">
+                                        <button class="_0mzm- sqdOP yWX7d _8A5w5" type="button" (click)="passwordType=passwordType==='text'?'password':'text'">{{passwordType==='text'?'隱藏':'顯示'}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm bkEs3 CovQj jKUp7 DhRcB">
+                            <button class="_0mzm- sqdOP L3NKy"
+                                    type="submit"
+                                    [disabled]="username.length===0"
+                                    (click)="login()"
+                                    [ngClass]="{'A086a':logining}">
+                                <div class="Igw0E IwRSH eGOV_ _4EzTm">登入</div>
+                                <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+                                     style="height: 18px; width: 18px;"
+                                     *ngIf="logining">
+                                    <svg class="FSiF6"
+                                         viewBox="0 0 100 100">
+                                        <rect fill="#fafafa" height="10" opacity="0" rx="5" ry="5" transform="rotate(-90 50 50)" width="28" x="67" y="45"></rect>
+                                        <rect fill="#fafafa" height="10" opacity="0.125" rx="5" ry="5" transform="rotate(-45 50 50)" width="28" x="67" y="45"></rect>
+                                        <rect fill="#fafafa" height="10" opacity="0.25" rx="5" ry="5" transform="rotate(0 50 50)" width="28" x="67" y="45"></rect>
+                                        <rect fill="#fafafa" height="10" opacity="0.375" rx="5" ry="5" transform="rotate(45 50 50)" width="28" x="67" y="45"></rect>
+                                        <rect fill="#fafafa" height="10" opacity="0.5" rx="5" ry="5" transform="rotate(90 50 50)" width="28" x="67" y="45"></rect>
+                                        <rect fill="#fafafa" height="10" opacity="0.625" rx="5" ry="5" transform="rotate(135 50 50)" width="28" x="67" y="45"></rect>
+                                        <rect fill="#fafafa" height="10" opacity="0.75" rx="5" ry="5" transform="rotate(180 50 50)" width="28" x="67" y="45"></rect>
+                                        <rect fill="#fafafa" height="10" opacity="0.875" rx="5" ry="5" transform="rotate(225 50 50)" width="28" x="67" y="45"></rect>
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="eiCW-">
+                            <p aria-atomic="true"
+                               id="slfErrorAlert"
+                               role="alert"
+                               *ngIf="appService.presentation$|async">{{(appService.presentation$|async).p}}</p>
+                        </div>
+                        <!--<a class="_2Lks6"
+                        (click)="appService.message$.next('攻城獅日夜趕工中...(´ﾟдﾟ`)')">忘記密碼？</a>-->
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="gr27e">
+                <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                    <p class="izU2O">
+                        沒有帳號嗎？<a (click)="appService.message$.next('攻城獅日夜趕工中...(´ﾟдﾟ`)')">
+                            <span class="_7UhW9 xLCgt qyrsm se6yk">註冊</span>
+                        </a>
+                    </p>
+                </div>
+            </div>-->
+        </div>
+    </article>
+</div>

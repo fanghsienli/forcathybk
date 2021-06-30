@@ -1,0 +1,25 @@
+<a *ngIf="!collapse" (click)="collapse=true" style="position: absolute; right: 7px;top:7px;cursor:pointer; z-index: 101;"> ▴</a>
+<a *ngIf="collapse" (click)="collapse=false" style="position: absolute; right: 7px;top:7px;cursor:pointer">其他欄位 ▾</a>
+
+<input placeholder="🔎 查找屬性"
+       (keyup)="filterAttributes($event.target.value)"
+       class="search focus"
+       style="position:absolute;right:0;top:0;border-bottom:none;width:152px"
+       *ngIf="!collapse" />
+
+<div class="myDiv" *ngIf="!collapse">
+    <div *ngFor="let attribute of attributes" style="height: 25px">
+        <label for="{{attribute.id}}"
+               style="font-weight:600;line-height:16px;width: 149px">
+            <input id="{{attribute.id}}"
+                   type="checkbox"
+                   class="tlZCJ"
+                   [(ngModel)]="attribute._checked"
+                   (change)="change(attribute)">
+            <div class="mwD2G" style="margin:3px 7px"></div>
+            <span style="position: absolute;top:3px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 130px;"
+                  [innerHTML]="attribute.value | highlight: anyLike">{{attribute.value}}</span>
+        </label>
+    </div>
+</div>
+<div style="height:300px; position:absolute; width:100%; z-index:99; top:60px; opacity:0" (click)="collapse=true" *ngIf="!collapse"></div>

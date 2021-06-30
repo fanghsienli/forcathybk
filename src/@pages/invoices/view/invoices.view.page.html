@@ -1,0 +1,96 @@
+﻿<div class="v9tJq VfzDr" [ngStyle]="{'padding-top':(screenWidth +32)+'px'}">
+    <header class="vtbgv"
+            *ngIf="!appService.mobile">
+        <div class="XjzKX">
+            <video style="width:100%; height:100%; border:none" #camera></video>
+        </div>
+        <section class="zwlfE">
+            <div class="nZSzR">
+                <h1 class="_7UhW9 fKFbl yUEEX KV-D4 fDxYl">{{result}}</h1>
+                <a class="thEYr">
+                    <button class="_0mzm- sqdOP L3NKy _4pI4F _8A5w5"
+                            type="button">
+                        編輯來源資料
+                    </button>
+                </a>
+                <div class="AFWDX"
+                     (click)="openSettings()">
+                    <button class="dCJp8 afkep _0mzm-">
+                        <span class="glyphsSpriteSettings_outline_24_grey_9 u-_7"
+                              aria-label="選項">
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <ul class="k9GMp">
+                <li class="Y8-fY">
+                    <a class="-nal3">
+                        <span class="g47SY"
+                              title="5">0</span> 張
+                    </a>
+                </li>
+                <li class="Y8-fY">
+                    <a class="-nal3"
+                       (click)="qrcode()">
+                        <span class="g47SY"
+                              title="5">Qrcode</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="-vDIg">
+                <h1 class="rhpdm"></h1>
+                <br>
+            </div>
+        </section>
+    </header>
+    <video *ngIf="screenWidth" 
+           width="{{screenWidth}}" 
+           height="{{screenWidth}}" 
+           style="margin:16px;border:none; object-fit:cover;position:absolute;top:0"
+           #camera></video>
+    <ul class="_3dEHb"
+        *ngIf="appService.mobile">
+        <li class="LH36I">
+            <a class="_81NM2">
+                <span class="g47SY lOXF2">{{invoices.length}}</span> 張
+            </a>
+        </li>
+    </ul>
+    <div class="BSqtQ ">
+        <div class="-lHsA">
+            <div class="gJlPN">
+                <ul class="SnxPi">
+                    <li *ngFor="let invoice of invoices"> 
+                        <a class="-qQT3 _0mzm-">
+                            <div class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm XfCBB HVWg4">
+                                <div class="Igw0E IwRSH YBx95 vwCYk">
+                                    <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                                        <div class="_7UhW9 xLCgt MMzan KV-D4 fDxYl">
+                                            <div class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm">
+                                                <div class="_7UhW9 xLCgt qyrsm KV-D4 uL8Hv">{{invoice.id}} (交易日: {{invoice.date}})</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="Igw0E IwRSH eGOV_ _4EzTm DhRcB">
+                                        <div class="_7UhW9 xLCgt MMzan _0PwGv fDxYl">應稅: {{invoice.price}}/總計: {{invoice.taxed}} (賣方: {{invoice.seller}})</div>
+                                    </div>
+                                    <div class="Igw0E IwRSH eGOV_ _4EzTm DhRcB" *ngIf="invoice._error">
+                                        <div class="_7UhW9 xLCgt MMzan _0PwGv fDxYl">
+                                            <input [ngModel]="invoice.price" />
+                                            <button (click)="invoice._error=false">更正</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span style="position: absolute; right: 16px; top: 16px" (click)="remove(invoice.id)" class="coreSpriteDismissLarge"></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+  <div style="position:absolute;top:0;width: 100%; height:100%;background:rgba(255,255,255,0.8);-webkit-clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%);">
+
+-->

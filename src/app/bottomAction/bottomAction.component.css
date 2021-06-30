@@ -1,0 +1,30 @@
+.Zxlmg, .hnYIW {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%
+}
+
+.hnYIW {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+    .hnYIW::before {
+        background: rgba(0,0,0,.0975);
+        content: ' ';
+        height: 1px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: -1px;
+    }
+

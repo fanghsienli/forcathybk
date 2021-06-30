@@ -1,0 +1,36 @@
+﻿<input type="file" (change)="uploadExcel($event)" multiple="false" hidden #hiddenUpload />
+<article class="KC1QD" style="margin-top:60px" *ngIf="!appService.mobile">
+    <div class="EZdmt">
+        <div class="title">
+            配方列表
+        </div>
+        <recipesListTemplete></recipesListTemplete>
+    </div>
+</article>
+<article class="KC1QD" *ngIf="appService.mobile">
+    <div class="EZdmt">
+        <recipesListTemplete></recipesListTemplete>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

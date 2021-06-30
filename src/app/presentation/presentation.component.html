@@ -1,0 +1,678 @@
+﻿<div class="RnEpo Yx5HN"
+     role="presentation"
+     *ngIf="title"
+     (click)="cancel()">
+    <div class="pbNvD _5VoHb fPMEg"
+         [ngStyle]="{'width':(width$|async)}"
+         stopPropagation
+         role="dialog" style="z-index:2">
+        <categoryAttributeEditTemplete *ngIf="title==='categoryAttributeEditTemplete'">
+        </categoryAttributeEditTemplete>
+        <itemAttributeEditTemplete *ngIf="title==='itemAttributeEditTemplete'">
+        </itemAttributeEditTemplete>
+        <relationshipTargetEditTemplete *ngIf="title==='relationshipTargetEditTemplete'">
+        </relationshipTargetEditTemplete>
+        <itemEditTemplete *ngIf="title==='itemEditTemplete'" style="min-height: 398px" >
+        </itemEditTemplete>
+        <inventoryEditTemplete *ngIf="title==='inventoryEditTemplete'">
+        </inventoryEditTemplete>
+        <workOrderEditTemplete *ngIf="title==='workOrderEditTemplete'">
+        </workOrderEditTemplete>
+        <recipeEditTemplete *ngIf="title==='recipeEditTemplete'">
+        </recipeEditTemplete>
+        <!--另做一個component <attributeInput *ngIf="(type$|async)==='[item] show attribute input field on presentation'">-->
+
+        
+            <div class="piCib"
+                 *ngIf="title==='pickup'&&item">
+                <div class="_08v79" *ngIf="mode===''" style="height:320px">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">
+                                <span style="color:#F8AC59;font-weight:900">{{appService.profile.no}}</span>請領<span style="color: #1AB394;font-weight:900">{{item.value}}</span> {{upValue}} 單位<br />
+                                工單: <span style="color:#F8AC59;font-weight:900">{{workOrder.no}}</span>
+                            </div>
+                            <qrcode *ngIf="mode===''" style="margin: 0 auto" [width]="300" [text]="qrcodeString"></qrcode>
+                        </div>
+                    </div>
+                </div>
+                <div class="_08v79" *ngIf="mode==='upValue'">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">
+                                <span style="color:#F8AC59;font-weight:900">{{appService.profile.no}}</span>領料
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dsJ8D" *ngIf="mode==='upValue'">
+                    <div class="xlTJg">
+                        <div class="G3yoz" style="border-radius: 0">
+                            <img [appLazyLoad]
+                                 *ngIf="item.photo"
+                                 width="150"
+                                 height="150"
+                                 src="{{appService.filesUrl}}/{{item.photo}}"
+                                 style="object-fit:cover"
+                                 onerror="this.src='assets/noPhoto.png';" />
+                            <img [appLazyLoad]
+                                 *ngIf="!item.photo"
+                                 width="90"
+                                 height="90"
+                                 src="assets/noPhoto.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="_08v79" *ngIf="mode==='upValue'">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="container" style="width:calc(100% - 20px);margin-bottom:4px">
+                            <div class="container" style="width:35px"><span style="margin: 7px 0">領取</span></div>
+                            <div class="container" style="width:calc(100% - 35px)">
+                                <div class="container" style="width:100%">
+                                    <input disabled
+                                           type="text"
+                                           value="{{item.value}}"
+                                           style="border:1px solid #efefef;width: calc(50% - 14px);padding: 6px; margin:0">
+                                    <input [(ngModel)]="upValue"
+                                           (keyup)="keyup(upValue)"
+                                           type="number"
+                                           placeholder="領取數量"
+                                           style="border:1px solid #efefef;width: calc(50% - 14px);padding: 6px; margin:0;text-align:center">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" style="width:calc(100% - 20px)">
+                            <div class="container" style="width:35px">
+                                <span style="margin: 7px 0">備註</span>
+                            </div>
+                            <div class="container" style="width:calc(100% - 35px)">
+                                <div class="container" style="width:100%">
+                                    <textarea [(ngModel)]="memo"
+                                              type="number"
+                                              placeholder="備註"
+                                              style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt3GC">
+                    <button class="aOOlW -Cab_" tabindex="0" *ngIf="mode==='upValue'" (click)="pickupQrcode()">確定</button>
+                    <button class="aOOlW HoLwm" tabindex="0" (click)="cancel()">取消</button>
+                </div>
+            </div>
+
+            <div class="piCib"
+                 *ngIf="title==='startup'&&item">
+                <div class="_08v79" *ngIf="mode===''" style="height:360px">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">
+                                請掃碼投料工作站點
+                            </div>
+                        </div>
+                        <video style="margin:16px;border:none; object-fit:cover;width:333px;height:333px;top:130px"
+                               #camera3></video>
+                    </div>
+                </div>
+                <div class="_08v79" *ngIf="mode==='upValue'">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">
+                                投料至<span style="color:#F8AC59;font-weight:900" (click)="mode=''">{{target.no}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dsJ8D" *ngIf="mode==='upValue'">
+                    <div class="xlTJg">
+                        <div class="G3yoz" style="border-radius: 0">
+                            <img [appLazyLoad]
+                                 *ngIf="item.photo"
+                                 width="150"
+                                 height="150"
+                                 src="{{appService.filesUrl}}/{{item.photo}}"
+                                 style="object-fit:cover"
+                                 onerror="this.src='assets/noPhoto.png';" />
+                            <img [appLazyLoad]
+                                 *ngIf="!item.photo"
+                                 width="90"
+                                 height="90"
+                                 src="assets/noPhoto.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="_08v79" *ngIf="mode==='upValue'">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="container" style="width:calc(100% - 20px);margin-bottom:4px">
+                            <div class="container" style="width:35px"><span style="margin: 7px 0">投料</span></div>
+                            <div class="container" style="width:calc(100% - 35px)">
+                                <div class="container" style="width:100%">
+                                    <input disabled
+                                           type="text"
+                                           value="{{item.value}}"
+                                           style="border:1px solid #efefef;width: calc(50% - 14px);padding: 6px; margin:0">
+                                    <input [(ngModel)]="upValue"
+                                           (keyup)="keyup(upValue)"
+                                           type="number"
+                                           placeholder="投料數量"
+                                           style="border:1px solid #efefef;width: calc(50% - 14px);padding: 6px; margin:0;text-align:center">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" style="width:calc(100% - 20px)">
+                            <div class="container" style="width:35px">
+                                <span style="margin: 7px 0">備註</span>
+                            </div>
+                            <div class="container" style="width:calc(100% - 35px)">
+                                <div class="container" style="width:100%">
+                                    <textarea [(ngModel)]="memo"
+                                              type="number"
+                                              placeholder="備註"
+                                              style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt3GC">
+                    <button class="aOOlW -Cab_" tabindex="0" *ngIf="mode==='upValue'" (click)="startupValue()">確定</button>
+                    <button class="aOOlW HoLwm" tabindex="0" (click)="cancel()">取消</button>
+                </div>
+            </div>
+
+            <div class="piCib"
+                 *ngIf="title==='inspection'&&item">
+                <div class="_08v79" *ngIf="mode===''" style="height:360px">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">
+                                請掃碼產出工作站點
+                            </div>
+                        </div>
+                        <video style="margin:16px;border:none; object-fit:cover;width:333px;height:333px;top:130px"
+                               #camera3></video>
+                    </div>
+                </div>
+                <div class="_08v79" *ngIf="mode==='upValue'">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">
+                                產出自<span style="color:#F8AC59;font-weight:900" (click)="mode=''">{{target.no}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dsJ8D" *ngIf="mode==='upValue'">
+                    <div class="xlTJg">
+                        <div class="G3yoz" style="border-radius: 0">
+                            <img [appLazyLoad]
+                                 *ngIf="item.photo"
+                                 width="150"
+                                 height="150"
+                                 src="{{appService.filesUrl}}/{{item.photo}}"
+                                 style="object-fit:cover"
+                                 onerror="this.src='assets/noPhoto.png';" />
+                            <img [appLazyLoad]
+                                 *ngIf="!item.photo"
+                                 width="90"
+                                 height="90"
+                                 src="assets/noPhoto.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="_08v79" *ngIf="mode==='upValue'">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="container" style="width:calc(100% - 20px);margin-bottom:4px">
+                            <div class="container" style="width:35px"><span style="margin: 7px 0">產出</span></div>
+                            <div class="container" style="width:calc(100% - 35px)">
+                                <div class="container" style="width:100%">
+                                    <input disabled
+                                           type="text"
+                                           value="{{item.value}}"
+                                           style="border:1px solid #efefef;width: calc(50% - 14px);padding: 6px; margin:0">
+                                    <input [(ngModel)]="upValue"
+                                           type="number"
+                                           placeholder="產出數量"
+                                           style="border:1px solid #efefef;width: calc(50% - 14px);padding: 6px; margin:0;text-align:center">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" style="width:calc(100% - 20px);margin-bottom:4px">
+                            <div class="container" style="width:35px"><span style="margin: 7px 0">巡檢</span></div>
+                            <div class="container" style="width:calc(100% - 35px);max-height:128px;overflow-y:scroll;overflow-x:hidden">
+                                <div class="container" *ngFor="let defect of defects" style="width:100%">
+                                    <input [(ngModel)]="defect.attributeValue"
+                                           [disabled]="defect.disable"
+                                           type="text"
+                                           (blur)="blurDefect()"
+                                           placeholder="缺陷"
+                                           style="border:1px solid #efefef;width: calc(50% - 14px);padding: 6px; margin:0">
+                                    <input [(ngModel)]="defect.value"
+                                           type="number"
+                                           placeholder="數量"
+                                           style="border:1px solid #efefef;width: calc(50% - 14px);padding: 6px; margin:0;text-align:center">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" style="width:calc(100% - 20px)">
+                            <div class="container" style="width:35px">
+                                <span style="margin: 7px 0">備註</span>
+                            </div>
+                            <div class="container" style="width:calc(100% - 35px)">
+                                <textarea [(ngModel)]="memo"
+                                          type="number"
+                                          placeholder="備註"
+                                          style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt3GC">
+                    <button class="aOOlW -Cab_" tabindex="0" *ngIf="mode==='upValue'" (click)="inspectionValue()">確定</button>
+                    <button class="aOOlW HoLwm" tabindex="0" (click)="cancel()">取消</button>
+                </div>
+            </div>
+
+            <div class="piCib"
+                 *ngIf="(title==='startStation'||title==='pauseStation'||title==='resumeStation'||title==='stopStation')&&target">
+                <div class="_08v79">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">
+                                <span *ngIf="title==='startStation'">啟動</span>
+                                <span *ngIf="title==='pauseStation'">暫停</span>
+                                <span *ngIf="title==='resumeStation'">恢復</span>
+                                <span *ngIf="title==='stopStation'">中止</span>
+                                <span style="color:#F8AC59;font-weight:900" (click)="mode=''"> {{target.no}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dsJ8D">
+                    <div class="xlTJg">
+                        <div class="G3yoz" style="border-radius: 0">
+                            <img [appLazyLoad]
+                                 *ngIf="target.photo"
+                                 width="150"
+                                 height="150"
+                                 src="{{appService.filesUrl}}/{{target.photo}}"
+                                 style="object-fit:cover"
+                                 onerror="this.src='assets/noPhoto.png';" />
+                            <img [appLazyLoad]
+                                 *ngIf="!target.photo"
+                                 width="90"
+                                 height="90"
+                                 src="assets/noPhoto.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="_08v79">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="container" style="width:calc(100% - 20px);margin-bottom:4px" *ngIf="title==='startStation'||title==='stopStation'">
+                            <div class="container" style="width:35px">
+                                <span style="margin: 7px 0">電表</span>
+                            </div>
+                            <div class="container" style="width:calc(100% - 35px)">
+                                <input [(ngModel)]="usedPower"
+                                       type="number"
+                                       placeholder="度"
+                                       style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0;text-align:center">
+                            </div>
+                        </div>
+                        <div class="container" style="width:calc(100% - 20px);margin-bottom:4px" *ngIf="title==='pauseStation'">
+                            <div class="container" style="width:35px"><span style="margin: 7px 0">原因</span></div>
+                            <div class="container" style="width:calc(100% - 35px);max-height:128px;overflow-y:scroll;overflow-x:hidden">
+                                <div class="container" *ngFor="let reason of reasons" style="width:100%">
+                                    <input [(ngModel)]="reason.value"
+                                           type="text"
+                                           (blur)="blurReason()"
+                                           placeholder="原因"
+                                           style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" style="width:calc(100% - 20px)">
+                            <div class="container" style="width:35px">
+                                <span style="margin: 7px 0">備註</span>
+                            </div>
+                            <div class="container" style="width:calc(100% - 35px)">
+                                <textarea [(ngModel)]="memo"
+                                          type="number"
+                                          placeholder="備註"
+                                          style="border:1px solid #efefef;width: 100%;padding: 6px; margin:0"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt3GC">
+                    <button class="aOOlW -Cab_" tabindex="0" (click)="stationValue()">確定</button>
+                    <button class="aOOlW HoLwm" tabindex="0" (click)="cancel()">取消</button>
+                </div>
+            </div>
+
+
+
+
+            <div class="piCib"
+                 *ngIf="title==='pickup'&&inventory">
+                <div class="dsJ8D">
+                    <div class="xlTJg">
+                        <div class="G3yoz" style="border-radius: 0">
+                            <img [appLazyLoad]
+                                 *ngIf="inventory.photo"
+                                 width="90"
+                                 height="90"
+                                 src="{{appService.filesUrl}}/{{inventory.photo}}"
+                                 style="object-fit:cover"
+                                 onerror="this.src='assets/noPhoto.png';" />
+                            <img [appLazyLoad]
+                                 *ngIf="!inventory.photo"
+                                 width="90"
+                                 height="90"
+                                 src="assets/noPhoto.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="_08v79">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">
+                                <span *ngIf="inventory.value===1">直接</span>提領 {{inventory.no}}？
+                            </div>
+                        </div>
+                        <div style="padding-top:0;margin:6px auto;display:flex;flex-direction:row; max-width: 150px" *ngIf="inventory.value!==1">
+                            <div (click)="minus(inventory)"
+                                 class="aOOlW"
+                                 style="line-height: 19px; height: 32px; width: 32px; min-height: 32px; border-top: 1px solid #efefef; border-bottom: 1px solid #efefef; border-left: 1px solid #efefef; border-right: none"
+                                 tabindex="0">-</div>
+                            <input [(ngModel)]="inventory._take"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="7"
+                                   (blur)="blur()"
+                                   (keydown)="keydown($event)"
+                                   style="vertical-align:middle;width:100%;text-align:center;border-top: 1px solid #efefef;border-bottom: 1px solid #efefef;border-left: none;border-right: none">
+                            <div (click)="plus(inventory)"
+                                 class="aOOlW"
+                                 style="line-height:19px;height:32px;width:32px;min-height:32px;border-top:1px solid #efefef;border-bottom:1px solid #efefef;border-left:none;border-right:1px solid #efefef" tabindex="0">+</div>
+                        </div>
+                        <div style="padding-top:0;margin:0 0 9px 0;display:flex;flex-direction:row;color:#262626">
+                            <div style="margin:0 auto">  </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt3GC">
+                    <button class="aOOlW -Cab_" tabindex="0" *ngIf="presentation.action==='直接提領(list)'&&inventory._take<inventory.value&&inventory.value!==1" (click)="nextAction('提領(list)')">提領</button>
+                    <button class="aOOlW -Cab_" tabindex="0" *ngIf="presentation.action==='直接提領(list)'&&inventory.value===1" (click)="nextAction('全部提領(list)')">確定</button>
+                    <button class="aOOlW -Cab_" tabindex="0" *ngIf="presentation.action==='直接提領(list)'&&inventory.value!==1" (click)="nextAction('全部提領(list)')">全部提領</button>
+
+
+                    <button class="aOOlW -Cab_" tabindex="0" *ngIf="presentation.action==='直接提領(detail)'&&inventory._take<inventory.value&&inventory.value!==1" (click)="nextAction('提領(detail)')">提領</button>
+                    <button class="aOOlW -Cab_" tabindex="0" *ngIf="presentation.action==='直接提領(detail)'&&inventory.value===1" (click)="nextAction('全部提領(detail)')">確定</button>
+                    <button class="aOOlW -Cab_" tabindex="0" *ngIf="presentation.action==='直接提領(detail)'&&inventory.value!==1" (click)="nextAction('全部提領(detail)')">全部提領</button>
+                    <button class="aOOlW HoLwm" tabindex="0" (click)="cancel()">取消</button>
+                </div>
+            </div>
+            <div class="piCib" *ngIf="title==='putdown'&&inventory">
+                <div class="dsJ8D">
+                    <div class="xlTJg">
+                        <div class="G3yoz" style="border-radius: 0">
+                            <img height="90"
+                                 src="{{appService.filesUrl}}/{{inventory.photo}}"
+                                 width="90">
+                        </div>
+                    </div>
+                </div>
+                <div class="_08v79">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">
+                                提領 {{inventory.recipeValue}}({{inventory.no}})？
+                            </div>
+                        </div>
+                        <div style="padding-top:0;margin:6px auto;display:flex;flex-direction:row; max-width: 150px">
+                            <div (click)="minus(inventory)"
+                                 class="aOOlW"
+                                 style="line-height: 19px;height:32px;width:32px;min-height:32px;border-top: 1px solid #efefef;border-bottom: 1px solid #efefef;border-left: 1px solid #efefef;border-right: none"
+                                 tabindex="0">-</div>
+                            <input [(ngModel)]="inventory._take"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="7"
+                                   (blur)="blur()"
+                                   (keydown)="keydown($event)"
+                                   style="vertical-align:middle;width:100%;text-align:center;border-top: 1px solid #efefef;border-bottom: 1px solid #efefef;border-left: none;border-right: none">
+                            <div (click)="plus(inventory)"
+                                 class="aOOlW"
+                                 style="line-height: 19px;height:32px;width:32px;min-height:32px;border-top: 1px solid #efefef;border-bottom: 1px solid #efefef;border-left: none;border-right: 1px solid #efefef"
+                                 tabindex="0">+</div>
+                        </div>
+                        <div style="padding-top:0;margin:0 0 9px 0;display:flex;flex-direction:row;color:#262626">
+                            <div style="margin:0 auto">
+                                {{inventory.unit}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt3GC">
+                    <button class="aOOlW -Cab_" tabindex="0" *ngIf="inventory._take<inventory.value" (click)="nextAction('放置')">放置</button>
+                    <button class="aOOlW -Cab_" tabindex="0" (click)="nextAction('全部放置')">全部放置</button>
+                    <button class="aOOlW HoLwm" tabindex="0" (click)="cancel()">取消</button>
+                </div>
+            </div>
+            <div class="piCib"
+                 *ngIf="title==='more'">
+                <div class="piCib">
+                    <div class="mt3GC">
+                        <button class="aOOlW bIiDR"
+                                [ngClass]="{'bIiDR':button.color==='blue','-Cab_':button.color==='red'}"
+                                tabindex="0"
+                                (click)="nextAction(button)"
+                                *ngFor="let button of (buttons$|async)">
+                            {{button.title}}
+                        </button>
+                        <button class="aOOlW HoLwm" tabindex="0" (click)="cancel()">取消</button>
+                    </div>
+                </div>
+            </div>
+            <div class="piCib"
+                 *ngIf="title==='changePhoto'">
+                <div class="piCib">
+                    <div class="_08v79">
+                        <h3 class="_7UhW9 LjQVu qyrsm KV-D4 uL8Hv">變更大頭貼照</h3>
+                    </div>
+                    <div class="mt3GC">
+                        <button class="aOOlW bIiDR" tabindex="0" (click)="nextAction('上傳相片')">上傳相片</button>
+                        <button class="aOOlW -Cab_" tabindex="0" (click)="nextAction('移除目前的大頭貼照')">移除目前的大頭貼照</button>
+                        <button class="aOOlW HoLwm" tabindex="0" (click)="nextAction('取消')">取消</button>
+                    </div>
+                </div>
+            </div>
+            <div class="piCib"
+                 *ngIf="title==='error'">
+                <div class="_08v79">
+                    <h3 class="_7UhW9 LjQVu qyrsm KV-D4 uL8Hv">{{presentation.h3}}</h3>
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">{{presentation.div}}</div>
+                </div>
+                <div class="mt3GC">
+                    <button class="aOOlW bIiDR" tabindex="0" (click)="nextAction('取消')">{{presentation.button}}</button>
+                </div>
+            </div>
+            <div class="piCib"
+                 *ngIf="title==='message'">
+                <div class="_08v79" style="margin-top: 16px" *ngIf="message$|async as message">
+                    <h3 class="_7UhW9 LjQVu qyrsm KV-D4 uL8Hv" style="margin: 0;padding-bottom:8px">{{message.h3}}</h3>
+                    <div class="_7UhW9 MMzan _0PwGv uL8Hv" style="padding-bottom:16px">{{message.div}}</div>
+                </div>
+            </div>
+            <div class="piCib"
+                 *ngIf="title==='invoice'">
+                <div class="dsJ8D" style="margin-top: 16px">
+                    <div class="xlTJg">
+                        <div class="G3yoz" style="border-radius: 0">
+                            <img height="90"
+                                 src=""
+                                 width="90"
+                                 style="object-fit:cover">
+                        </div>
+                    </div>
+                </div>
+                <div class="_08v79" style="margin: 0 auto">
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">
+                        <div class="Igw0E IwRSH eGOV_ _4EzTm">
+                            <div class="_7UhW9 xLCgt MMzan KV-D4 uL8Hv">新增發票資訊</div>
+                        </div>
+                        <div style="padding-top:0;margin:8px auto 0;display:flex;flex-direction:column; max-width: 150px">
+                            <input [(ngModel)]="invoice.id"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="10"
+                                   #invoiceId
+                                   placeholder="發票號碼"
+                                   (keyup)="upper()"
+                                   (keypress)="validateEngNum($event)"
+                                   style="margin-bottom: 8px; padding: 4px" />
+                            <input [(ngModel)]="invoice.date"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="7"
+                                   placeholder="交易日期"
+                                   (keypress)="validateNum($event)"
+                                   style="margin-bottom: 8px; padding: 4px" />
+                            <input [(ngModel)]="invoice.price"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="12"
+                                   placeholder="應稅金額"
+                                   (keypress)="validateNum($event)"
+                                   style="margin-bottom: 8px; padding: 4px" />
+                            <input [(ngModel)]="invoice.taxed"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="12"
+                                   placeholder="總計金額"
+                                   (keypress)="validateNum($event)"
+                                   style="margin-bottom: 8px; padding: 4px" />
+                            <input [(ngModel)]="invoice.buyer"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="8"
+                                   placeholder="買方統編"
+                                   (keypress)="validateNum($event)"
+                                   style="margin-bottom: 8px; padding: 4px" />
+                            <input [(ngModel)]="invoice.seller"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="8"
+                                   placeholder="賣方統編"
+                                   (keypress)="validateNum($event)"
+                                   style="padding: 4px" />
+                        </div>
+                    </div>
+                </div>
+                <div class="mt3GC">
+                    <button class="aOOlW -Cab_" tabindex="0" [disabled]="isInvoiceError()" [ngClass]="{'_9gx9x':isInvoiceError()}" (click)="nextAction('新增發票')">確定</button>
+                    <button class="aOOlW HoLwm" tabindex="0" (click)="nextAction('取消')">取消</button>
+                </div>
+            </div>
+        </div>
+        <div style="height:100%;width:100%;position:absolute;z-index:1" (click)="nextAction('取消')"></div>
+    </div>
+
+
+
+        <!--錯誤
+    <div class="RnEpo Yx5HN"
+         role="presentation"
+         >
+        <button aria-hidden="true" class="yvwbg" tabindex="-1"></button>
+        <div class="pbNvD fPMEg" role="dialog">
+            <div class="piCib">
+                <div class="_08v79">
+                    <h3 class="_7UhW9 LjQVu qyrsm KV-D4 uL8Hv">{{(presentation$|async).h3}}</h3>
+                    <div class="_7UhW9 xLCgt MMzan _0PwGv uL8Hv">{{(presentation$|async).div}}</div>
+                </div>
+                <div class="mt3GC">
+                    <button class="aOOlW bIiDR" tabindex="0" (click)="presentation$.next(null)">{{(presentation$|async).button}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="RnEpo Yx5HN"
+         role="presentation"
+         *ngIf="(appService.mobile)&&(presentation$|async)">
+        <div style="width:100%;height:100%"
+             (click)="blur()"></div>
+        <button aria-hidden="true" class="yvwbg" tabindex="-1"></button>
+        <actionPickup></actionPickup>
+    </div>
+
+    <div class="Z2m7o"><div class="CgFia"></div></div>
+    -->
+        <!--任務列表
+
+    <div class="RnEpo Yx5HN"
+         role="presentation"
+         *ngIf="!(appService.mobile)&&(presentation$|async)">
+        <button aria-hidden="true"
+                class="yvwbg"
+                tabindex="-1"></button>
+        <div class="pbNvD fPMEg HYpXt"
+             role="dialog"
+             (mouseover)="dialog"
+             *ngIf="(presentation$|async).h3===''"
+             style="position:absolute;top:0">
+            <div>
+                <div class="eiUFA">
+                    <div class="WaOAr"></div>
+                    <h1 class="m82CD">
+                        <div>{{(presentation$|async).div}}</div>
+                    </h1>
+                    <div class="WaOAr">
+                        <button class="dCJp8 afkep _0mzm-">
+                            <span class="glyphsSpriteX_outline_24_grey_9 u-_7" aria-label="關閉"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="iXT5c" *ngIf="(presentation$|async).div==='可接受任務'">
+                <a aria-current="page"
+                   class="QxuJw"
+                   href="/fanghsienli/following/" [ngClass]="{'jkw7z':(presentation$|async).button==='優先任務'}">
+                    <button class="_0mzm- sqdOP yWX7d _8A5w5"
+                            type="button">
+                        優先任務
+                    </button>
+                </a>
+                <a class="QxuJw"
+                   href="/fanghsienli/hashtag_following/" [ngClass]="{'jkw7z':(presentation$|async).button==='其他推薦任務'}">
+                    <button class="_0mzm- sqdOP yWX7d _8A5w5"
+                            type="button">
+                        其他推薦任務
+                    </button>
+                </a>
+            </nav>
+            <div class="isgrP" *ngIf="(presentation$|async).div==='提領'">
+                <actionPickup></actionPickup>
+            </div>
+
+            <div class="isgrP" *ngIf="(presentation$|async).div==='可接受任務'">
+                <activities></activities>
+            </div>
+            <div class="isgrP" *ngIf="(presentation$|async).div==='進行中任務'">
+                <participates [type]="'ul'"></participates>
+            </div>
+        </div>
+        <div class="pbNvD fPMEg" role="dialog" *ngIf="(presentation$|async).h3==='編輯個人檔案'||(presentation$|async).h3==='變更大頭貼照'">
+            <div class="piCib">
+                <div class="_08v79"><h3 class="_7UhW9 LjQVu qyrsm KV-D4 uL8Hv">{{(presentation$|async).h3}}</h3></div>
+                <div class="mt3GC">
+                    <button class="aOOlW" [ngClass]="{'bIiDR':button==='上傳相片','-Cab_':button==='移除目前的大頭貼照'}" tabindex="0" *ngFor="let button of (presentation$|async).buttons" (click)="presentationClick(button)">{{button}}</button>
+                    <button class="aOOlW HoLwm" tabindex="0">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->

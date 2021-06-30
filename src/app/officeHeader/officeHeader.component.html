@@ -1,0 +1,158 @@
+﻿
+<nav class="NXc7H jLuN9"
+     *ngIf="appService.profile&&!appService.mobile">
+    <div class="XajnB"></div>
+    <div class="_8MQSO Cx7Bp">
+        <div class="_lz6s">
+            <div class="MWDvN">
+                <div class="oJZym">
+                    <a class="" href="/">
+                        <div class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm">
+                            <span class="glyphsSpriteApp_instagram_outline_24_grey_9 u-_7" aria-label="Instagram"></span>
+                            <div class="SvO5t"></div>
+                            <div class="cq2ai">
+                                <span class="glyphsSpriteMobile_nav_type_logo u-_7" aria-label="Instagram"></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="LWmhU _0aCwM">
+
+                    <input class="XTCLo x3qfX"
+                           type="text"
+                           #searchInput
+                           (focus)="focus()"
+                           (blur)="blur()"
+                           (keyup)="search($event.target.value)"
+                           autocapitalize="none"
+                           placeholder="搜尋">
+                    <div class="pbgfb Di7vw"
+                         role="button"
+                         tabindex="0"
+                         style="outline:none"
+                           (click)="focus()"
+                         *ngIf="!(searchFocused||searchText!=='')">
+                        <div class="eyXLr wUAXj">
+                            <span class="_6RZXI coreSpriteSearchIcon"></span>
+                            <span class="TqC_a">搜尋</span>
+                        </div>
+                    </div>
+                    <span class="mlrQa coreSpriteSearchIcon" *ngIf="searchFocused||searchText!==''"></span>
+                    <div class="jLwSh"
+                         role="dialog"
+                         *ngIf="searchFocused"
+                         (click)="searchFocused=false"></div>
+                    <div class="W1Bne zKxRE VWmGw"
+                         *ngIf="searching"></div>
+                    <div class="aIYm8 coreSpriteSearchClear"
+                         role="button"
+                         tabindex="0"
+                         style="outline:none"
+                         *ngIf="(searchFocused||searchText!=='')&&!searching"
+                         (click)="clear()"></div>
+
+                    <div *ngIf="searchFocused">
+                        <div class="VR6_Q" *ngIf="searchResults.length>0"></div>
+                        <div class="drKGC" *ngIf="searchResults.length>0">
+                            <div class="fuqBx" style="cursor:pointer">
+                                <a class="yCE8d"
+                                   style="cursor:pointer"
+                                   *ngFor="let searchResult of searchResults"
+                                   [ngClass]="{'JvDyy':hoverId===searchResult.navigateUrl}"
+                                   (mouseover)="hoverId=searchResult.navigateUrl"
+                                   (mouseleave)="hoverId=null">
+                                    <div class="z556c">
+                                        <div class="RR-M- h5uC0 g9vPa"
+                                             role="button"
+                                             tabindex="0"
+                                             *ngIf="searchResult.type!=='categories'">
+                                            <canvas class="CfWVH" height="42" width="42" style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
+                                            <span class="_2dbep " role="link" tabindex="0" style="width: 32px; height: 32px;">
+                                                <img class="_6q-tv"
+                                                     decoding="auto"
+                                                     sizes="150px"
+                                                     style="object-fit: cover;"
+                                                     *ngIf="searchResult.photoPath"
+                                                     src="{{appService.filesUrl}}/{{searchResult.photoPath}}"
+                                                     alt="{{searchResult.title}}"
+                                                     onerror="this.src='assets/noPhoto.png';">
+                                                <img class="_6q-tv"
+                                                     decoding="auto"
+                                                     sizes="150px"
+                                                     *ngIf="(!searchResult.photoPath)"
+                                                     style="object-fit: cover;"
+                                                     src="assets/noPhoto.png"
+                                                     alt="預覽">
+                                            </span>
+                                        </div>
+                                        <div class="_2_M76">
+                                            <div class="uyeeR">
+                                                <span class="Ap253" style="color: #A300CF" *ngIf="searchResult.type==='categories'">{{searchResult.title}}</span>
+                                                <span class="Ap253" style="color: #1AB394" *ngIf="searchResult.type==='items'">{{searchResult.title}}</span>
+                                                <span class="Ap253" style="color: #F8AC59" *ngIf="searchResult.type==='inventories'">{{searchResult.title}}</span>
+                                            </div>
+                                            <span class="Fy4o8">{{searchResult.subTitle}}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ctQZg">
+                    <div class="_47KiJ">
+                        <!--
+    <div class="XrOey">
+        <a class="_0ZPOP"
+           (click)="appService.message$.next('攻城獅日夜趕工中...(´ﾟдﾟ`)')">
+            <span class="glyphsSpriteCompass_outline_24_grey_9 u-_7" aria-label="尋找用戶"></span>
+        </a>
+    </div>-->
+                        <div class="XrOey">
+                            <a class="_0ZPOP kIKUG"
+                               [ngClass]="{'H9zXO': (show&&walletCount>0)}"
+                               (click)="walletClick()">
+                                <span class="glyphsSpriteHeart_outline_24_grey_9 u-_7" aria-label="活動動態"></span>
+                                <div class="uk0Yc" *ngIf="walletCount>0">
+                                    <div class="iMofo nwToI R0tpI nHGTw"
+                                         [ngClass]="{'R0tpI':!show}" (click)="show=false">
+                                        <div class="JxPw3 pUTym ">
+                                            <div class="_18Jen nHGTw "></div>
+                                        </div>
+                                        <div class="jctW7">
+                                            <div class="_0KY_R">
+                                                <div class="Igw0E rBNOH eGOV_ ybXk5 _4EzTm n4cjz">
+                                                    <span class="glyphsSpriteHeart_filled_16_white u-_7" aria-label="載具有東西"></span>
+                                                    <div class=" Igw0E rBNOH eGOV_ _4EzTm WKY0a ">
+                                                        <div class="_7UhW9 vy6Bb MMzan h_zdq uL8Hv T0kll ">{{walletCount}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div *ngIf="participatesOpen">
+                                <div class="_8Mwnh"
+                                     role="dialog"
+                                     (click)="participatesOpen=false"></div>
+                                <div class="hUQsm"></div>
+                                <div class="T5hFd"></div>
+                                <div class="vtWDf">
+                                    <!--<participates [type]="'div'"></participates>-->
+                                    <div class="W1Bne ztp9m"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="XrOey">
+                            <a class="_0ZPOP"
+                               (click)="goTo('profile')">
+                                <span class="glyphsSpriteUser_outline_24_grey_9 u-_7" aria-label="個人檔案"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

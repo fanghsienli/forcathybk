@@ -1,0 +1,161 @@
+﻿<input (keyup)="filterRecipes($event.target.value)"
+       placeholder="🔎簡易篩選"
+       class="search" />
+<span *ngIf="loading">
+    搜尋中...
+    <loading></loading>
+</span>
+<span *ngIf="!loading">    搜尋結果 {{resultCount}} 筆</span>
+<scrollTop></scrollTop>
+<!--
+<span style="position:fixed; top:1;background-color:aquamarine">loading: {{loading}},maxPage: {{maxPage}}<br />pageIndex: {{pageIndex}},recipesLength: {{recipes.length}}</span>
+-->
+<table #exportTable *ngIf="!appService.mobile">
+    <thead>
+        <tr>
+            <th (click)="sort('no')">編號<span *ngIf="orderBy==='no'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th (click)="sort('inputs')">輸入品項與數量單位<span *ngIf="orderBy==='inputs'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th (click)="sort('availableWorkStations')">可用工作站點<span *ngIf="orderBy==='availableWorkStations'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th (click)="sort('outputs')">輸出品項與數量單位<span *ngIf="orderBy==='outputs'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th style="width:28px">動作</th>
+            <th style="width:28px"></th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody style="padding-bottom:60px" *ngIf="recipes&&recipes.length>0">
+        <tr [appLoadMore] *ngFor="let recipe of recipes"
+            (mouseover)="hoverId=recipe.id"
+            (mouseleave)="hoverId=''">
+            <td>
+                <span [innerHTML]="recipe.no | highlight: anyLike"></span>
+            </td>
+            <td>
+                <span *ngFor="let input of recipe.inputs">
+                    <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                          [innerHTML]="input.no | highlight: anyLike"
+                          (click)="openItem(input.id)"></span><br />
+                </span>
+            </td>
+            <td>
+                <span *ngFor="let availableWorkStation of recipe.availableWorkStations">
+                    <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                          [innerHTML]="availableWorkStation.no | highlight: anyLike"
+                          (click)="openInventory(availableWorkStation.id)"></span><br />
+                </span>
+            </td>
+            <td>
+                <span *ngFor="let output of recipe.outputs">
+                    <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                          [innerHTML]="output.no | highlight: anyLike"
+                          (click)="openItem(output.id)"></span><br />
+                </span>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===recipe.id"
+                   style="cursor:pointer"
+                   (click)="goToRecipe(recipe.id)">編輯</a>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===recipe.id"
+                   style="cursor:pointer;color:#ed4956"
+                   (click)="delete(recipe)">刪除</a>
+            </td>
+        </tr>
+        <img [appLoadMore]
+             *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+             width="32"
+             height="32"
+             style="margin-top:10px"
+             src="assets/white.png"
+             (onSeeMe)="load(1000)" />
+    </tbody>
+</table>
+<table #exportTable *ngIf="appService.mobile">
+    <thead>
+        <tr>
+            <th>
+                <span (click)="sort('no')"
+                      style="margin-right:10px">
+                    編號
+                    <span *ngIf="orderBy!=='no'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='no'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='no'&&descending">▾</span>
+                </span>
+                <span (click)="sort('inputs')"
+                      style="margin-right:10px">
+                    輸入品項與數量單位
+                    <span *ngIf="orderBy!=='inputs'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='inputs'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='inputs'&&descending">▾</span>
+                </span>
+                <span (click)="sort('availableWorkStations')"
+                      style="margin-right:10px">
+                    可用工作站點
+                    <span *ngIf="orderBy!=='availableWorkStations'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='availableWorkStations'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='availableWorkStations'&&descending">▾</span>
+                </span>
+                <span (click)="sort('outputs')"
+                      style="margin-right:10px">
+                    輸出品項與數量單位
+                    <span *ngIf="orderBy!=='outputs'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='outputs'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='outputs'&&descending">▾</span>
+                </span>
+            </th>
+            <th style="width:28px">動作</th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody style="padding-bottom:60px">
+        <tr [appLoadMore] *ngFor="let recipe of recipes"
+            [ngClass]="{'hoverId':hoverId===recipe.id}">
+            <td (click)="goToRecipe(recipe.id)">
+                <span style="font-weight: 900">
+                    <span [innerHTML]="recipe.no | highlight: anyLike"></span><br />
+                </span>
+                <div>
+                    <span *ngFor="let input of recipe.inputs">
+                        <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="input.no | highlight: anyLike"
+                              (click)="openItem(input.id)"></span><br />
+                    </span>
+                </div>
+                <div>
+                    <span *ngFor="let availableWorkStation of recipe.availableWorkStations">
+                        <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="availableWorkStation.no | highlight: anyLike"
+                              (click)="openInventory(availableWorkStation.id)"></span><br />
+                    </span>
+                </div>
+                <div>
+                    <span *ngFor="let output of recipe.outputs">
+                        <span style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="output.no | highlight: anyLike"
+                              (click)="openItem(output.id)"></span><br />
+                    </span>
+                </div>
+            </td>
+            <td style="width:28px">
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more(recipe)">
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        <img [appLoadMore]
+             *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+             width="32"
+             height="32"
+             style="margin-top:10px"
+             src="assets/white.png"
+             (onSeeMe)="load(1000)" />
+    </tbody>
+</table>

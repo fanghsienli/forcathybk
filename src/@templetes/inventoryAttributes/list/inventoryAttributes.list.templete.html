@@ -1,0 +1,149 @@
+﻿<input placeholder="🔎簡易篩選"
+       class="search"
+       (keyup)="filterInventoryAttributes($event.target.value)" />
+<span *ngIf="loading">
+    搜尋中...
+    <loading></loading>
+</span>
+<span *ngIf="!loading">    搜尋結果 {{resultCount}} 筆</span>
+<scrollTop></scrollTop>
+<!--
+<span style="position:fixed; top:1;background-color:aquamarine">loadingMore: {{loadingMore}},maxPage: {{maxPage}}<br />pageIndex: {{pageIndex}},inventoryAttributesLength: {{inventoryAttributes.length}}</span>
+-->
+<table #exportTable *ngIf="!appService.mobile">
+    <thead>
+        <tr>
+            <th style="width:140px" (click)="sort('target.value')">名稱<span *ngIf="orderBy==='target.value'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th style="width:28px" (click)="sort('valueType')">類型<span *ngIf="orderBy==='valueType'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th>條件</th>
+            <th style="width:40px" (click)="sort('valueNumber')">數量<span *ngIf="orderBy==='valueNumber'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th style="width:70px" (click)="sort('level')">必填<span *ngIf="orderBy==='level'"><span *ngIf="!descending">▴</span><span *ngIf="descending">▾</span></span></th>
+            <th style="width:28px">動作</th>
+            <th style="width:28px"></th>
+            <th style="width:28px"></th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody>
+        <tr *ngFor="let inventoryAttribute of inventoryAttributes"
+            (mouseover)="hoverId=inventoryAttribute.id"
+            (mouseleave)="hoverId=''">
+            <td>
+                <span [innerHTML]="inventoryAttribute.target.value | highlight: anyLike"></span>
+            </td>
+            <td>
+                <span [innerHTML]="inventoryAttribute.valueType | highlight: anyLike"></span>
+            </td>
+            <td>
+                <span *ngIf="inventoryAttribute.conditions&&inventoryAttribute.conditions.length>0">
+                    <span *ngFor="let condition of inventoryAttribute.conditions">
+                        <span *ngIf="condition.type==='categories'" style="cursor:pointer;color:#A300CF;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="condition.value | highlight: anyLike"
+                              (click)="openCategory(condition.id)"></span>
+                        <span *ngIf="condition.type==='inventories'" style="cursor:pointer;color:#1AB394;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="condition.value | highlight: anyLike"
+                              (click)="openInventory(condition.id)"></span>
+                        <span *ngIf="condition.type==='inventories'" style="cursor:pointer;color:#F8AC59;margin:7px 0 0 0;font-weight:900"
+                              [innerHTML]="condition.value | highlight: anyLike"
+                              (click)="openInventory(condition.id)"></span><br />
+                    </span>
+                </span>
+            </td>
+            <td> <span [innerHTML]="inventoryAttribute.valueNumber | highlight: anyLike"></span></td>
+            <td>
+                <span *ngIf="inventoryAttribute.level===2">僅展示</span>
+                <span *ngIf="inventoryAttribute.level===3">展示且必填</span>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===inventoryAttribute.id"
+                   style="cursor:pointer;color:#3897f0"
+                   (click)="edit(inventoryAttribute)">編輯</a>
+            </td>
+            <td style="width:28px">
+                <a *ngIf="hoverId===inventoryAttribute.id"
+                   style="cursor:pointer;color:#ed4956"
+                   (click)="delete(inventoryAttribute)">刪除</a>
+            </td>
+            <td style="width:28px">
+            </td>
+        </tr>
+        <img [appLoadMore]
+             *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+             width="32"
+             height="32"
+             style="margin-top:100px"
+             src="assets/white.png"
+             (onSeeMe)="load(1000)" />
+
+    </tbody>
+</table>
+<table #exportTable *ngIf="appService.mobile">
+    <thead>
+        <tr>
+            <th>
+                <span (click)="sort('target.value')"
+                      style="margin-right:10px">
+                    名稱
+                    <span *ngIf="orderBy!=='target.value'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='target.value'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='target.value'&&descending">▾</span>
+                </span>
+                <span (click)="sort('type')"
+                      style="margin-right:10px">
+                    類型
+                    <span *ngIf="orderBy!=='type'" style="color:#f5f5f5">▴</span>
+                    <span *ngIf="orderBy==='type'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='type'&&descending">▾</span>
+                </span>
+                <span (click)="sort('must')"
+                      style="margin-right:10px">
+                    必填
+                    <span *ngIf="orderBy!=='must'" style="color:#f5f5f5"></span>
+                    <span *ngIf="orderBy==='must'&&!descending">▴</span>
+                    <span *ngIf="orderBy==='must'&&descending">▾</span>
+                </span>
+            </th>
+            <th style="width:28px">動作</th>
+        </tr>
+        <div *ngIf="loading"
+             class="loading">
+            <loading [size]="32"></loading>
+        </div>
+    </thead>
+    <tbody>
+        <tr *ngFor="let inventoryAttribute of inventoryAttributes"
+            [ngClass]="{'hoverId':hoverId===inventoryAttribute.id}">
+            <td>
+                <span [innerHTML]="inventoryAttribute.target.value | highlight: anyLike"
+                      title="名稱: {{inventoryAttribute.target.value}}"></span><br />
+                <span [innerHTML]="inventoryAttribute.type | highlight: anyLike"
+                      title="類型: {{inventoryAttribute.type}}"></span><br />
+                <span *ngIf="inventoryAttribute.inventoryValue">
+                    (<span style="color: #1AB394;cursor:pointer"
+                           (click)="goToInventory(inventoryAttribute.inventoryId)"
+                           [innerHTML]="inventoryAttribute.inventoryValue | highlight: anyLike"
+                           title="品項: {{inventoryAttribute.inventoryValue}}"></span>)<br />
+                </span>
+                <span *ngIf="inventoryAttribute.must">是</span>
+            </td>
+            <td style="width:28px">
+                <div class="AFWDX">
+                    <button class="dCJp8 afkep" (click)="more(inventoryAttribute)">
+                        <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        <img [appLoadMore]
+             *ngIf="!loading&&maxPage!==pageIndex&&maxPage!==0"
+             width="32"
+             height="32"
+             style="margin-top:100px"
+             src="assets/white.png"
+             (onSeeMe)="load(1000)" />
+    </tbody>
+</table>
+

@@ -1,0 +1,62 @@
+.FSiF6 {
+    -webkit-animation: IGCoreSpinnerSpin8 .8s steps(8) infinite;
+    animation: IGCoreSpinnerSpin8 .8s steps(8) infinite
+}
+
+.By4nA {
+    -webkit-animation: IGCoreSpinnerSpin12 1.2s steps(12) infinite;
+    animation: IGCoreSpinnerSpin12 1.2s steps(12) infinite
+}
+
+    .By4nA.ZyL7E, .FSiF6.ZyL7E {
+        -webkit-animation: none;
+        animation: none
+    }
+
+@-webkit-keyframes IGCoreSpinnerSpin8 {
+    0% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg)
+    }
+
+    to {
+        -webkit-transform: rotate(540deg);
+        transform: rotate(540deg)
+    }
+}
+
+@keyframes IGCoreSpinnerSpin8 {
+    0% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg)
+    }
+
+    to {
+        -webkit-transform: rotate(540deg);
+        transform: rotate(540deg)
+    }
+}
+
+@-webkit-keyframes IGCoreSpinnerSpin12 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes IGCoreSpinnerSpin12 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}

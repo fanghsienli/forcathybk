@@ -1,0 +1,313 @@
+﻿<div class="Id0Rh" *ngIf="loading&&appService.mobile" style="margin-top:50%">
+    <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+         style="height: 32px; width: 32px;">
+        <loading [size]="32"></loading>
+    </div>
+</div>
+<div class="Id0Rh" *ngIf="loading&&!appService.mobile" style="margin-top: 150px">
+    <div class="Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME"
+         style="height:32px;width:32px">
+        <loading [size]="32"></loading>
+    </div>
+</div>
+<div *ngIf="(mode==='pickup'||mode==='startup')&&!loading">
+    <a class="accordion"
+       style="cursor: pointer; align-items: center; border-bottom: solid 1px #efefef; display: flex; flex-direction: column; flex-shrink: 0; min-height: 40px; padding: 8px 0 8px 14px"
+       *ngFor="let group of groups"
+       [ngClass]="{'open':expendId===group.id,'JvDyy':hoverId===group.id}"
+       (mouseover)="hoverId=group.id"
+       (mouseleave)="hoverId=null">
+        <div class="z556c">
+            <div class="RR-M- h5uC0 g9vPa"
+                 (click)="toggle(group.id)"
+                 role="button"
+                 tabindex="0">
+                <span class="_2dbep "
+                      role="link"
+                      tabindex="0"
+                      style="width:32px;height:32px">
+                    <img class="_6q-tv"
+                         decoding="auto"
+                         style="object-fit: cover;"
+                         *ngIf="group.inputItem.photo"
+                         src="{{appService.filesUrl}}/{{group.inputItem.photo}}"
+                         onerror="this.src='assets/noPhoto.png';">
+                    <img class="_6q-tv"
+                         decoding="auto"
+                         *ngIf="!group.inputItem.photo"
+                         style="object-fit:cover"
+                         src="assets/noPhoto.png"
+                         alt="預覽">
+                </span>
+            </div>
+            <div class="_2_M76"
+                 style="width:calc(100% - 82px)"
+                 *ngIf="group.inputItem"
+                 (click)="toggle(group.id)">
+                <div class="uyeeR">
+                    <span class="Ap253" style="color: #1AB394">{{group.inputItem.value}}</span>
+                </div>
+                <span class="Fy4o8" *ngIf="mode==='pickup'">{{group.workOrderEventsPickupsTotal}}/{{workOrder.quantity*group.quantity}}</span>
+                <span class="Fy4o8" *ngIf="mode==='startup'">{{group.workOrderEventsStartupsTotal}}/{{group.workOrderEventsPickupsTotal}}</span>
+            </div>
+            <div class="AFWDX" (click)="more(group)">
+                <button *ngIf="hoverId===group.id||expendId===group.id" class="dCJp8 afkep">
+                    <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                </button>
+            </div>
+        </div>
+        <div *ngIf="expendId===group.id&&group.workOrderEvents&&group.workOrderEvents.length>0&&mode==='pickup'" style="width: 100%">
+            <a style="cursor: pointer; align-items: center; display: flex; flex-direction: column; flex-shrink: 0; min-height: 40px; padding: 8px 0 0 8px"
+               *ngFor="let workOrderEvent of group.workOrderEvents">
+                <div class="z556c">
+                    <div class="RR-M- h5uC0 g9vPa"
+                         role="button"
+                         tabindex="0">
+                        <canvas class="CfWVH" height="42" width="42" style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
+                        <span class="_2dbep " role="link" tabindex="0" style="width: 32px; height: 32px;">
+                            <img class="_6q-tv"
+                                 decoding="auto"
+                                 style="object-fit: cover;"
+                                 *ngIf="workOrderEvent.pickup.positionTargetPhoto"
+                                 src="{{appService.filesUrl}}/{{workOrderEvent.pickup.positionTargetPhoto}}"
+                                 onerror="this.src='assets/noPhoto.png';">
+                            <img class="_6q-tv"
+                                 decoding="auto"
+                                 *ngIf="!workOrderEvent.pickup.positionTargetPhoto"
+                                 style="object-fit: cover;"
+                                 src="assets/noPhoto.png"
+                                 alt="預覽">
+                        </span>
+                    </div>
+                    <div class="_2_M76">
+                        <div class="uyeeR">
+                            <span class="Ap253">
+                                <span style="color:#F8AC59;font-weight:900">{{workOrderEvent.pickup.positionTargetNo}}</span>領料 {{workOrderEvent.pickup.originalValue}} 單位
+                                <span class="Fy4o8" *ngIf="workOrderEvent.pickup.originalValue!==workOrderEvent.pickup.value">/ 已投產 {{workOrderEvent.pickup.originalValue-workOrderEvent.pickup.value}}單位</span>
+                            </span>
+                        </div>
+                        <span class="Fy4o8">{{workOrderEvent.pickup.positionStartDate | date: 'yyyy/MM/dd hh:mm:ss'}}</span>
+                    </div>
+                    <span style="position:absolute;right:16px;top:12px;cursor:pointer" *ngIf="!workOrderEvent.open" (click)="workOrderEvent.open=true">+</span>
+                    <span style="position:absolute;right:16px;top:12px;cursor:pointer" *ngIf="workOrderEvent.open" (click)="workOrderEvent.open=false">-</span>
+                </div>
+                <div *ngIf="workOrderEvent.open"
+                     style="width: 100%">
+                    <div class="z556c"
+                         style="padding:0 0 0 42px;height:20px">
+                        <span class="Fy4o8">
+                            {{workOrderEvent.pickup.positionCreatedByNo}}放行<span *ngIf="workOrderEvent.memo">, 並表示{{workOrderEvent.memo}}</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div *ngIf="expendId===group.id&&group.workOrderEvents&&group.workOrderEvents.length>0&&mode==='startup'" style="width: 100%">
+            <div style="align-items: center; display: flex; flex-direction: column; flex-shrink: 0; min-height: 57px; padding: 8px 0 0 8px"
+                 *ngFor="let workOrderEvent of group.workOrderEvents">
+                <div class="z556c">
+                    <div class="RR-M- h5uC0 g9vPa"
+                         role="button"
+                         tabindex="0">
+                        <canvas class="CfWVH" height="42" width="42" style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
+                        <span class="_2dbep " role="link" tabindex="0" style="width: 32px; height: 32px;">
+                            <img class="_6q-tv"
+                                 decoding="auto"
+                                 style="object-fit: cover;"
+                                 *ngIf="workOrderEvent.startup.positionTargetPhoto"
+                                 src="{{appService.filesUrl}}/{{workOrderEvent.startup.positionTargetPhoto}}"
+                                 onerror="this.src='assets/noPhoto.png';">
+                            <img class="_6q-tv"
+                                 decoding="auto"
+                                 *ngIf="!workOrderEvent.startup.positionTargetPhoto"
+                                 style="object-fit: cover;"
+                                 src="assets/noPhoto.png"
+                                 alt="預覽">
+                        </span>
+                    </div>
+                    <div class="_2_M76">
+                        <div class="uyeeR">
+                            <span class="Ap253">投產 {{workOrderEvent.startup.value}} 單位至 <span style="cursor:pointer;color:#F8AC59;font-weight:900" (click)="openInventory(workOrderEvent.startup.positionTargetId)">{{workOrderEvent.startup.positionTargetNo}}</span></span>
+                        </div>
+                        <span class="Fy4o8">{{workOrderEvent.startup.positionStartDate | date: 'yyyy/MM/dd hh:mm:ss'}}</span>
+                    </div>
+                    <span style="position:absolute;right:16px;top:12px;cursor:pointer" *ngIf="!workOrderEvent.open" (click)="workOrderEvent.open=true">+</span>
+                    <span style="position:absolute;right:16px;top:12px;cursor:pointer" *ngIf="workOrderEvent.open" (click)="workOrderEvent.open=false">-</span>
+                </div>
+                <div *ngIf="workOrderEvent.open"
+                     style="width: 100%">
+                    <div class="z556c"
+                         style="padding:0 0 0 42px;height:20px">
+                        <span class="Fy4o8">
+                            {{workOrderEvent.startup.positionCreatedByNo}}投料<span *ngIf="workOrderEvent.memo">, 並表示{{workOrderEvent.memo}}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+<div *ngIf="mode==='inspection'&&!loading">
+    <div class="accordion"
+         style="align-items: center; border-bottom: solid 1px #efefef; display: flex; flex-direction: column; flex-shrink: 0; min-height: 57px; padding: 8px 0 8px 14px"
+         *ngFor="let group of groups"
+         [ngClass]="{'open':expendId===group.id,'JvDyy':hoverId===group.id}"
+         (mouseover)="hoverId=group.id"
+         (mouseleave)="hoverId=null">
+        <div class="z556c">
+            <div class="RR-M- h5uC0 g9vPa"
+                 (click)="toggle(group.id)"
+                 role="button"
+                 tabindex="0">
+                <canvas class="CfWVH" height="42" width="42" style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
+                <span class="_2dbep " role="link" tabindex="0" style="width: 32px; height: 32px;">
+                    <img class="_6q-tv"
+                         decoding="auto"
+                         style="object-fit: cover;"
+                         *ngIf="group.outputItem.photo"
+                         src="{{appService.filesUrl}}/{{group.outputItem.photo}}"
+                         onerror="this.src='assets/noPhoto.png';">
+                    <img class="_6q-tv"
+                         decoding="auto"
+                         *ngIf="!group.outputItem.photo"
+                         style="object-fit: cover;"
+                         src="assets/noPhoto.png"
+                         alt="預覽">
+                </span>
+            </div>
+            <div class="_2_M76"
+                 style="width:calc(100% - 82px)"
+                 *ngIf="group.outputItem"
+                 (click)="toggle(group.id)">
+                <div class="uyeeR">
+                    <span class="Ap253" style="color: #1AB394">{{group.outputItem.value}}</span>
+                </div>
+                <span class="Fy4o8">{{group.workOrderEventsTotal}}/{{workOrder.quantity*group.quantity}}</span>
+            </div>
+            <div class="AFWDX" (click)="more(group)">
+                <button *ngIf="hoverId===group.id||expendId===group.id" class="dCJp8 afkep">
+                    <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                </button>
+            </div>
+        </div>
+        <div *ngIf="expendId===group.id&&group.workOrderEvents&&group.workOrderEvents.length>0" style="width: 100%">
+            <div style="align-items: center; display: flex; flex-direction: column; flex-shrink: 0; min-height: 40px; padding: 8px 0 0 8px"
+                 *ngFor="let workOrderEvent of group.workOrderEvents">
+                <div class="z556c">
+                    <div class="RR-M- h5uC0 g9vPa"
+                         role="button"
+                         tabindex="0">
+                        <canvas class="CfWVH" height="42" width="42" style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
+                        <span class="_2dbep " role="link" tabindex="0" style="width: 32px; height: 32px;">
+                            <img class="_6q-tv"
+                                 decoding="auto"
+                                 style="object-fit: cover;"
+                                 *ngIf="workOrderEvent.inspection.photo"
+                                 src="{{appService.filesUrl}}/{{workOrderEvent.inspection.photo}}"
+                                 onerror="this.src='assets/noPhoto.png';">
+                            <img class="_6q-tv"
+                                 decoding="auto"
+                                 *ngIf="!workOrderEvent.inspection.photo"
+                                 style="object-fit: cover;"
+                                 src="assets/noPhoto.png"
+                                 alt="預覽">
+                        </span>
+                    </div>
+                    <div class="_2_M76" *ngIf="group.outputItem">
+                        <div class="uyeeR">
+                            <span class="Ap253">產出 {{workOrderEvent.inspection.value}} 單位至 <span style="color:#F8AC59;font-weight:900">{{workOrderEvent.inspection.positionTargetNo}}</span></span>
+                        </div>
+                        <span class="Fy4o8">{{workOrderEvent.inspection.positionStartDate | date: 'yyyy/MM/dd hh:mm:ss'}}</span>
+                    </div>
+                    <span style="position:absolute;right:16px;top:12px;cursor:pointer" *ngIf="!workOrderEvent.open" (click)="workOrderEvent.open=true">+</span>
+                    <span style="position:absolute;right:16px;top:12px;cursor:pointer" *ngIf="workOrderEvent.open" (click)="workOrderEvent.open=false">-</span>
+                </div>
+                <div *ngIf="workOrderEvent.open"
+                     style="width: 100%">
+                    <div class="z556c"
+                         style="padding:0 0 0 42px;height:20px"
+                         *ngFor="let inspection of workOrderEvent.inspections">
+                        <span class="Fy4o8"><span style="font-weight:900" *ngIf="inspection.type==='合格'">合格 {{inspection.value}} 單位</span><span style="color:red;font-weight:900" *ngIf="inspection.type!=='合格'&&inspection.type!==''">{{inspection.type}} {{inspection.value}} 單位</span><span *ngIf="inspection.type===''">未檢 {{inspection.value}} 單位</span></span>
+                    </div>
+                    <div class="z556c"
+                         style="padding:0 0 0 42px;height:20px">
+                        <span class="Fy4o8">
+                            {{workOrderEvent.inspection.positionCreatedByNo}}紀錄<span *ngIf="workOrderEvent.memo">, 並表示{{workOrderEvent.memo}}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="mode==='station'&&!loading">
+    <div class="accordion"
+         style="align-items: center; border-bottom: solid 1px #efefef; display: flex; flex-direction: column; flex-shrink: 0; min-height: 57px; padding: 8px 0 8px 14px"
+         *ngFor="let group of groups"
+         [ngClass]="{'open':expendId===group.id,'JvDyy':hoverId===group.id}"
+         (mouseover)="hoverId=group.id"
+         (mouseleave)="hoverId=null">
+        <div class="z556c">
+            <div class="RR-M- h5uC0 g9vPa"
+                 (click)="toggle(group.id)"
+                 role="button"
+                 tabindex="0">
+                <canvas class="CfWVH" height="42" width="42" style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
+                <span class="_2dbep " role="link" tabindex="0" style="width: 32px; height: 32px;">
+                    <img class="_6q-tv"
+                         decoding="auto"
+                         style="object-fit: cover;"
+                         *ngIf="group.photo"
+                         src="{{appService.filesUrl}}/{{group.photo}}"
+                         onerror="this.src='assets/noPhoto.png';">
+                    <img class="_6q-tv"
+                         decoding="auto"
+                         *ngIf="!group.photo"
+                         style="object-fit: cover;"
+                         src="assets/noPhoto.png"
+                         alt="預覽">
+                </span>
+            </div>
+            <div class="_2_M76"
+                 style="width:calc(100% - 82px)"
+                 (click)="toggle(group.id)">
+                <div class="uyeeR">
+                    <span class="Ap253" style="color: #F8AC59">{{group.no}}</span>
+                </div>
+                <span class="Fy4o8">{{group.status}}<span *ngIf="group.reason">, {{group.reason}}</span></span>
+            </div>
+            <div class="AFWDX" (click)="more(group)">
+                <button *ngIf="hoverId===group.id||expendId===group.id" class="dCJp8 afkep">
+                    <span aria-label="選項" class="glyphsSpriteMore_horizontal_outline_24_grey_9 u-_7"></span>
+                </button>
+            </div>
+        </div>
+        <div *ngIf="expendId===group.id&&group.workOrderEvents&&group.workOrderEvents.length>0" style="width: 100%; max-height:200px; overflow-y:scroll;overflow-x:hidden">
+            <div style="align-items: center; display: flex; flex-direction: column; flex-shrink: 0; min-height: 40px; padding: 8px 0 0 8px"
+                 *ngFor="let workOrderEvent of group.workOrderEvents">
+                <div class="z556c">
+                    <div class="_2_M76">
+                        <div class="uyeeR">
+                            <span class="Ap253">
+                                {{workOrderEvent.action}}<span *ngIf="workOrderEvent.usedPower" style="font-weight:900;color:red"> 電表: {{workOrderEvent.usedPower}}</span>
+                                <span class="Fy4o8" *ngIf="workOrderEvent.reason"> {{workOrderEvent.reason}}</span>
+                            </span>
+                        </div>
+                        <span class="Fy4o8">{{workOrderEvent.createdDate | date: 'yyyy/MM/dd hh:mm:ss'}}</span>
+                    </div>
+                    <span style="position:absolute;right:16px;top:12px;cursor:pointer" *ngIf="!workOrderEvent.open" (click)="workOrderEvent.open=true">+</span>
+                    <span style="position:absolute;right:16px;top:12px;cursor:pointer" *ngIf="workOrderEvent.open" (click)="workOrderEvent.open=false">-</span>
+                </div>
+                <div *ngIf="workOrderEvent.open"
+                     style="width: 100%">
+                    <div class="z556c"
+                         style="height:20px">
+                        <span class="Fy4o8">
+                            {{workOrderEvent.createdByNo}}紀錄<span *ngIf="workOrderEvent.memo">, 並表示{{workOrderEvent.memo}}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

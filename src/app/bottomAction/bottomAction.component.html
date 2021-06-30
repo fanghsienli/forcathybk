@@ -1,0 +1,35 @@
+﻿<div class="hnYIW" *ngIf="bottom.action==='提領內容物'">
+    <!--
+    <button class="Zxlmg"
+            role="menuitem"
+            tabindex="0"
+            *ngFor="let action of app.bottomAction.actions"
+            [ngClass]="{'NaYQD':app.bottomAction.action===action.value}">
+        <div class="Igw0E IwRSH YBx95 vwCYk">{{action.value}}</div>
+    </button>-->
+    <div class="uoX1A">
+        <span class="s08qg">{{inventories.length}} 項</span>
+        <span class="g1xg1">
+            {{inventoriesSum}} {{inventoriesUnit}}
+        </span>
+    </div>
+    <div style="padding-right: 16px">
+        <button class="UP43G"
+                (click)="nextAction('確認提領內容物')" [disabled]="(inventories&&inventories.length===0)||(!inventories)">
+            提領
+        </button>
+    </div>
+</div>
+<div class="hnYIW" *ngIf="bottom.action==='確認提領內容'" (click)="nextAction('確認提領')">
+
+    <button class="UP43G" style="margin: 0 auto"
+            [disabled]="(inventories&&inventories.length===0)||(!inventories)">
+        確認提領
+    </button>
+</div>
+<div class="hnYIW" *ngIf="bottom.action==='放置'" (click)="nextAction('放置')">
+
+    <button class="UP43G" style="margin: 0 auto">
+        放置
+    </button>
+</div>

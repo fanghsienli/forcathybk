@@ -1,0 +1,1036 @@
+.coreSpriteActivityHeart, .coreSpriteAddText, .coreSpriteAppIcon, .coreSpriteAppStoreButton, .coreSpriteBoomerang, .coreSpriteCall, .coreSpriteCheck, .coreSpriteChevronDark, .coreSpriteChevronDownGrey, .coreSpriteChevronRight, .coreSpriteCi, .coreSpriteClose, .coreSpriteCloseLight, .coreSpriteDesktopNavDirect, .coreSpriteDesktopPhotoGrid, .coreSpriteDesktopPhotoGridActive, .coreSpriteDesktopInventoryIGTV, .coreSpriteDesktopInventoryIGTVActive, .coreSpriteDesktopInventorySave, .coreSpriteDesktopInventorySaveActive, .coreSpriteDesktopInventoryTagged, .coreSpriteDesktopInventoryTaggedActive, .coreSpriteDirectHeart, .coreSpriteDismissLarge, .coreSpriteDismissSmall, .coreSpriteDownload, .coreSpriteDropdownArrowBlue5, .coreSpriteDropdownArrowBlue6, .coreSpriteDropdownArrowGrey9, .coreSpriteDropdownArrowWhite, .coreSpriteFacebookIcon, .coreSpriteFacebookIconInverted, .coreSpriteGallery, .coreSpriteGlyphGradient, .coreSpriteGlyphWhite, .coreSpriteGooglePlayButton, .coreSpriteHashtag, .coreSpriteHeartSmall, .coreSpriteHyperlapse, .coreSpriteIgLiteHalfsheetInstagramLogo, .coreSpriteInfo, .coreSpriteInputAccepted, .coreSpriteInputError, .coreSpriteInputRefresh, .coreSpriteKeyhole, .coreSpriteLeftChevron, .coreSpriteLeftPaginationArrow, .coreSpriteLikeAnimationHeart, .coreSpriteLocation, .coreSpriteLocationActive, .coreSpriteLock, .coreSpriteLockSmall, .coreSpriteLoggedOutGenericUpsell, .coreSpriteLoggedOutWordmark, .coreSpriteMobileNavDirect, .coreSpriteMobileNavTypeLogo, .coreSpriteNavBack, .coreSpriteNotificationLeftChevron, .coreSpriteNotificationRightChevron, .coreSpriteOptionsEllipsis, .coreSpriteOptionsEllipsisLight, .coreSpritePagingChevron, .coreSpritePlayIconSmall, .coreSpritePrivateLock, .coreSpriteInventoryCamera, .coreSpriteReload, .coreSpriteRightChevron, .coreSpriteRightPaginationArrow, .coreSpriteSaveNull, .coreSpriteSaveStory, .coreSpriteSearchClear, .coreSpriteSearchIcon, .coreSpriteSensitivityIcon, .coreSpriteSensitivityIconSmall, .coreSpriteSpeechBubbleSmall, .coreSpriteSpinsta, .coreSpriteSpinstaNux, .coreSpriteSpinstaStory, .coreSpriteStar, .coreSpriteStoryCreation, .coreSpriteStoryCreationAlt, .coreSpriteStoryRing, .coreSpriteStoryViewCount, .coreSpriteTaggedNull, .coreSpriteUnreadComments, .coreSpriteUnreadLikes, .coreSpriteUnreadRelationships, .coreSpriteUnreadUsertags, .coreSpriteVerifiedBadge, .coreSpriteVerifiedBadgeSmall, .coreSpriteVideoNux, .coreSpriteViewCount, .coreSpriteWindowsStoreButton {
+    background-image: url(/assets/4f48d3d2062b.png)
+}
+
+.coreSpriteActivityHeart, .coreSpriteAddText {
+    background-repeat: no-repeat;
+    background-position: -275px -132px;
+    height: 62px;
+    width: 62px
+}
+
+.coreSpriteAddText {
+    background-position: -297px -288px;
+    height: 24px;
+    width: 24px
+}
+
+.coreSpriteAppIcon, .coreSpriteAppStoreButton {
+    background-repeat: no-repeat;
+    background-position: -230px -53px;
+    height: 40px;
+    width: 40px
+}
+
+.coreSpriteAppStoreButton {
+    background-position: 0 -181px;
+    height: 41px;
+    width: 128px
+}
+
+.coreSpriteBoomerang, .coreSpriteCall {
+    background-repeat: no-repeat;
+    background-position: -385px -288px;
+    height: 17px;
+    width: 17px
+}
+
+.coreSpriteCall {
+    background-position: -250px -146px;
+    height: 22px;
+    width: 22px
+}
+
+.coreSpriteCheck, .coreSpriteChevronDark {
+    background-repeat: no-repeat;
+    background-position: 0 -224px;
+    height: 62px;
+    width: 62px
+}
+
+.coreSpriteChevronDark {
+    background-position: -27px -380px;
+    height: 10px;
+    width: 6px
+}
+
+.coreSpriteChevronDownGrey, .coreSpriteChevronRight {
+    background-repeat: no-repeat;
+    background-position: -384px -319px;
+    height: 12px;
+    width: 12px
+}
+
+.coreSpriteChevronRight {
+    background-position: -54px -361px;
+    height: 11px;
+    width: 6px
+}
+
+.coreSpriteCi, .coreSpriteClose {
+    background-repeat: no-repeat;
+    background-position: 0 -361px;
+    height: 32px;
+    width: 25px
+}
+
+.coreSpriteClose {
+    background-position: -383px -174px;
+    height: 20px;
+    width: 20px
+}
+
+.coreSpriteCloseLight, .coreSpriteDesktopNavDirect {
+    background-repeat: no-repeat;
+    background-position: -323px -288px;
+    height: 24px;
+    width: 24px
+}
+
+.coreSpriteDesktopNavDirect {
+    background-position: -245px -288px
+}
+
+.coreSpriteDesktopPhotoGrid, .coreSpriteDesktopPhotoGridActive {
+    background-repeat: no-repeat;
+    background-position: -274px -337px;
+    height: 12px;
+    width: 12px
+}
+
+.coreSpriteDesktopPhotoGridActive {
+    background-position: -260px -337px
+}
+
+.coreSpriteDesktopInventoryIGTV, .coreSpriteDesktopInventoryIGTVActive {
+    background-repeat: no-repeat;
+    background-position: -330px -337px;
+    height: 12px;
+    width: 12px
+}
+
+.coreSpriteDesktopInventoryIGTVActive {
+    background-position: -316px -337px
+}
+
+.coreSpriteDesktopInventorySave, .coreSpriteDesktopInventorySaveActive {
+    background-repeat: no-repeat;
+    background-position: -42px -361px;
+    height: 12px;
+    width: 10px
+}
+
+.coreSpriteDesktopInventorySaveActive {
+    background-position: -393px -258px
+}
+
+.coreSpriteDesktopInventoryTagged, .coreSpriteDesktopInventoryTaggedActive {
+    background-repeat: no-repeat;
+    background-position: -246px -337px;
+    height: 12px;
+    width: 12px
+}
+
+.coreSpriteDesktopInventoryTaggedActive {
+    background-position: -288px -337px
+}
+
+.coreSpriteDirectHeart, .coreSpriteDismissLarge {
+    background-repeat: no-repeat;
+    background-position: -219px -288px;
+    height: 24px;
+    width: 24px
+}
+
+.coreSpriteDismissLarge {
+    background-position: -393px -272px;
+    height: 10px;
+    width: 10px
+}
+
+.coreSpriteDismissSmall, .coreSpriteDownload {
+    background-repeat: no-repeat;
+    background-position: -62px -361px;
+    height: 8px;
+    width: 8px
+}
+
+.coreSpriteDownload {
+    background-position: -341px 0;
+    height: 62px;
+    width: 62px
+}
+
+.coreSpriteDropdownArrowBlue5 {
+    background-repeat: no-repeat;
+    background-position: -83px -361px;
+    height: 6px;
+    width: 9px
+}
+
+.coreSpriteDropdownArrowBlue6, .coreSpriteDropdownArrowGrey9 {
+    background-repeat: no-repeat;
+    background-position: -72px -361px;
+    height: 6px;
+    width: 9px
+}
+
+.coreSpriteDropdownArrowGrey9 {
+    background-position: -94px -361px;
+    width: 8px
+}
+
+.coreSpriteDropdownArrowWhite, .coreSpriteFacebookIcon {
+    background-repeat: no-repeat;
+    background-position: -327px -213px;
+    height: 6px;
+    width: 9px
+}
+
+.coreSpriteFacebookIcon {
+    background-position: -300px -319px;
+    height: 16px;
+    width: 16px
+}
+
+.coreSpriteFacebookIconInverted, .coreSpriteGallery {
+    background-repeat: no-repeat;
+    background-position: -282px -319px;
+    height: 16px;
+    width: 16px
+}
+
+.coreSpriteGallery {
+    background-position: -367px -258px;
+    height: 24px;
+    width: 24px
+}
+
+.coreSpriteGlyphGradient, .coreSpriteGlyphWhite {
+    background-repeat: no-repeat;
+    background-position: 0 -319px;
+    height: 40px;
+    width: 40px
+}
+
+.coreSpriteGlyphWhite {
+    background-position: -105px -288px;
+    height: 29px;
+    width: 29px
+}
+
+.coreSpriteGooglePlayButton, .coreSpriteHashtag {
+    background-repeat: no-repeat;
+    background-position: -98px -53px;
+    height: 41px;
+    width: 130px
+}
+
+.coreSpriteHashtag {
+    background-position: -27px -361px;
+    height: 17px;
+    width: 13px
+}
+
+.coreSpriteHeartSmall, .coreSpriteHyperlapse {
+    background-repeat: no-repeat;
+    background-position: -320px -266px;
+    height: 19px;
+    width: 19px
+}
+
+.coreSpriteHyperlapse {
+    background-position: -252px -205px;
+    height: 17px;
+    width: 17px
+}
+
+.coreSpriteIgLiteHalfsheetInstagramLogo, .coreSpriteInfo {
+    background-repeat: no-repeat;
+    background-position: -275px -66px;
+    height: 64px;
+    width: 64px
+}
+
+.coreSpriteInfo {
+    background-position: -80px -319px;
+    height: 34px;
+    width: 34px
+}
+
+.coreSpriteInputAccepted, .coreSpriteInputError, .coreSpriteInputRefresh {
+    background-repeat: no-repeat;
+    background-position: -250px -98px;
+    height: 22px;
+    width: 22px
+}
+
+.coreSpriteInputError, .coreSpriteInputRefresh {
+    background-position: -250px -122px
+}
+
+.coreSpriteInputRefresh {
+    background-position: -252px -181px;
+    width: 21px
+}
+
+.coreSpriteKeyhole, .coreSpriteLeftChevron {
+    background-repeat: no-repeat;
+    background-position: -128px -224px;
+    height: 62px;
+    width: 62px
+}
+
+.coreSpriteLeftChevron {
+    background-position: -214px -319px;
+    height: 30px;
+    width: 30px
+}
+
+.coreSpriteLeftPaginationArrow {
+    background-repeat: no-repeat;
+    background-position: -341px -174px;
+    height: 40px;
+    width: 40px
+}
+
+.coreSpriteLikeAnimationHeart {
+    background-repeat: no-repeat;
+    background-position: 0 -98px;
+    height: 81px;
+    width: 92px
+}
+
+.coreSpriteLocation, .coreSpriteLocationActive {
+    background-repeat: no-repeat;
+    background-position: -367px -288px;
+    height: 19px;
+    width: 16px
+}
+
+.coreSpriteLocationActive {
+    background-position: -349px -288px;
+    height: 20px
+}
+
+.coreSpriteLock, .coreSpriteLockSmall {
+    background-repeat: no-repeat;
+    background-position: -172px -98px;
+    height: 76px;
+    width: 76px
+}
+
+.coreSpriteLockSmall {
+    background-position: 0 0;
+    height: 96px;
+    width: 96px
+}
+
+.coreSpriteLoggedOutGenericUpsell {
+    background-repeat: no-repeat;
+    background-position: -341px -64px;
+    height: 58px;
+    width: 58px
+}
+
+.coreSpriteLoggedOutWordmark, .coreSpriteMobileNavDirect {
+    background-repeat: no-repeat;
+    background-position: -98px 0;
+    height: 51px;
+    width: 175px
+}
+
+.coreSpriteMobileNavDirect {
+    background-position: -193px -288px;
+    height: 24px;
+    width: 24px
+}
+
+.coreSpriteMobileNavTypeLogo, .coreSpriteNavBack {
+    background-repeat: no-repeat;
+    background-position: 0 -288px;
+    height: 29px;
+    width: 103px
+}
+
+.coreSpriteNavBack {
+    background-position: -391px -124px;
+    height: 20px;
+    width: 12px
+}
+
+.coreSpriteNotificationLeftChevron {
+    background-repeat: no-repeat;
+    background-position: -391px -146px;
+    height: 21px;
+    width: 11px
+}
+
+.coreSpriteNotificationRightChevron, .coreSpriteOptionsEllipsis {
+    background-repeat: no-repeat;
+    background-position: -327px -196px;
+    height: 15px;
+    width: 12px
+}
+
+.coreSpriteOptionsEllipsis {
+    background-position: -318px -319px;
+    height: 16px;
+    width: 16px
+}
+
+.coreSpriteOptionsEllipsisLight, .coreSpritePagingChevron, .coreSpritePlayIconSmall {
+    background-repeat: no-repeat;
+    background-position: -167px -288px;
+    height: 24px;
+    width: 24px
+}
+
+.coreSpritePagingChevron, .coreSpritePlayIconSmall {
+    background-position: -275px -196px
+}
+
+.coreSpritePlayIconSmall {
+    background-position: -320px -245px;
+    height: 19px;
+    width: 19px
+}
+
+.coreSpritePrivateLock, .coreSpriteInventoryCamera {
+    background-repeat: no-repeat;
+    background-position: -42px -319px;
+    height: 36px;
+    width: 36px
+}
+
+.coreSpriteInventoryCamera {
+    background-position: -192px -224px;
+    height: 62px;
+    width: 62px
+}
+
+.coreSpriteReload, .coreSpriteRightChevron {
+    background-repeat: no-repeat;
+    background-position: -136px -288px;
+    height: 29px;
+    width: 29px
+}
+
+.coreSpriteRightChevron {
+    background-position: -182px -319px;
+    height: 30px;
+    width: 30px
+}
+
+.coreSpriteRightPaginationArrow, .coreSpriteSaveNull {
+    background-repeat: no-repeat;
+    background-position: -341px -216px;
+    height: 40px;
+    width: 40px
+}
+
+.coreSpriteSaveNull {
+    background-position: -64px -224px;
+    height: 62px;
+    width: 62px
+}
+
+.coreSpriteSaveStory, .coreSpriteSearchClear {
+    background-repeat: no-repeat;
+    background-position: -341px -258px;
+    height: 24px;
+    width: 24px
+}
+
+.coreSpriteSearchClear {
+    background-position: -383px -216px;
+    height: 20px;
+    width: 20px
+}
+
+.coreSpriteSearchIcon, .coreSpriteSensitivityIcon {
+    background-repeat: no-repeat;
+    background-position: -387px -337px;
+    height: 10px;
+    width: 10px
+}
+
+.coreSpriteSensitivityIcon {
+    background-position: -341px -124px;
+    height: 48px;
+    width: 48px
+}
+
+.coreSpriteSensitivityIconSmall {
+    background-repeat: no-repeat;
+    background-position: -116px -319px;
+    height: 32px;
+    width: 32px
+}
+
+.coreSpriteSpeechBubbleSmall, .coreSpriteSpinsta {
+    background-repeat: no-repeat;
+    background-position: -320px -224px;
+    height: 19px;
+    width: 19px
+}
+
+.coreSpriteSpinsta {
+    background-position: -358px -337px;
+    height: 11px;
+    width: 12px
+}
+
+.coreSpriteSpinstaNux, .coreSpriteSpinstaStory {
+    background-repeat: no-repeat;
+    background-position: -150px -319px;
+    height: 30px;
+    width: 30px
+}
+
+.coreSpriteSpinstaStory {
+    background-position: -344px -337px;
+    height: 11px;
+    width: 12px
+}
+
+.coreSpriteStar, .coreSpriteStoryCreation {
+    background-repeat: no-repeat;
+    background-position: -301px -196px;
+    height: 24px;
+    width: 24px
+}
+
+.coreSpriteStoryCreation {
+    background-position: -271px -288px
+}
+
+.coreSpriteStoryCreationAlt {
+    background-repeat: no-repeat;
+    background-position: -383px -196px;
+    height: 18px;
+    width: 18px
+}
+
+.coreSpriteStoryRing, .coreSpriteStoryViewCount {
+    background-repeat: no-repeat;
+    background-position: -275px 0;
+    height: 64px;
+    width: 64px
+}
+
+.coreSpriteStoryViewCount {
+    background-position: -372px -337px;
+    height: 10px;
+    width: 13px
+}
+
+.coreSpriteTaggedNull, .coreSpriteUnreadComments {
+    background-repeat: no-repeat;
+    background-position: -256px -224px;
+    height: 62px;
+    width: 62px
+}
+
+.coreSpriteUnreadComments {
+    background-position: -336px -319px;
+    height: 14px;
+    width: 14px
+}
+
+.coreSpriteUnreadLikes, .coreSpriteUnreadRelationships {
+    background-repeat: no-repeat;
+    background-position: -368px -319px;
+    height: 12px;
+    width: 14px
+}
+
+.coreSpriteUnreadRelationships {
+    background-position: -352px -319px;
+    height: 13px
+}
+
+.coreSpriteUnreadUsertags, .coreSpriteVerifiedBadge {
+    background-repeat: no-repeat;
+    background-position: -264px -319px;
+    height: 16px;
+    width: 16px
+}
+
+.coreSpriteVerifiedBadge {
+    background-position: -383px -238px;
+    height: 18px;
+    width: 18px
+}
+
+.coreSpriteVerifiedBadgeSmall {
+    background-repeat: no-repeat;
+    background-position: -302px -337px;
+    height: 12px;
+    width: 12px
+}
+
+.coreSpriteVideoNux, .coreSpriteViewCount {
+    background-repeat: no-repeat;
+    background-position: -94px -98px;
+    height: 76px;
+    width: 76px
+}
+
+.coreSpriteViewCount {
+    background-position: -246px -319px;
+    height: 16px;
+    width: 16px
+}
+
+.coreSpriteWindowsStoreButton {
+    background-repeat: no-repeat;
+    background-position: -130px -181px;
+    height: 41px;
+    width: 120px
+}
+
+@media (min-device-pixel-ratio: 1.5),(-webkit-min-device-pixel-ratio:1.5),(min-resolution:144dpi) {
+    .coreSpriteActivityHeart, .coreSpriteAddText, .coreSpriteAppIcon, .coreSpriteAppStoreButton, .coreSpriteBoomerang, .coreSpriteCall, .coreSpriteCheck, .coreSpriteChevronDark, .coreSpriteChevronDownGrey, .coreSpriteChevronRight, .coreSpriteCi, .coreSpriteClose, .coreSpriteCloseLight, .coreSpriteDesktopNavDirect, .coreSpriteDesktopPhotoGrid, .coreSpriteDesktopPhotoGridActive, .coreSpriteDesktopInventoryIGTV, .coreSpriteDesktopInventoryIGTVActive, .coreSpriteDesktopInventorySave, .coreSpriteDesktopInventorySaveActive, .coreSpriteDesktopInventoryTagged, .coreSpriteDesktopInventoryTaggedActive, .coreSpriteDirectHeart, .coreSpriteDismissLarge, .coreSpriteDismissSmall, .coreSpriteDownload, .coreSpriteDropdownArrowBlue5, .coreSpriteDropdownArrowBlue6, .coreSpriteDropdownArrowGrey9, .coreSpriteDropdownArrowWhite, .coreSpriteFacebookIcon, .coreSpriteFacebookIconInverted, .coreSpriteGallery, .coreSpriteGlyphGradient, .coreSpriteGlyphWhite, .coreSpriteGooglePlayButton, .coreSpriteHashtag, .coreSpriteHeartSmall, .coreSpriteHyperlapse, .coreSpriteIgLiteHalfsheetInstagramLogo, .coreSpriteInfo, .coreSpriteInputAccepted, .coreSpriteInputError, .coreSpriteInputRefresh, .coreSpriteKeyhole, .coreSpriteLeftChevron, .coreSpriteLeftPaginationArrow, .coreSpriteLikeAnimationHeart, .coreSpriteLocation, .coreSpriteLocationActive, .coreSpriteLock, .coreSpriteLockSmall, .coreSpriteLoggedOutGenericUpsell, .coreSpriteLoggedOutWordmark, .coreSpriteMobileNavDirect, .coreSpriteMobileNavTypeLogo, .coreSpriteNavBack, .coreSpriteNotificationLeftChevron, .coreSpriteNotificationRightChevron, .coreSpriteNullInventory, .coreSpriteOptionsEllipsis, .coreSpriteOptionsEllipsisLight, .coreSpritePagingChevron, .coreSpritePlayIconSmall, .coreSpritePrivateLock, .coreSpriteInventoryCamera, .coreSpriteReload, .coreSpriteRightChevron, .coreSpriteRightPaginationArrow, .coreSpriteSaveNull, .coreSpriteSaveStory, .coreSpriteSearchClear, .coreSpriteSearchIcon, .coreSpriteSensitivityIcon, .coreSpriteSensitivityIconSmall, .coreSpriteSpeechBubbleSmall, .coreSpriteSpinsta, .coreSpriteSpinstaNux, .coreSpriteSpinstaStory, .coreSpriteStar, .coreSpriteStoryCreation, .coreSpriteStoryCreationAlt, .coreSpriteStoryRing, .coreSpriteStoryViewCount, .coreSpriteTaggedNull, .coreSpriteUnreadComments, .coreSpriteUnreadLikes, .coreSpriteUnreadRelationships, .coreSpriteUnreadUsertags, .coreSpriteVerifiedBadge, .coreSpriteVerifiedBadgeSmall, .coreSpriteVideoNux, .coreSpriteViewCount, .coreSpriteWindowsStoreButton, .coreSpriteWordmark {
+        background-image: url(/assets/6ba81dcece9b.png)
+    }
+
+    .coreSpriteActivityHeart {
+        background-size: 410px 396px;
+        background-position: -63px -273px
+    }
+
+    .coreSpriteAddText, .coreSpriteAppIcon {
+        background-size: 410px 396px;
+        background-position: -289px -336px
+    }
+
+    .coreSpriteAppIcon {
+        background-position: -338px -171px
+    }
+
+    .coreSpriteAppStoreButton, .coreSpriteBoomerang {
+        background-size: 410px 396px;
+        background-position: 0 -231px
+    }
+
+    .coreSpriteBoomerang {
+        background-position: -379px -194px
+    }
+
+    .coreSpriteCall, .coreSpriteCheck {
+        background-size: 410px 396px;
+        background-position: -315px -273px
+    }
+
+    .coreSpriteCheck {
+        background-position: -126px -273px
+    }
+
+    .coreSpriteChevronDark, .coreSpriteChevronDownGrey {
+        background-size: 410px 396px;
+        background-position: -401px -26px
+    }
+
+    .coreSpriteChevronDownGrey {
+        background-position: -125px -366px
+    }
+
+    .coreSpriteChevronRight, .coreSpriteCi {
+        background-size: 410px 396px;
+        background-position: -401px -37px
+    }
+
+    .coreSpriteCi {
+        background-position: -243px -97px
+    }
+
+    .coreSpriteClose, .coreSpriteCloseLight {
+        background-size: 410px 396px;
+        background-position: -379px -253px
+    }
+
+    .coreSpriteCloseLight {
+        background-position: -164px -336px
+    }
+
+    .coreSpriteDesktopNavDirect {
+        background-size: 410px 396px;
+        background-position: -239px -336px
+    }
+
+    .coreSpriteDesktopPhotoGrid {
+        background-size: 410px 396px;
+        background-position: -177px -366px
+    }
+
+    .coreSpriteDesktopPhotoGridActive {
+        background-size: 410px 396px;
+        background-position: -189px -366px
+    }
+
+    .coreSpriteDesktopInventoryIGTV {
+        background-size: 410px 396px;
+        background-position: -164px -366px
+    }
+
+    .coreSpriteDesktopInventoryIGTVActive {
+        background-size: 410px 396px;
+        background-position: -151px -366px
+    }
+
+    .coreSpriteDesktopInventorySave {
+        background-size: 410px 396px;
+        background-position: -401px -13px
+    }
+
+    .coreSpriteDesktopInventorySaveActive {
+        background-size: 410px 396px;
+        background-position: -401px 0
+    }
+
+    .coreSpriteDesktopInventoryTagged {
+        background-size: 410px 396px;
+        background-position: -315px -319px
+    }
+
+    .coreSpriteDesktopInventoryTaggedActive {
+        background-size: 410px 396px;
+        background-position: -255px -131px
+    }
+
+    .coreSpriteDirectHeart, .coreSpriteDismissLarge {
+        background-size: 410px 396px;
+        background-position: -247px -174px
+    }
+
+    .coreSpriteDismissLarge {
+        background-position: -229px -366px
+    }
+
+    .coreSpriteDismissSmall, .coreSpriteDownload {
+        background-size: 410px 396px;
+        background-position: -401px -49px
+    }
+
+    .coreSpriteDownload {
+        background-position: -252px -273px
+    }
+
+    .coreSpriteDropdownArrowBlue5 {
+        background-size: 410px 396px;
+        background-position: -401px -65px
+    }
+
+    .coreSpriteDropdownArrowBlue6 {
+        background-size: 410px 396px;
+        background-position: -401px -58px
+    }
+
+    .coreSpriteDropdownArrowGrey9 {
+        background-size: 410px 396px;
+        background-position: -401px -79px
+    }
+
+    .coreSpriteDropdownArrowWhite, .coreSpriteFacebookIcon {
+        background-size: 410px 396px;
+        background-position: -401px -72px
+    }
+
+    .coreSpriteFacebookIcon {
+        background-position: -193px -131px
+    }
+
+    .coreSpriteFacebookIconInverted, .coreSpriteGallery {
+        background-size: 410px 396px;
+        background-position: -273px -256px
+    }
+
+    .coreSpriteGallery {
+        background-position: -189px -336px
+    }
+
+    .coreSpriteGlyphGradient, .coreSpriteGlyphWhite {
+        background-size: 410px 396px;
+        background-position: -338px -294px
+    }
+
+    .coreSpriteGlyphWhite {
+        background-position: -134px -336px
+    }
+
+    .coreSpriteGooglePlayButton, .coreSpriteHashtag {
+        background-size: 410px 396px;
+        background-position: -97px -52px
+    }
+
+    .coreSpriteHashtag {
+        background-position: -111px -366px
+    }
+
+    .coreSpriteHeartSmall, .coreSpriteHyperlapse {
+        background-size: 410px 396px;
+        background-position: -379px -274px
+    }
+
+    .coreSpriteHyperlapse {
+        background-position: -93px -366px
+    }
+
+    .coreSpriteIgLiteHalfsheetInstagramLogo {
+        background-size: 410px 396px;
+        background-position: -273px 0
+    }
+
+    .coreSpriteInfo, .coreSpriteInputAccepted {
+        background-size: 410px 396px;
+        background-position: -176px -97px
+    }
+
+    .coreSpriteInputAccepted {
+        background-position: -250px -231px
+    }
+
+    .coreSpriteInputError, .coreSpriteInputRefresh {
+        background-size: 410px 396px;
+        background-position: -315px -296px
+    }
+
+    .coreSpriteInputRefresh {
+        background-position: -379px -171px
+    }
+
+    .coreSpriteKeyhole, .coreSpriteLeftChevron {
+        background-size: 410px 396px;
+        background-position: -273px -193px
+    }
+
+    .coreSpriteLeftChevron {
+        background-position: 0 -366px
+    }
+
+    .coreSpriteLeftPaginationArrow {
+        background-size: 410px 396px;
+        background-position: -338px -212px
+    }
+
+    .coreSpriteLikeAnimationHeart {
+        background-size: 410px 396px;
+        background-position: 0 -149px
+    }
+
+    .coreSpriteLocation, .coreSpriteLocationActive {
+        background-size: 410px 396px;
+        background-position: -381px -336px
+    }
+
+    .coreSpriteLocationActive {
+        background-position: -364px -336px
+    }
+
+    .coreSpriteLock, .coreSpriteLockSmall {
+        background-size: 410px 396px;
+        background-position: -170px -149px
+    }
+
+    .coreSpriteLockSmall {
+        background-position: 0 0
+    }
+
+    .coreSpriteLoggedOutGenericUpsell {
+        background-size: 410px 396px;
+        background-position: -338px -63px
+    }
+
+    .coreSpriteLoggedOutWordmark, .coreSpriteMobileNavDirect {
+        background-size: 410px 396px;
+        background-position: 0 -97px
+    }
+
+    .coreSpriteMobileNavDirect {
+        background-position: -247px -199px
+    }
+
+    .coreSpriteMobileNavTypeLogo, .coreSpriteNavBack {
+        background-size: 410px 396px;
+        background-position: 0 -336px
+    }
+
+    .coreSpriteNavBack {
+        background-position: -387px -122px
+    }
+
+    .coreSpriteNotificationLeftChevron {
+        background-size: 410px 396px;
+        background-position: -387px -143px
+    }
+
+    .coreSpriteNotificationRightChevron {
+        background-size: 410px 396px;
+        background-position: -324px -256px
+    }
+
+    .coreSpriteNullInventory, .coreSpriteOptionsEllipsis {
+        background-size: 410px 396px;
+        background-position: -338px 0
+    }
+
+    .coreSpriteOptionsEllipsis {
+        background-position: -176px -131px
+    }
+
+    .coreSpriteOptionsEllipsisLight {
+        background-size: 410px 396px;
+        background-position: -314px -336px
+    }
+
+    .coreSpritePagingChevron, .coreSpritePlayIconSmall {
+        background-size: 410px 396px;
+        background-position: -264px -336px
+    }
+
+    .coreSpritePlayIconSmall {
+        background-position: -379px -294px
+    }
+
+    .coreSpritePrivateLock, .coreSpriteInventoryCamera {
+        background-size: 410px 396px;
+        background-position: -228px -52px
+    }
+
+    .coreSpriteInventoryCamera {
+        background-position: -273px -130px
+    }
+
+    .coreSpriteReload, .coreSpriteRightChevron {
+        background-size: 410px 396px;
+        background-position: -104px -336px
+    }
+
+    .coreSpriteRightChevron {
+        background-position: -62px -366px
+    }
+
+    .coreSpriteRightPaginationArrow, .coreSpriteSaveNull {
+        background-size: 410px 396px;
+        background-position: -338px -253px
+    }
+
+    .coreSpriteSaveNull {
+        background-position: -189px -273px
+    }
+
+    .coreSpriteSaveStory, .coreSpriteSearchClear {
+        background-size: 410px 396px;
+        background-position: -339px -336px
+    }
+
+    .coreSpriteSearchClear {
+        background-position: -379px -212px
+    }
+
+    .coreSpriteSearchIcon, .coreSpriteSensitivityIcon {
+        background-size: 410px 396px;
+        background-position: -240px -366px
+    }
+
+    .coreSpriteSensitivityIcon {
+        background-position: -338px -122px
+    }
+
+    .coreSpriteSensitivityIconSmall {
+        background-size: 410px 396px;
+        background-position: -210px -97px
+    }
+
+    .coreSpriteSpeechBubbleSmall, .coreSpriteSpinsta {
+        background-size: 410px 396px;
+        background-position: -379px -233px
+    }
+
+    .coreSpriteSpinsta {
+        background-position: -202px -366px
+    }
+
+    .coreSpriteSpinstaNux, .coreSpriteSpinstaStory {
+        background-size: 410px 396px;
+        background-position: -31px -366px
+    }
+
+    .coreSpriteSpinstaStory {
+        background-position: -93px -384px
+    }
+
+    .coreSpriteStar, .coreSpriteStoryCreation {
+        background-size: 410px 396px;
+        background-position: -214px -336px
+    }
+
+    .coreSpriteStoryCreation {
+        background-position: -247px -149px
+    }
+
+    .coreSpriteStoryCreationAlt, .coreSpriteStoryRing {
+        background-size: 410px 396px;
+        background-position: -250px -254px
+    }
+
+    .coreSpriteStoryRing {
+        background-position: -273px -65px
+    }
+
+    .coreSpriteStoryViewCount, .coreSpriteTaggedNull {
+        background-size: 410px 396px;
+        background-position: -215px -366px
+    }
+
+    .coreSpriteTaggedNull {
+        background-position: 0 -273px
+    }
+
+    .coreSpriteUnreadComments, .coreSpriteUnreadLikes {
+        background-size: 410px 396px;
+        background-position: -210px -131px
+    }
+
+    .coreSpriteUnreadLikes {
+        background-position: -240px -131px
+    }
+
+    .coreSpriteUnreadRelationships {
+        background-size: 410px 396px;
+        background-position: -225px -131px
+    }
+
+    .coreSpriteUnreadUsertags, .coreSpriteVerifiedBadge {
+        background-size: 410px 396px;
+        background-position: -290px -256px
+    }
+
+    .coreSpriteVerifiedBadge {
+        background-position: -379px -314px
+    }
+
+    .coreSpriteVerifiedBadgeSmall {
+        background-size: 410px 396px;
+        background-position: -138px -366px
+    }
+
+    .coreSpriteVideoNux, .coreSpriteViewCount {
+        background-size: 410px 396px;
+        background-position: -93px -149px
+    }
+
+    .coreSpriteViewCount {
+        background-position: -307px -256px
+    }
+
+    .coreSpriteWindowsStoreButton, .coreSpriteWordmark {
+        background-size: 410px 396px;
+        background-position: -129px -231px
+    }
+
+    .coreSpriteWordmark {
+        background-position: -97px 0
+    }
+}
